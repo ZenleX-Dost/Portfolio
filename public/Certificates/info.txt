@@ -1,0 +1,12 @@
+Coursera 0T5ZHMQ97Z5E = IBM-GenAI for Executives & Business Leaders: An Introduction
+Coursera 06GVSZ3WBL9H = IBM-GenAI for Execs & Business Leaders: Integration Strategy
+Coursera 36P5FWOSEZEL = IBM-GenAI for Execs & Business Leaders: Formulate Your Use Case
+Coursera B8MJDEBYBMON = GOOGLE- Foundations of Project Management
+Coursera Q8CW9MVC6WW3 = IBM- Machine Learning with Python
+Coursera V37YZRV84K2I = GOOGLE-Project Initiation: Starting a Successful Project
+Coursera VHF7S0YDAKDO = STANFORD DEEPLEARNING.AI-Supervised Machine Learning: Regression and Classification
+Coursera YHZ60NPU5MBO = IBM-Generative AI for Executives and Business Leaders
+UC-8767dcff-f1ff-4f20-ad77-aeca5a70fcd0 = UDEMY-Artificial Intelligence (ARS): Build the Most Powerful AI
+m7pik6yi6v35 = ANTROPIC-Introduction to Model Context Protocol
+d5394qce5ust = ANTROPIC-Model Context Protocol: Advanced Topics
+101469656OCI25AICFA = ORACLE-Oracle Certified Foundation Associate

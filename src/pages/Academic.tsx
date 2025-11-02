@@ -147,57 +147,123 @@ const timeline = [
 const certifications = [
   {
     id: 1,
-    title: 'Machine Learning Specialization',
-    issuer: 'Coursera - Stanford University',
-    date: 'September 2024',
-    credentialId: 'ML-2024-8934',
-    skills: ['Machine Learning', 'Python', 'TensorFlow', 'Neural Networks'],
+    title: 'GenAI for Executives & Business Leaders: Integration Strategy',
+    issuer: 'IBM - Coursera',
+    date: '2024',
+    credentialId: '06GVSZ3WBL9H',
+    skills: ['Generative AI', 'Business Strategy', 'AI Integration', 'Leadership'],
     verified: true,
+    pdfUrl: '/Certificates/Coursera 06GVSZ3WBL9H.pdf',
   },
   {
     id: 2,
-    title: 'Deep Learning Specialization',
-    issuer: 'Coursera - deeplearning.ai',
-    date: 'June 2024',
-    credentialId: 'DL-2024-5621',
-    skills: ['Deep Learning', 'CNN', 'RNN', 'PyTorch'],
+    title: 'GenAI for Executives & Business Leaders: An Introduction',
+    issuer: 'IBM - Coursera',
+    date: '2024',
+    credentialId: '0T5ZHMQ97Z5E',
+    skills: ['Generative AI', 'Business Leadership', 'AI Strategy', 'Innovation'],
     verified: true,
+    pdfUrl: '/Certificates/Coursera 0T5ZHMQ97Z5E.pdf',
   },
   {
     id: 3,
-    title: 'AWS Certified Solutions Architect',
-    issuer: 'Amazon Web Services',
-    date: 'March 2024',
-    credentialId: 'AWS-CSA-2024-3421',
-    skills: ['Cloud Computing', 'AWS', 'Architecture', 'DevOps'],
+    title: 'GenAI for Executives & Business Leaders: Formulate Your Use Case',
+    issuer: 'IBM - Coursera',
+    date: '2024',
+    credentialId: '36P5FWOSEZEL',
+    skills: ['Generative AI', 'Use Case Development', 'Business Planning', 'AI Applications'],
     verified: true,
+    pdfUrl: '/Certificates/Coursera 36P5FWOSEZEL.pdf',
   },
   {
     id: 4,
-    title: 'Data Science Professional Certificate',
-    issuer: 'IBM',
-    date: 'January 2024',
-    credentialId: 'IBM-DS-2024-1823',
-    skills: ['Data Science', 'Python', 'SQL', 'Data Visualization'],
+    title: 'Foundations of Project Management',
+    issuer: 'Google - Coursera',
+    date: '2024',
+    credentialId: 'B8MJDEBYBMON',
+    skills: ['Project Management', 'Planning', 'Organization', 'Leadership'],
     verified: true,
+    pdfUrl: '/Certificates/Coursera B8MJDEBYBMON.pdf',
   },
   {
     id: 5,
-    title: 'Lean Six Sigma Green Belt',
-    issuer: 'ASQ - American Society for Quality',
-    date: 'November 2023',
-    credentialId: 'LSS-GB-2023-9876',
-    skills: ['Process Improvement', 'Quality Management', 'Statistics'],
+    title: 'Machine Learning with Python',
+    issuer: 'IBM - Coursera',
+    date: '2023',
+    credentialId: 'Q8CW9MVC6WW3',
+    skills: ['Machine Learning', 'Python', 'Scikit-learn', 'Data Science'],
     verified: true,
+    pdfUrl: '/Certificates/Coursera Q8CW9MVC6WW3.pdf',
   },
   {
     id: 6,
-    title: 'Advanced Computer Vision',
-    issuer: 'Udacity',
-    date: 'August 2023',
-    credentialId: 'UDACITY-CV-2023-4532',
-    skills: ['Computer Vision', 'OpenCV', 'Image Processing', 'Object Detection'],
+    title: 'Project Initiation: Starting a Successful Project',
+    issuer: 'Google - Coursera',
+    date: '2023',
+    credentialId: 'V37YZRV84K2I',
+    skills: ['Project Initiation', 'Stakeholder Management', 'Goals Setting', 'Planning'],
     verified: true,
+    pdfUrl: '/Certificates/Coursera V37YZRV84K2I.pdf',
+  },
+  {
+    id: 7,
+    title: 'Supervised Machine Learning: Regression and Classification',
+    issuer: 'Stanford & DeepLearning.AI - Coursera',
+    date: '2023',
+    credentialId: 'VHF7S0YDAKDO',
+    skills: ['Supervised Learning', 'Regression', 'Classification', 'Machine Learning'],
+    verified: true,
+    pdfUrl: '/Certificates/Coursera VHF7S0YDAKDO.pdf',
+  },
+  {
+    id: 8,
+    title: 'Generative AI for Executives and Business Leaders',
+    issuer: 'IBM - Coursera',
+    date: '2023',
+    credentialId: 'YHZ60NPU5MBO',
+    skills: ['Generative AI', 'Executive Leadership', 'AI Strategy', 'Business Innovation'],
+    verified: true,
+    pdfUrl: '/Certificates/Coursera YHZ60NPU5MBO.pdf',
+  },
+  {
+    id: 9,
+    title: 'Artificial Intelligence (ARS): Build the Most Powerful AI',
+    issuer: 'Udemy',
+    date: '2023',
+    credentialId: 'UC-8767dcff-f1ff-4f20-ad77-aeca5a70fcd0',
+    skills: ['Artificial Intelligence', 'Deep Learning', 'Neural Networks', 'AI Development'],
+    verified: true,
+    pdfUrl: '/Certificates/UC-8767dcff-f1ff-4f20-ad77-aeca5a70fcd0.pdf',
+  },
+  {
+    id: 10,
+    title: 'Introduction to Model Context Protocol',
+    issuer: 'Anthropic',
+    date: '2024',
+    credentialId: 'm7pik6yi6v35',
+    skills: ['Model Context Protocol', 'AI Systems', 'Context Management', 'LLMs'],
+    verified: true,
+    pdfUrl: '/Certificates/m7pik6yi6v35.pdf',
+  },
+  {
+    id: 11,
+    title: 'Model Context Protocol: Advanced Topics',
+    issuer: 'Anthropic',
+    date: '2024',
+    credentialId: 'd5394qce5ust',
+    skills: ['Advanced MCP', 'AI Architecture', 'System Integration', 'Protocol Design'],
+    verified: true,
+    pdfUrl: '/Certificates/d5394qce5ust.pdf',
+  },
+  {
+    id: 12,
+    title: 'Oracle Certified Foundation Associate',
+    issuer: 'Oracle',
+    date: '2025',
+    credentialId: '101469656OCI25AICFA',
+    skills: ['Oracle Cloud', 'Database Management', 'Cloud Infrastructure', 'Certification'],
+    verified: true,
+    pdfUrl: '/Certificates/101469656OCI25AICFA.pdf',
   },
 ]
 
@@ -736,14 +802,20 @@ const Academic: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Hover indicator */}
-                    <div className="mt-3 pt-3 border-t border-[#30363d] opacity-0 group-hover:opacity-100 transition-opacity">
-                      <span className="text-[#58a6ff] text-xs flex items-center space-x-1">
+                    {/* View Certificate Button */}
+                    <div className="mt-3 pt-3 border-t border-[#30363d]">
+                      <motion.a
+                        href={cert.pdfUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ x: 3 }}
+                        className="text-[#58a6ff] text-xs flex items-center space-x-1 hover:underline opacity-0 group-hover:opacity-100 transition-opacity"
+                      >
                         <span>View Certificate</span>
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <path d="M5 12h14M12 5l7 7-7 7" />
                         </svg>
-                      </span>
+                      </motion.a>
                     </div>
                   </motion.div>
                 ))}
