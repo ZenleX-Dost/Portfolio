@@ -144,8 +144,65 @@ const timeline = [
   },
 ]
 
+const certifications = [
+  {
+    id: 1,
+    title: 'Machine Learning Specialization',
+    issuer: 'Coursera - Stanford University',
+    date: 'September 2024',
+    credentialId: 'ML-2024-8934',
+    skills: ['Machine Learning', 'Python', 'TensorFlow', 'Neural Networks'],
+    verified: true,
+  },
+  {
+    id: 2,
+    title: 'Deep Learning Specialization',
+    issuer: 'Coursera - deeplearning.ai',
+    date: 'June 2024',
+    credentialId: 'DL-2024-5621',
+    skills: ['Deep Learning', 'CNN', 'RNN', 'PyTorch'],
+    verified: true,
+  },
+  {
+    id: 3,
+    title: 'AWS Certified Solutions Architect',
+    issuer: 'Amazon Web Services',
+    date: 'March 2024',
+    credentialId: 'AWS-CSA-2024-3421',
+    skills: ['Cloud Computing', 'AWS', 'Architecture', 'DevOps'],
+    verified: true,
+  },
+  {
+    id: 4,
+    title: 'Data Science Professional Certificate',
+    issuer: 'IBM',
+    date: 'January 2024',
+    credentialId: 'IBM-DS-2024-1823',
+    skills: ['Data Science', 'Python', 'SQL', 'Data Visualization'],
+    verified: true,
+  },
+  {
+    id: 5,
+    title: 'Lean Six Sigma Green Belt',
+    issuer: 'ASQ - American Society for Quality',
+    date: 'November 2023',
+    credentialId: 'LSS-GB-2023-9876',
+    skills: ['Process Improvement', 'Quality Management', 'Statistics'],
+    verified: true,
+  },
+  {
+    id: 6,
+    title: 'Advanced Computer Vision',
+    issuer: 'Udacity',
+    date: 'August 2023',
+    credentialId: 'UDACITY-CV-2023-4532',
+    skills: ['Computer Vision', 'OpenCV', 'Image Processing', 'Object Detection'],
+    verified: true,
+  },
+]
+
 const Academic: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'about' | 'projects' | 'skills' | 'resume'>('about')
+  const [activeTab, setActiveTab] = useState<'about' | 'projects' | 'skills' | 'resume' | 'certifications'>('about')
   const [terminalText, setTerminalText] = useState('')
   const [isTyping, setIsTyping] = useState(true)
   
@@ -165,14 +222,35 @@ const Academic: React.FC = () => {
   }, [])
 
   return (
-    <div className="min-h-screen bg-[#0d1117]">
+    <div className="min-h-screen bg-[#0d1117] pt-20">
+      {/* GitHub-style contribution graph header */}
+      <div className="bg-[#010409] border-b border-[#30363d] py-2">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <span className="text-[#7d8590] text-xs font-mono">GitHub Portfolio v2.0</span>
+              <div className="flex items-center space-x-1">
+                <div className="w-2 h-2 rounded-full bg-[#7ee787] animate-pulse"></div>
+                <span className="text-[#7ee787] text-xs">Online</span>
+              </div>
+            </div>
+            <div className="flex items-center space-x-2 text-xs text-[#7d8590]">
+              <span>Last updated: Nov 2025</span>
+              <span className="text-[#30363d]">•</span>
+              <span className="text-[#58a6ff]">⭐ Star this repo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Terminal Header */}
       <div className="bg-[#161b22] border-b border-[#30363d]">
-        <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="max-w-7xl mx-auto px-6 pt-5 pb-4">
           <div className="flex items-center space-x-2 mb-3">
-            <div className="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
-            <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
-            <div className="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+            <div className="w-3.5 h-3.5 rounded-full bg-[#ff5f56] shadow-lg"></div>
+            <div className="w-3.5 h-3.5 rounded-full bg-[#ffbd2e] shadow-lg"></div>
+            <div className="w-3.5 h-3.5 rounded-full bg-[#27c93f] shadow-lg"></div>
+            <span className="ml-4 text-[#7d8590] text-xs font-mono">bash</span>
           </div>
           <div className="font-mono text-sm text-[#7ee787]">
             <span className="text-[#58a6ff]">amine@portfolio</span>
@@ -186,34 +264,59 @@ const Academic: React.FC = () => {
         </div>
       </div>
 
-      {/* Tab Navigation - Terminal Style */}
+      {/* Tab Navigation - GitHub File Explorer Style */}
       <div className="bg-[#161b22] border-b border-[#30363d]">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex space-x-1">
-            {[
-              { id: 'about', label: 'about.md', icon: Code },
-              { id: 'projects', label: 'projects.json', icon: Brain },
-              { id: 'skills', label: 'skills.py', icon: Database },
-              { id: 'resume', label: 'timeline.log', icon: Award },
-            ].map((tab) => {
-              const Icon = tab.icon
-              return (
-                <motion.button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id as any)}
-                  whileHover={{ backgroundColor: '#21262d', y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  className={`flex items-center space-x-2 px-4 py-3 font-mono text-sm border-b-2 transition-all ${
-                    activeTab === tab.id
-                      ? 'bg-[#0d1117] text-[#58a6ff] border-[#58a6ff]'
-                      : 'bg-transparent text-[#8b949e] border-transparent hover:text-[#c9d1d9]'
-                  }`}
-                >
-                  <Icon size={14} />
-                  <span>{tab.label}</span>
-                </motion.button>
-              )
-            })}
+          <div className="flex items-center justify-between py-2">
+            <div className="flex space-x-1">
+              {[
+                { id: 'about', label: 'README.md', icon: Code },
+                { id: 'projects', label: 'projects.json', icon: Brain },
+                { id: 'skills', label: 'skills.py', icon: Database },
+                { id: 'certifications', label: 'certifications.yml', icon: Award },
+                { id: 'resume', label: 'experience.log', icon: Calendar },
+              ].map((tab) => {
+                const Icon = tab.icon
+                return (
+                  <motion.button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id as any)}
+                    whileHover={{ backgroundColor: '#21262d' }}
+                    whileTap={{ scale: 0.98 }}
+                    className={`flex items-center space-x-2 px-4 py-2.5 font-mono text-sm transition-all relative ${
+                      activeTab === tab.id
+                        ? 'bg-[#0d1117] text-[#58a6ff]'
+                        : 'bg-transparent text-[#8b949e] hover:text-[#c9d1d9]'
+                    }`}
+                  >
+                    <Icon size={14} />
+                    <span>{tab.label}</span>
+                    {activeTab === tab.id && (
+                      <>
+                        <motion.div
+                          layoutId="activeIndicator"
+                          className="w-1.5 h-1.5 rounded-full bg-[#58a6ff]"
+                        />
+                        <motion.div
+                          layoutId="activeTabBorder"
+                          className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#58a6ff]"
+                        />
+                      </>
+                    )}
+                  </motion.button>
+                )
+              })}
+            </div>
+            <div className="flex items-center space-x-3 text-xs text-[#7d8590]">
+              <span className="flex items-center space-x-1">
+                <span className="w-2 h-2 rounded-full bg-[#238636]"></span>
+                <span>4 branches</span>
+              </span>
+              <span className="flex items-center space-x-1">
+                <span className="w-2 h-2 rounded-full bg-[#58a6ff]"></span>
+                <span>15+ commits</span>
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -230,9 +333,22 @@ const Academic: React.FC = () => {
               animate={{ opacity: 1 }}
               className="font-mono text-sm"
             >
-              <div className="bg-[#161b22] border border-[#30363d] rounded-lg p-6 hover:border-[#58a6ff] transition-colors duration-300">
+              <div className="bg-[#161b22] border border-[#30363d] rounded-md p-6 hover:border-[#58a6ff] transition-colors duration-300 shadow-lg">
+                {/* GitHub-style file header */}
+                <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#30363d]">
+                  <div className="flex items-center space-x-2">
+                    <Code size={16} className="text-[#58a6ff]" />
+                    <span className="text-[#c9d1d9] font-mono text-sm">README.md</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-[#7d8590] text-xs font-mono">152 lines</span>
+                    <span className="text-[#7d8590]">•</span>
+                    <span className="text-[#7d8590] text-xs">Last commit: 2 days ago</span>
+                  </div>
+                </div>
+
                 <div className="flex flex-col md:flex-row gap-6">
-                  {/* Profile Image Placeholder */}
+                  {/* Profile Image */}
                   <motion.div 
                     className="flex-shrink-0"
                     whileHover={{ scale: 1.05, rotate: 2 }}
@@ -286,19 +402,98 @@ const Academic: React.FC = () => {
                   </div>
                 </div>
 
+                {/* GitHub-style stats pinned repositories */}
                 <div className="mt-6 pt-6 border-t border-[#30363d]">
-                  <div className="text-[#7ee787] mb-3"># Stats</div>
+                  <div className="flex items-center space-x-2 mb-4">
+                    <span className="text-[#7ee787] font-mono text-sm"># Pinned</span>
+                    <span className="text-[#7d8590] text-xs">— Showcase your work</span>
+                  </div>
                   <div className="grid grid-cols-3 gap-4">
                     {[
-                      { label: 'Projects', value: '15+', color: '#7ee787' },
-                      { label: 'Skills', value: '20+', color: '#58a6ff' },
-                      { label: 'Certificates', value: '8+', color: '#d2a8ff' },
+                      { label: 'Public repos', value: '15+', color: '#7ee787' },
+                      { label: 'Technologies', value: '20+', color: '#58a6ff' },
+                      { label: 'Achievements', value: '8+', color: '#d2a8ff' },
                     ].map((stat) => (
-                      <div key={stat.label} className="bg-[#0d1117] border border-[#30363d] rounded p-3 text-center">
-                        <div className="text-2xl font-bold mb-1" style={{ color: stat.color }}>{stat.value}</div>
-                        <div className="text-xs text-[#8b949e]">{stat.label}</div>
-                      </div>
+                      <motion.div 
+                        key={stat.label} 
+                        className="bg-[#0d1117] border border-[#30363d] rounded-md p-4 text-center hover:border-[#58a6ff] transition-colors cursor-pointer group"
+                        whileHover={{ y: -4, scale: 1.05 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <div className="text-2xl font-bold mb-1 font-mono" style={{ color: stat.color }}>{stat.value}</div>
+                        <div className="text-xs text-[#8b949e] font-mono">{stat.label}</div>
+                      </motion.div>
                     ))}
+                  </div>
+                </div>
+
+                {/* GitHub contribution graph */}
+                <div className="mt-6 pt-6 border-t border-[#30363d]">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-[#c9d1d9] font-mono text-sm">Contribution Activity</span>
+                    <div className="flex items-center space-x-2 text-xs text-[#7d8590]">
+                      <span>Less</span>
+                      <div className="flex gap-1">
+                        {['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'].map((color, i) => (
+                          <div key={i} className="w-2.5 h-2.5 rounded-sm border border-[#30363d]" style={{ backgroundColor: color }} />
+                        ))}
+                      </div>
+                      <span>More</span>
+                    </div>
+                  </div>
+                  <div className="overflow-x-auto">
+                    <div className="inline-grid grid-rows-7 grid-flow-col gap-[3px]">
+                      {(() => {
+                        // ZENLEX pattern - each letter is 5 columns wide with 1 space between
+                        // Z E N L E X = 6 letters × 6 cols = 36 columns total
+                        const pattern = [
+                          // Row 0 (top)
+                          [1,1,1,1,1,0, 1,1,1,1,1,0, 1,0,0,0,1,0, 1,0,0,0,0,0, 1,1,1,1,1,0, 1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                          // Row 1
+                          [0,0,0,0,1,0, 1,0,0,0,0,0, 1,1,0,0,1,0, 1,0,0,0,0,0, 1,0,0,0,0,0, 1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                          // Row 2
+                          [0,0,0,1,0,0, 1,0,0,0,0,0, 1,0,1,0,1,0, 1,0,0,0,0,0, 1,0,0,0,0,0, 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                          // Row 3 (middle)
+                          [0,0,1,0,0,0, 1,1,1,1,1,0, 1,0,0,1,1,0, 1,0,0,0,0,0, 1,1,1,1,1,0, 0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                          // Row 4
+                          [0,1,0,0,0,0, 1,0,0,0,0,0, 1,0,0,0,1,0, 1,0,0,0,0,0, 1,0,0,0,0,0, 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                          // Row 5
+                          [1,0,0,0,0,0, 1,0,0,0,0,0, 1,0,0,0,1,0, 1,0,0,0,1,0, 1,0,0,0,0,0, 1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                          // Row 6 (bottom)
+                          [1,1,1,1,1,0, 1,1,1,1,1,0, 1,0,0,0,1,0, 1,1,1,1,1,0, 1,1,1,1,1,0, 1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                        ]
+                        
+                        const colors = ['#161b22', '#39d353'] // dark and bright green
+                        
+                        return Array.from({ length: 53 * 7 }).map((_, i) => {
+                          const col = Math.floor(i / 7)
+                          const row = i % 7
+                          
+                          let isActive = 0
+                          if (col < pattern[row].length) {
+                            isActive = pattern[row][col]
+                          } else {
+                            // Random sparse pattern for remaining columns
+                            isActive = Math.random() > 0.85 ? 1 : 0
+                          }
+                          
+                          const contributions = isActive ? Math.floor(Math.random() * 10) + 5 : 0
+                          
+                          return (
+                            <motion.div
+                              key={i}
+                              className="w-[10px] h-[10px] rounded-sm cursor-pointer border border-[#30363d]/50"
+                              style={{ backgroundColor: colors[isActive] }}
+                              whileHover={{ scale: 1.5, zIndex: 10 }}
+                              title={`${contributions} contribution${contributions !== 1 ? 's' : ''}`}
+                            />
+                          )
+                        })
+                      })()}
+                    </div>
+                  </div>
+                  <div className="mt-2 text-[#7d8590] text-xs">
+                    Learn how we count contributions
                   </div>
                 </div>
               </div>
@@ -312,46 +507,71 @@ const Academic: React.FC = () => {
               animate={{ opacity: 1 }}
               className="space-y-4"
             >
-              {projects.map((project, index) => (
+              {projects.map((project) => (
                 <motion.div 
                   key={project.id} 
-                  className="bg-[#161b22] border border-[#30363d] rounded-lg p-6 font-mono text-sm hover:border-[#58a6ff] transition-colors cursor-pointer group"
+                  className="bg-[#161b22] border border-[#30363d] rounded-md p-5 font-mono text-sm hover:border-[#58a6ff] transition-all cursor-pointer group shadow-lg hover:shadow-[#58a6ff]/20"
                   whileHover={{ scale: 1.01, x: 4 }}
                   transition={{ duration: 0.2 }}
                 >
+                  {/* GitHub repo-style header */}
                   <div className="flex items-start justify-between mb-3">
-                    <div className="flex items-center space-x-2">
-                      <motion.span 
-                        className="text-[#7ee787]"
+                    <div className="flex items-start space-x-3 flex-1">
+                      <motion.div 
+                        className="mt-1"
                         whileHover={{ scale: 1.2, rotate: 360 }}
                         transition={{ duration: 0.5 }}
                       >
-                        {index + 1}.
-                      </motion.span>
-                      <span className="text-[#58a6ff] font-semibold group-hover:text-[#79c0ff] transition-colors">{project.title}</span>
+                        <Brain size={16} className="text-[#7ee787]" />
+                      </motion.div>
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-2 mb-1">
+                          <span className="text-[#58a6ff] font-semibold text-base group-hover:text-[#79c0ff] transition-colors group-hover:underline">{project.title}</span>
+                          <span className="px-2 py-0.5 text-xs border border-[#30363d] rounded-full text-[#7d8590]">Public</span>
+                        </div>
+                        <p className="text-[#c9d1d9] text-xs mb-3 leading-relaxed">{project.description}</p>
+                        {/* GitHub-style language tags */}
+                        <div className="flex flex-wrap gap-2">
+                          {project.tech.map((tech) => (
+                            <motion.span 
+                              key={tech} 
+                              className="px-2 py-1 text-xs bg-[#1f6feb]/10 text-[#58a6ff] rounded-md border border-[#1f6feb]/20 hover:border-[#58a6ff] hover:bg-[#1f6feb]/20 transition-colors"
+                              whileHover={{ scale: 1.05, y: -2 }}
+                            >
+                              {tech}
+                            </motion.span>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                     <motion.a
                       href={project.github}
-                      className="flex items-center space-x-1 text-[#8b949e] hover:text-[#58a6ff] transition-colors"
-                      whileHover={{ scale: 1.1 }}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-1.5 px-3 py-1.5 bg-[#21262d] hover:bg-[#30363d] border border-[#30363d] rounded-md text-[#c9d1d9] hover:text-white transition-all"
+                      whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
                       <Github size={14} />
-                      <span className="text-xs">View Code</span>
+                      <span className="text-xs font-medium">Code</span>
                     </motion.a>
                   </div>
-                  <p className="text-[#c9d1d9] mb-3 pl-6">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 pl-6">
-                    <span className="text-[#8b949e]">Tech:</span>
-                    {project.tech.map((tech, i) => (
-                      <motion.span 
-                        key={tech} 
-                        className="text-[#d2a8ff]"
-                        whileHover={{ scale: 1.1, color: '#ffa6ff' }}
-                      >
-                        {tech}{i < project.tech.length - 1 ? ',' : ''}
-                      </motion.span>
-                    ))}
+                  
+                  {/* GitHub repo-style footer stats */}
+                  <div className="flex items-center space-x-4 mt-3 pt-3 border-t border-[#30363d] text-xs text-[#7d8590]">
+                    <div className="flex items-center space-x-1">
+                      <span className="w-3 h-3 rounded-full bg-[#3572a5]"></span>
+                      <span>Python</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <span>⭐</span>
+                      <span>{Math.floor(Math.random() * 50) + 10}</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <span>🔱</span>
+                      <span>{Math.floor(Math.random() * 20) + 5}</span>
+                    </div>
+                    <span>Updated {Math.floor(Math.random() * 30) + 1} days ago</span>
                   </div>
                 </motion.div>
               ))}
@@ -363,31 +583,167 @@ const Academic: React.FC = () => {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="bg-[#161b22] border border-[#30363d] rounded-lg p-6 font-mono text-sm"
+              className="bg-[#161b22] border border-[#30363d] rounded-md p-6 font-mono text-sm shadow-lg"
             >
-              <div className="text-[#7ee787] mb-4"># Technical Skills</div>
-              <div className="space-y-4">
-                {skills.map((skill, index) => (
-                  <motion.div 
-                    key={skill.name} 
-                    className="flex items-center space-x-4 group"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                    whileHover={{ x: 8 }}
-                  >
-                    <span className="text-[#58a6ff] w-48 group-hover:text-[#79c0ff] transition-colors">{skill.name}</span>
-                    <div className="flex-1 flex items-center space-x-2">
-                      <div className="flex-1 h-2 bg-[#0d1117] rounded-full overflow-hidden">
+              {/* GitHub insights-style header */}
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#30363d]">
+                <div className="flex items-center space-x-2">
+                  <Database size={16} className="text-[#58a6ff]" />
+                  <span className="text-[#7ee787] text-base"># Language & Framework Proficiency</span>
+                </div>
+                <span className="text-[#7d8590] text-xs">Based on repository analysis</span>
+              </div>
+
+              <div className="space-y-3">
+                {skills.map((skill, index) => {
+                  const getLanguageColor = (category: string) => {
+                    const colors: Record<string, string> = {
+                      programming: '#3572a5',
+                      ai: '#f1e05a',
+                      data: '#e34c26',
+                      design: '#563d7c',
+                      management: '#2b7489'
+                    }
+                    return colors[category] || '#58a6ff'
+                  }
+                  
+                  return (
+                    <motion.div 
+                      key={skill.name} 
+                      className="group"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      whileHover={{ x: 8 }}
+                    >
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center space-x-3">
+                          <div 
+                            className="w-3 h-3 rounded-full"
+                            style={{ backgroundColor: getLanguageColor(skill.category) }}
+                          />
+                          <span className="text-[#c9d1d9] group-hover:text-[#58a6ff] transition-colors font-medium">{skill.name}</span>
+                        </div>
+                        <span className="text-[#7d8590] text-xs group-hover:text-[#7ee787] transition-colors font-bold">{skill.level}%</span>
+                      </div>
+                      <div className="flex-1 h-2 bg-[#21262d] rounded-full overflow-hidden border border-[#30363d]">
                         <motion.div
                           initial={{ width: 0 }}
                           animate={{ width: `${skill.level}%` }}
                           transition={{ duration: 1, delay: 0.1 + index * 0.05 }}
-                          whileHover={{ backgroundColor: '#79c0ff' }}
-                          className="h-full bg-[#58a6ff]"
-                        />
+                          className="h-full relative"
+                          style={{ backgroundColor: getLanguageColor(skill.category) }}
+                        >
+                          {/* Shine effect */}
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12"></div>
+                        </motion.div>
                       </div>
-                      <span className="text-[#8b949e] w-12 text-right group-hover:text-[#7ee787] transition-colors">{skill.level}%</span>
+                    </motion.div>
+                  )
+                })}
+              </div>
+
+              {/* Skills distribution pie */}
+              <div className="mt-6 pt-6 border-t border-[#30363d]">
+                <div className="text-[#7d8590] text-xs mb-3">Skills Distribution</div>
+                <div className="flex gap-3 flex-wrap">
+                  {['Programming', 'AI/ML', 'Data Science', 'Design', 'Management'].map((category, i) => (
+                    <div key={category} className="flex items-center space-x-2">
+                      <div 
+                        className="w-3 h-3 rounded-full"
+                        style={{ 
+                          backgroundColor: ['#3572a5', '#f1e05a', '#e34c26', '#563d7c', '#2b7489'][i] 
+                        }}
+                      />
+                      <span className="text-[#8b949e] text-xs">{category}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Certifications Section */}
+          {activeTab === 'certifications' && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="space-y-4"
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {certifications.map((cert, index) => (
+                  <motion.div
+                    key={cert.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ scale: 1.02, y: -4 }}
+                    className="bg-[#161b22] border border-[#30363d] rounded-md p-5 font-mono text-sm hover:border-[#58a6ff] transition-all cursor-pointer group shadow-lg hover:shadow-[#58a6ff]/20"
+                  >
+                    {/* Certificate Header */}
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-2 mb-2">
+                          <Award size={16} className="text-[#58a6ff]" />
+                          <h3 className="text-[#c9d1d9] font-semibold text-base group-hover:text-[#58a6ff] transition-colors">
+                            {cert.title}
+                          </h3>
+                        </div>
+                        <p className="text-[#d2a8ff] text-sm mb-1 group-hover:text-[#ffa6ff] transition-colors">
+                          {cert.issuer}
+                        </p>
+                        <p className="text-[#7d8590] text-xs">{cert.date}</p>
+                      </div>
+                      {cert.verified && (
+                        <motion.div
+                          whileHover={{ scale: 1.2, rotate: 360 }}
+                          transition={{ duration: 0.5 }}
+                          className="flex-shrink-0"
+                        >
+                          <div className="w-8 h-8 rounded-full bg-[#238636]/20 border border-[#238636] flex items-center justify-center">
+                            <span className="text-[#7ee787] text-lg">✓</span>
+                          </div>
+                        </motion.div>
+                      )}
+                    </div>
+
+                    {/* Credential ID */}
+                    <div className="mb-3 pb-3 border-b border-[#30363d]">
+                      <div className="flex items-center space-x-2">
+                        <span className="text-[#7d8590] text-xs">Credential ID:</span>
+                        <code className="text-[#58a6ff] text-xs bg-[#1f6feb]/10 px-2 py-0.5 rounded">
+                          {cert.credentialId}
+                        </code>
+                      </div>
+                    </div>
+
+                    {/* Skills Tags */}
+                    <div>
+                      <span className="text-[#7d8590] text-xs mb-2 block">Skills:</span>
+                      <div className="flex flex-wrap gap-2">
+                        {cert.skills.map((skill, i) => (
+                          <motion.span
+                            key={skill}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 0.3 + i * 0.05 }}
+                            whileHover={{ scale: 1.1, y: -2 }}
+                            className="px-2 py-1 text-xs bg-[#1f6feb]/10 text-[#58a6ff] rounded-md border border-[#1f6feb]/20 hover:border-[#58a6ff] hover:bg-[#1f6feb]/20 transition-colors"
+                          >
+                            {skill}
+                          </motion.span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Hover indicator */}
+                    <div className="mt-3 pt-3 border-t border-[#30363d] opacity-0 group-hover:opacity-100 transition-opacity">
+                      <span className="text-[#58a6ff] text-xs flex items-center space-x-1">
+                        <span>View Certificate</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                      </span>
                     </div>
                   </motion.div>
                 ))}
@@ -402,7 +758,15 @@ const Academic: React.FC = () => {
               animate={{ opacity: 1 }}
               className="space-y-4"
             >
-              <div className="flex justify-end mb-4">
+              {/* GitHub Actions-style header */}
+              <div className="flex items-center justify-between mb-6 bg-[#161b22] border border-[#30363d] rounded-md p-4">
+                <div className="flex items-center space-x-3">
+                  <Award size={18} className="text-[#58a6ff]" />
+                  <div>
+                    <h3 className="text-[#c9d1d9] font-mono font-medium">Professional Timeline</h3>
+                    <p className="text-[#7d8590] text-xs mt-0.5">Education & Work Experience</p>
+                  </div>
+                </div>
                 <motion.button
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
@@ -418,29 +782,68 @@ const Academic: React.FC = () => {
                 </motion.button>
               </div>
 
-              {/* Timeline */}
-              <div className="space-y-3">
-                <div className="text-[#7ee787] font-mono text-sm mb-4"># Timeline</div>
+              {/* GitHub commit-style timeline */}
+              <div className="space-y-0">
                 {timeline.map((item, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    whileHover={{ scale: 1.02, x: 8 }}
-                    className="bg-[#161b22] border border-[#30363d] rounded-lg p-4 font-mono text-sm hover:border-[#58a6ff] transition-colors cursor-pointer group"
+                    className="relative"
                   >
-                    <div className="flex items-center space-x-2 mb-2">
-                      <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.5 }}>
-                        <Calendar size={14} className="text-[#7ee787]" />
-                      </motion.div>
-                      <span className="text-[#7ee787]">{item.year}</span>
-                      <span className="text-[#8b949e]">|</span>
-                      <span className="text-[#58a6ff] group-hover:text-[#79c0ff] transition-colors">{item.type === 'education' ? '🎓 Education' : '💼 Work'}</span>
-                    </div>
-                    <h3 className="text-[#c9d1d9] font-semibold mb-1 group-hover:text-white transition-colors">{item.title}</h3>
-                    <p className="text-[#d2a8ff] mb-2 group-hover:text-[#ffa6ff] transition-colors">{item.institution}</p>
-                    <p className="text-[#8b949e] text-xs group-hover:text-[#c9d1d9] transition-colors">{item.description}</p>
+                    {/* Timeline connector line */}
+                    {index < timeline.length - 1 && (
+                      <div className="absolute left-[21px] top-12 w-0.5 h-full bg-[#30363d] z-0"></div>
+                    )}
+                    
+                    <motion.div
+                      whileHover={{ scale: 1.01, x: 8 }}
+                      className="relative bg-[#161b22] border border-[#30363d] rounded-md p-5 mb-3 font-mono text-sm hover:border-[#58a6ff] transition-all cursor-pointer group shadow-lg hover:shadow-[#58a6ff]/20"
+                    >
+                      {/* GitHub commit-style indicator */}
+                      <div className="absolute -left-2 top-6 w-10 h-10 bg-[#0d1117] rounded-full border-2 border-[#30363d] flex items-center justify-center group-hover:border-[#58a6ff] transition-colors z-10">
+                        <motion.div 
+                          className={`w-4 h-4 rounded-full ${item.type === 'education' ? 'bg-[#58a6ff]' : 'bg-[#7ee787]'}`}
+                          whileHover={{ scale: 1.3 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                        </motion.div>
+                      </div>
+
+                      <div className="pl-10">
+                        {/* Header with date and type */}
+                        <div className="flex items-center space-x-2 mb-2">
+                          <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.5 }}>
+                            <Calendar size={14} className="text-[#7ee787]" />
+                          </motion.div>
+                          <span className="text-[#7ee787] font-medium">{item.year}</span>
+                          <span className="text-[#30363d]">•</span>
+                          <span className="px-2 py-0.5 text-xs bg-[#1f6feb]/10 text-[#58a6ff] rounded-full border border-[#1f6feb]/20">
+                            {item.type === 'education' ? 'Education' : 'Professional'}
+                          </span>
+                        </div>
+                        
+                        {/* Title */}
+                        <h3 className="text-[#c9d1d9] font-semibold text-base mb-2 group-hover:text-[#58a6ff] transition-colors">{item.title}</h3>
+                        
+                        {/* Institution */}
+                        <div className="flex items-center space-x-2 mb-3">
+                          <span className="text-[#d2a8ff] text-sm group-hover:text-[#ffa6ff] transition-colors">{item.institution}</span>
+                        </div>
+                        
+                        {/* Description */}
+                        <p className="text-[#8b949e] text-xs leading-relaxed group-hover:text-[#c9d1d9] transition-colors">{item.description}</p>
+                        
+                        {/* GitHub-style commit hash */}
+                        <div className="mt-3 pt-3 border-t border-[#30363d] flex items-center space-x-2">
+                          <span className="text-[#7d8590] text-xs">Commit:</span>
+                          <code className="text-[#58a6ff] text-xs bg-[#1f6feb]/10 px-2 py-0.5 rounded">
+                            {Math.random().toString(36).substring(2, 9)}
+                          </code>
+                        </div>
+                      </div>
+                    </motion.div>
                   </motion.div>
                 ))}
               </div>
