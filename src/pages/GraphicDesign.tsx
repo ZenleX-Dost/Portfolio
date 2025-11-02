@@ -1,8 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Masonry from 'react-masonry-css'
-import { X, Square, MousePointer2, Move, RotateCw, Layers, Eye, Download } from 'lucide-react'
+import { X, Square, MousePointer2, Move, RotateCw, Layers, Eye } from 'lucide-react'
 import './GraphicDesign.css'
+
+// Function to shuffle array randomly
+const shuffleArray = <T,>(array: T[]): T[] => {
+  const shuffled = [...array]
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+  }
+  return shuffled
+}
 
 // Function to dynamically load all images from the designs folder
 const loadDesignImages = (): Array<{
@@ -111,9 +121,10 @@ const GraphicDesign: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    // Load images when component mounts
+    // Load images when component mounts and shuffle them randomly
     const loadedProjects = loadDesignImages()
-    setProjects(loadedProjects)
+    const shuffledProjects = shuffleArray(loadedProjects)
+    setProjects(shuffledProjects)
   }, [])
 
   const breakpointColumns = {
@@ -126,11 +137,10 @@ const GraphicDesign: React.FC = () => {
     e.stopPropagation()
     
     if (activeTool === 'select') {
-      // Toggle selection
-      if (selectedImages.includes(projectId)) {
-        setSelectedImages(selectedImages.filter(id => id !== projectId))
-      } else {
-        setSelectedImages([...selectedImages, projectId])
+      // Open the image in modal view
+      const project = projects.find(p => p.id === projectId)
+      if (project) {
+        setSelectedProject(project)
       }
     } else if (activeTool === 'move') {
       // Swap images
@@ -274,7 +284,7 @@ const GraphicDesign: React.FC = () => {
   return (
     <div className="min-h-screen pt-16 transition-colors duration-300" style={{ backgroundColor: currentTheme.bg }}>
       {/* Software-style Top Bar */}
-      <div className="fixed top-16 left-0 right-0 z-40 border-b transition-colors duration-300" style={{ backgroundColor: currentTheme.darkBg, borderColor: currentTheme.border }}>
+      <div className="border-b transition-colors duration-300" style={{ backgroundColor: currentTheme.darkBg, borderColor: currentTheme.border }}>
         <div className="px-6 py-3 flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <img 
@@ -338,7 +348,7 @@ const GraphicDesign: React.FC = () => {
       </div>
 
       {/* Software Selector Bar */}
-      <div className="fixed top-[7.5rem] left-0 right-0 z-40 border-b transition-colors duration-300" style={{ backgroundColor: currentTheme.darkBg, borderColor: currentTheme.border }}>
+      <div className="border-b transition-colors duration-300" style={{ backgroundColor: currentTheme.darkBg, borderColor: currentTheme.border }}>
         <div className="px-6 py-2 flex items-center space-x-2">
           <span className="text-xs text-[#b8b8b8] mr-2">SOFTWARE:</span>
           {softwares.map((software) => (
@@ -361,8 +371,55 @@ const GraphicDesign: React.FC = () => {
         </div>
       </div>
 
+      {/* Instagram Accounts Bar */}
+      <div className="border-b transition-colors duration-300" style={{ backgroundColor: currentTheme.darkBg, borderColor: currentTheme.border }}>
+        <div className="px-6 py-2 flex items-center space-x-2">
+          <span className="text-xs text-[#b8b8b8] mr-2">INSTAGRAM:</span>
+          {[
+            { handle: 'amii.ensam', link: 'https://www.instagram.com/amii.ensam?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' },
+            { handle: 'forum_artsetmetiers', link: 'https://www.instagram.com/forum_artsetmetiers?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' },
+            { handle: 'clubmusiqueam', link: 'https://www.instagram.com/clubmusiqueam?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' },
+            { handle: 'club_mecanique_am', link: 'https://www.instagram.com/club_mecanique_am?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' },
+            { handle: 'gadz.it', link: 'https://www.instagram.com/gadz.it?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' },
+            { handle: 'caravane.alhayat', link: 'https://www.instagram.com/caravane.alhayat?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' },
+            { handle: 'space.ensam', link: 'https://www.instagram.com/space.ensam?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' },
+            { handle: 'ade_ensam_meknes', link: 'https://www.instagram.com/ade_ensam_meknes?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' },
+            { handle: 'ensam_express', link: 'https://www.instagram.com/ensam_express?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' },
+            { handle: 'ai.club.am', link: 'https://www.instagram.com/ai.club.am?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' },
+            // Add more accounts as needed
+          ].map((account) => (
+            <motion.a
+              key={account.handle}
+              href={account.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-3 py-1.5 rounded text-xs font-bold transition-all duration-300 flex items-center space-x-1"
+              style={{
+                backgroundColor: 'transparent',
+                color: '#b8b8b8',
+                border: `1px solid ${currentTheme.border}`
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = currentTheme.primary
+                e.currentTarget.style.color = '#ffffff'
+                e.currentTarget.style.borderColor = currentTheme.primary
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent'
+                e.currentTarget.style.color = '#b8b8b8'
+                e.currentTarget.style.borderColor = currentTheme.border
+              }}
+            >
+              <span>@{account.handle}</span>
+            </motion.a>
+          ))}
+        </div>
+      </div>
+
       {/* Software-style Toolbar */}
-      <div className="fixed top-[10.5rem] left-0 right-0 z-40 border-b transition-colors duration-300" style={{ backgroundColor: currentTheme.bg, borderColor: currentTheme.border }}>
+      <div className="sticky top-16 left-0 right-0 z-40 border-b transition-colors duration-300" style={{ backgroundColor: currentTheme.bg, borderColor: currentTheme.border }}>
         <div className="px-6 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-1">
             {tools.map((tool) => {
@@ -417,10 +474,10 @@ const GraphicDesign: React.FC = () => {
       </div>
 
       {/* Canvas Area with Grid */}
-      <div className="px-6 py-8 pt-40 relative" ref={containerRef}>
+      <div className="px-6 py-8 relative" ref={containerRef}>
         {/* Grid Overlay */}
         {showGrid && (
-          <div className="absolute inset-0 top-40 pointer-events-none transition-opacity duration-300" style={{
+          <div className="absolute inset-0 pointer-events-none transition-opacity duration-300" style={{
             backgroundImage: `linear-gradient(${currentTheme.primary}20 1px, transparent 1px), linear-gradient(90deg, ${currentTheme.primary}20 1px, transparent 1px)`,
             backgroundSize: '20px 20px'
           }} />
@@ -653,7 +710,7 @@ const GraphicDesign: React.FC = () => {
                   </div>
 
                   {/* Layer Info */}
-                  <div className="p-4 border-b border-[#0a0a0a]">
+                  <div className="p-4">
                     <div className="text-xs text-[#b8b8b8] mb-2">LAYER NAME</div>
                     <div className="text-sm text-white mb-3">{selectedProject.title}</div>
                     
@@ -662,46 +719,6 @@ const GraphicDesign: React.FC = () => {
                     
                     <div className="text-xs text-[#b8b8b8] mb-2">DIMENSIONS</div>
                     <div className="text-sm text-white">Auto × Auto</div>
-                  </div>
-
-                  {/* Tools Used */}
-                  <div className="p-4 border-b border-[#0a0a0a]">
-                    <div className="text-xs text-[#b8b8b8] mb-3">TOOLS USED</div>
-                    <div className="space-y-2">
-                      {selectedProject.tools.map((tool: string) => (
-                        <div key={tool} className="flex items-center space-x-2 text-sm text-white bg-[#2c2c2c] px-3 py-2 rounded">
-                          <Layers size={14} className="text-[#00a8ff]" />
-                          <span>{tool}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Tags */}
-                  <div className="p-4 border-b border-[#0a0a0a]">
-                    <div className="text-xs text-[#b8b8b8] mb-3">TAGS</div>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedProject.tags.map((tag: string) => (
-                        <span
-                          key={tag}
-                          className="px-3 py-1 bg-[#00a8ff]/20 border border-[#00a8ff]/40 rounded text-xs text-[#00a8ff]"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Actions */}
-                  <div className="p-4">
-                    <motion.button 
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="w-full py-3 bg-[#00a8ff] hover:bg-[#0096e6] rounded text-white font-semibold flex items-center justify-center space-x-2 transition-colors"
-                    >
-                      <Download size={18} />
-                      <span>Download PSD</span>
-                    </motion.button>
                   </div>
                 </div>
               </div>
