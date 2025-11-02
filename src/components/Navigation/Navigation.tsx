@@ -62,19 +62,19 @@ const Navigation: React.FC = () => {
         }
       case '/personal':
         return {
-          bg: 'bg-warm-cream',
-          text: 'text-warm-sepia',
-          hoverText: 'hover:text-warm-rust',
-          border: 'border-warm-tan',
-          activeBg: 'bg-warm-rust',
+          bg: 'bg-black/95 backdrop-blur-sm',
+          text: 'text-white',
+          hoverText: 'hover:text-red-500',
+          border: 'border-gray-800',
+          activeBg: 'bg-red-600',
         }
       default:
         return {
-          bg: scrolled ? 'bg-vintage-beige/95 backdrop-blur-sm' : 'bg-transparent',
-          text: 'text-vintage-brown',
-          hoverText: 'hover:text-vintage-rust',
-          border: scrolled ? 'border-vintage-tan' : 'border-transparent',
-          activeBg: 'bg-vintage-rust',
+          bg: scrolled ? 'bg-slate-900/95 backdrop-blur-md' : 'bg-gradient-to-b from-black/80 to-transparent backdrop-blur-sm',
+          text: 'text-gray-200',
+          hoverText: 'hover:text-white',
+          border: scrolled ? 'border-slate-700' : 'border-transparent',
+          activeBg: 'bg-white',
         }
     }
   }
@@ -90,8 +90,8 @@ const Navigation: React.FC = () => {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b-2 ${pageStyle.bg} ${pageStyle.border} ${location.pathname !== '/' && !scrolled ? '' : 'shadow-vintage'}`}
       >
         <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            {/* Desktop Menu */}
+          <div className="flex items-center justify-center md:justify-center">
+            {/* Desktop Menu - Centered */}
             <div className="hidden md:flex items-center space-x-8">
               {navItems.map((item) => {
                 const Icon = item.icon
@@ -139,10 +139,12 @@ const Navigation: React.FC = () => {
             transition={{ type: 'spring', damping: 25 }}
             className="fixed inset-0 z-40 md:hidden"
           >
-            <div className="absolute inset-0 bg-vintage-beige/98 backdrop-blur-sm paper-texture">
+            <div className={`absolute inset-0 backdrop-blur-sm ${location.pathname === '/personal' ? 'bg-black/98' : location.pathname === '/' ? 'bg-slate-900/98' : 'bg-vintage-beige/98 paper-texture'}`}>
               <div className="flex flex-col items-center justify-center h-full space-y-8">
                 {navItems.map((item, index) => {
                   const Icon = item.icon
+                  const isNetflixStyle = location.pathname === '/personal'
+                  const isHomeStyle = location.pathname === '/'
                   return (
                     <motion.div
                       key={item.path}
@@ -157,13 +159,19 @@ const Navigation: React.FC = () => {
                       >
                         <div className="flex flex-col items-center space-y-2">
                           <motion.div
-                            whileHover={{ scale: 1.1, rotate: 5 }}
+                            whileHover={{ scale: 1.1, rotate: isNetflixStyle || isHomeStyle ? 0 : 5 }}
                             whileTap={{ scale: 0.9 }}
-                            className="p-4 bg-vintage-rust border-4 border-vintage-tan shadow-vintage"
+                            className={`p-4 ${
+                              isNetflixStyle 
+                                ? 'bg-zinc-800 border-2 border-gray-700 rounded-lg hover:bg-red-600' 
+                                : isHomeStyle
+                                ? 'bg-slate-800 border-2 border-slate-600 rounded-lg hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600'
+                                : 'bg-vintage-rust border-4 border-vintage-tan shadow-vintage'
+                            } transition-colors`}
                           >
-                            <Icon size={32} className="text-vintage-cream" />
+                            <Icon size={32} className={isNetflixStyle || isHomeStyle ? 'text-white' : 'text-vintage-cream'} />
                           </motion.div>
-                          <span className="text-vintage-brown text-xl font-vintage font-bold">
+                          <span className={`text-xl font-bold ${isNetflixStyle || isHomeStyle ? 'text-white' : 'text-vintage-brown font-vintage'}`}>
                             {item.label}
                           </span>
                         </div>

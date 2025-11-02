@@ -20,15 +20,30 @@
       <frontend>React.js with TypeScript for type safety and component reusability</frontend>
       <styling>Tailwind CSS with custom animations and Framer Motion for interactions</styling>
       <routing>React Router for seamless navigation between sections</routing>
-      <state_management>React Context API or Zustand for theme switching and data management</state_management>
-      <animations>GSAP, Framer Motion, and Three.js for 3D elements</animations>
+      <state_management>React Context API for theme switching and data management</state_management>
+      <animations>Framer Motion for drag interactions and smooth animations</animations>
+      <build_tool>Vite for fast development and optimized production builds</build_tool>
+      <image_handling>Vite's import.meta.glob for dynamic image loading</image_handling>
     </core_technologies>
+    <dependencies>
+      <package>react-router-dom - Client-side routing</package>
+      <package>framer-motion - Advanced animations and drag functionality</package>
+      <package>react-masonry-css - Masonry grid layout</package>
+      <package>lucide-react - Icon library for UI elements</package>
+      <package>tailwindcss - Utility-first CSS framework</package>
+    </dependencies>
     <performance>
       <requirement>Lazy loading for images and components</requirement>
       <requirement>Optimized bundle size with code splitting</requirement>
       <requirement>Smooth 60fps animations on all interactions</requirement>
       <requirement>Mobile-first responsive design</requirement>
+      <implementation>Using Vite's glob import with eager loading for designs folder</implementation>
     </performance>
+    <typescript_configuration>
+      <setting>Types include vite/client for import.meta support</setting>
+      <setting>Strict mode enabled for type safety</setting>
+      <setting>noUnusedLocals and noUnusedParameters enabled</setting>
+    </typescript_configuration>
   </technical_requirements>
 
   <navigation_system>
@@ -56,26 +71,54 @@
       Pinterest-inspired masonry grid with artistic flair. This section should feel like 
       walking through a digital art gallery with unexpected interactions at every corner.
     </theme_description>
+    <implementation_status>
+      <status>Active - Adobe Creative Suite themed interface implemented</status>
+      <features_completed>
+        <feature>Multi-software theme switcher (Photoshop, Illustrator, InDesign, DaVinci, Blender, Figma)</feature>
+        <feature>Professional toolbar with selection, move, and rotate tools</feature>
+        <feature>Keyboard shortcuts (V for select, M for move, R for rotate)</feature>
+        <feature>Masonry grid layout with dynamic image loading</feature>
+        <feature>Grid overlay toggle for precise positioning</feature>
+        <feature>Zoom controls (50% - 200%)</feature>
+        <feature>Selection system with visual indicators and corner markers</feature>
+        <feature>Drag-and-drop functionality for repositioning images</feature>
+        <feature>Rotation tool (15° increments per click)</feature>
+        <feature>Layer-style information display on hover</feature>
+      </features_completed>
+      <recent_fixes date="2025-11-02">
+        <fix>Move tool drag functionality - Fixed position tracking using info.offset instead of info.delta</fix>
+        <fix>Added dragStartPos state to properly track initial positions before drag</fix>
+        <fix>Resolved animation conflicts between animate prop and drag behavior</fix>
+        <fix>Improved drag constraints to keep images within canvas bounds</fix>
+        <fix>Fixed TypeScript errors by adding vite/client types to tsconfig.json</fix>
+      </recent_fixes>
+    </implementation_status>
     <color_palette>
-      <primary>Vibrant gradients (sunset orange to purple, neon blues to pinks)</primary>
-      <secondary>Deep blacks with neon accents</secondary>
-      <accent>Holographic/iridescent effects on hover</accent>
+      <primary>Dynamic based on selected software (Photoshop: #00a8ff, Illustrator: #ff9a00, etc.)</primary>
+      <secondary>Professional dark theme backgrounds (#2c2c2c, #1e1e1e)</secondary>
+      <accent>Software-specific accent colors for highlights and interactions</accent>
     </color_palette>
     <layout>
       <grid_type>Responsive masonry grid using CSS Grid or React Masonry</grid_type>
+      <toolbar>Adobe Creative Suite inspired interface with fixed top toolbars</toolbar>
       <card_behavior>
         <on_hover>Cards lift with 3D transform, cast shadows, reveal quick info</on_hover>
-        <on_click>Expand into fullscreen lightbox with project details</on_click>
+        <on_click>Selection behavior depends on active tool (select, move, or rotate)</on_click>
+        <on_drag>Images can be repositioned freely when move tool is active</on_drag>
         <loading>Stagger animation - cards appear one by one with bounce effect</loading>
       </card_behavior>
     </layout>
     <interactive_features>
-      <feature priority="high">Filter tags that animate when selected (graphic design, branding, UI/UX, illustration)</feature>
-      <feature priority="high">Infinite scroll with smooth loading animations</feature>
-      <feature priority="high">Image zoom on hover with smooth transitions</feature>
+      <feature priority="high" status="implemented">Software theme switcher with dynamic color schemes</feature>
+      <feature priority="high" status="implemented">Selection tool - Click to select/highlight images</feature>
+      <feature priority="high" status="implemented">Move tool - Drag and drop to reposition images</feature>
+      <feature priority="high" status="implemented">Rotate tool - Click to rotate images 15° clockwise</feature>
+      <feature priority="high" status="implemented">Keyboard shortcuts for tool switching</feature>
+      <feature priority="high" status="implemented">Zoom controls with percentage display</feature>
+      <feature priority="high" status="implemented">Grid overlay toggle for alignment</feature>
+      <feature priority="medium">Filter tags that animate when selected (graphic design, branding, UI/UX, illustration)</feature>
+      <feature priority="medium">Infinite scroll with smooth loading animations</feature>
       <feature priority="medium">Color-based filtering (click a color palette to filter projects)</feature>
-      <feature priority="medium">Drag to reorder favorite projects</feature>
-      <feature priority="medium">Like/favorite system with heart animation</feature>
       <feature priority="low">Share button for individual projects</feature>
     </interactive_features>
     <card_contents>
@@ -176,77 +219,134 @@
     </special_effects>
   </section_two>
 
-  <section_three id="personal_life" theme="warm_storytelling">
+  <section_three id="personal_life" theme="netflix_streaming">
     <theme_description>
-      Warm, authentic, and human. This section reveals personality through photos, 
-      stories, and experiences. Think Instagram meets personal blog with a touch of 
-      nostalgia and playfulness.
+      Netflix-inspired streaming interface showcasing personal life, leadership, and achievements.
+      Features cinematic hero section, horizontal scrollable content rows, and dramatic visuals.
     </theme_description>
+    <implementation_status>
+      <status>Active - Netflix-style interface implemented</status>
+      <features_completed>
+        <feature>Cinematic hero section with gradient overlays and call-to-action buttons</feature>
+        <feature>Horizontal scrollable rows with left/right navigation arrows</feature>
+        <feature>Leadership & Activities showcase in card format</feature>
+        <feature>Notable Achievements timeline-style row</feature>
+        <feature>Life in Pictures portrait-style gallery</feature>
+        <feature>Core Values & Philosophy landscape cards</feature>
+        <feature>About section with three-column grid layout</feature>
+        <feature>Modal/detail view for expanded content (on click)</feature>
+        <feature>Mute/unmute toggle button in hero section</feature>
+        <feature>Smooth scroll behavior with arrow controls</feature>
+      </features_completed>
+      <recent_implementation date="2025-11-02">
+        <change>Complete redesign from vintage scrapbook to Netflix streaming aesthetic</change>
+        <change>Added ScrollableRow component for horizontal content navigation</change>
+        <change>Implemented hero section with video-style presentation</change>
+        <change>Created modal system for detailed item views</change>
+        <change>Added hover effects showing content details on card hover</change>
+        <change>Integrated smooth scrolling with hidden scrollbars</change>
+        <change>Updated Navigation header to black background with white text and red accents</change>
+        <change>Updated FloatingContact dialog to dark zinc theme with red CTA buttons</change>
+        <change>Modified mobile menu to use Netflix-style dark theme for Personal page</change>
+        <change>Updated landing page Personal Story section to black background with Netflix red accents</change>
+        <change>Added Netflix-style gradient overlay on hover for Personal section on home page</change>
+        <change>Changed Personal section icon to Netflix red (#E50914) with hover effects</change>
+      </recent_implementation>
+    </implementation_status>
     <color_palette>
-      <primary>Warm earth tones (terracotta, sage green, cream)</primary>
-      <secondary>Soft pastels (peach, lavender, mint)</secondary>
-      <accent>Gold, copper for highlights and borders</accent>
+      <primary>Netflix black (#000000) for background</primary>
+      <secondary>Dark gray (#1a1a1a, #2a2a2a) for cards and sections</secondary>
+      <accent>Netflix red (#E50914) for highlights and CTAs</accent>
+      <text>White (#ffffff) for primary text, gray shades for secondary</text>
     </color_palette>
     <layout>
-      <structure>Scrapbook/collage inspired layout with organic shapes</structure>
-      <sections>
-        <subsection id="about_me">
-          <content>Candid photos, fun facts, personality traits</content>
-          <interaction>Flip cards revealing different aspects of personality</interaction>
-        </subsection>
-        <subsection id="photo_gallery">
-          <layout>Polaroid-style photo grid with tilted angles</layout>
-          <interaction>Click to enlarge, drag to reposition photos</interaction>
-        </subsection>
-        <subsection id="hobbies">
-          <display>Icon-based cards for each hobby/interest</display>
-          <interaction>Hover for description and related photos</interaction>
-        </subsection>
-        <subsection id="activities">
-          <content>Extracurricular activities, volunteering, clubs</content>
-          <visual>Timeline with photos and short stories</visual>
-        </subsection>
-        <subsection id="travel_adventures">
-          <map>Interactive world map highlighting visited places</map>
-          <interaction>Click location pins to see photos and stories</interaction>
-        </subsection>
-        <subsection id="quotes_values">
-          <display>Rotating carousel of favorite quotes and life philosophies</display>
-        </subsection>
-      </sections>
+      <structure>Netflix streaming interface with hero banner and horizontal content rows</structure>
+      <hero_section>
+        <content>Large cinematic banner with profile image background</content>
+        <elements>Name, title, description, CTA buttons (Play, More Info), location info</elements>
+        <interaction>Mute/unmute audio toggle, gradient overlays for text readability</interaction>
+      </hero_section>
+      <content_rows>
+        <row id="leadership">
+          <title>Leadership & Activities</title>
+          <layout>Horizontal scrollable landscape cards</layout>
+          <content>GENOS Founder, Media Head, Graphic Designer, VP positions</content>
+        </row>
+        <row id="achievements">
+          <title>Notable Achievements</title>
+          <layout>Horizontal scrollable landscape cards with ratings</layout>
+          <content>Executive Board, VP Integration, Aerospace Lead, Event Manager</content>
+        </row>
+        <row id="life_stories">
+          <title>Life in Pictures</title>
+          <layout>Horizontal scrollable portrait cards</layout>
+          <content>Travel, nature, urban, moments, creative spaces photos</content>
+        </row>
+        <row id="values">
+          <title>Core Values & Philosophy</title>
+          <layout>Horizontal scrollable landscape cards</layout>
+          <content>Innovation through AI, Empowering Leadership, Creative Excellence</content>
+        </row>
+      </content_rows>
+      <about_section>
+        <layout>Three-column grid with gradient background</layout>
+        <columns>Education, Leadership, Creative Work</columns>
+        <footer>Contact information centered at bottom</footer>
+      </about_section>
     </layout>
     <interactive_features>
-      <feature priority="high">Photo collage that rearranges on page load</feature>
-      <feature priority="high">Polaroid photos with handwritten-style captions</feature>
-      <feature priority="high">Mood board/vision board section with draggable elements</feature>
-      <feature priority="medium">Interactive world map with travel stories</feature>
-      <feature priority="medium">Music player with favorite playlist</feature>
-      <feature priority="medium">"A day in my life" animated timeline</feature>
-      <feature priority="low">Guest book where visitors can leave messages</feature>
+      <feature priority="high" status="implemented">Hero section with Play and More Info buttons</feature>
+      <feature priority="high" status="implemented">Horizontal scroll with arrow navigation (left/right)</feature>
+      <feature priority="high" status="implemented">Card hover effects revealing detailed information</feature>
+      <feature priority="high" status="implemented">Modal system for expanded content views</feature>
+      <feature priority="medium" status="implemented">Smooth scrolling with hidden scrollbars</feature>
+      <feature priority="medium" status="implemented">Mute/unmute audio toggle in hero</feature>
+      <feature priority="medium" status="implemented">Gradient overlays for text legibility</feature>
+      <feature priority="low">Auto-play hero video background</feature>
     </interactive_features>
-    <photo_presentation>
-      <style>Polaroid frames with subtle drop shadows</style>
-      <arrangement>Scattered/collage layout with rotation variations</arrangement>
-      <hover_effect>Photo lifts up and straightens slightly</hover_effect>
-      <lightbox>Swipeable fullscreen gallery with captions</lightbox>
-    </photo_presentation>
+    <card_presentation>
+      <style>Netflix-style cards with rounded corners and shadow effects</style>
+      <sizes>Portrait (192px width) for photos, Landscape (320px width) for content</sizes>
+      <hover_effect>Scale up (1.05x), reveal gradient overlay with details</hover_effect>
+      <details_display>Title, subtitle, description, year, rating badge on hover</details_display>
+    </card_presentation>
     <special_effects>
-      <effect>Floating doodles and hand-drawn elements</effect>
-      <effect>Vintage film grain overlay (subtle)</effect>
-      <effect>Handwritten font for section titles</effect>
-      <effect>Paper texture backgrounds</effect>
-      <effect>Sticker/badge elements scattered throughout</effect>
+      <effect>Gradient overlays (black to transparent) for hero section</effect>
+      <effect>Smooth scale transitions on card hover</effect>
+      <effect>Arrow navigation fade in/out based on scroll position</effect>
+      <effect>Modal backdrop blur and scale animations</effect>
+      <effect>Green "match percentage" badges for achievements</effect>
+      <effect>Netflix-style red accent color (#E50914) for highlights</effect>
     </special_effects>
   </section_three>
 
   <global_interactive_elements>
     <feature>Smooth page transitions with creative loading animations</feature>
-    <feature>Theme switcher with smooth color transitions (dark/light mode)</feature>
+    <feature>Dynamic theme-aware navigation adapting to each page's aesthetic</feature>
     <feature>Custom cursor that changes per section</feature>
     <feature>Scroll progress indicator</feature>
     <feature>Easter eggs (hidden interactive elements for engaged visitors)</feature>
     <feature>Floating contact button accessible from all sections</feature>
     <feature>Ambient background music toggle (optional)</feature>
+    <home_page_navigation status="implemented" date="2025-11-02">
+      <design>Modern dark slate theme with gradient accents</design>
+      <background>Gradient from black/80 to transparent with backdrop blur</background>
+      <text_color>Light gray (gray-200) with white on hover</text_color>
+      <scrolled_state>Solid slate-900/95 background with backdrop blur</scrolled_state>
+      <active_indicator>White underline for active page</active_indicator>
+      <mobile_menu>Slate-900 background with slate-800 cards</mobile_menu>
+      <gradient_accent>Purple to blue gradient on hover</gradient_accent>
+    </home_page_navigation>
+    <home_page_contact status="implemented" date="2025-11-02">
+      <button_design>Purple to blue gradient background</button_design>
+      <panel_background>Slate-900 dark background</panel_background>
+      <input_fields>Slate-800 with slate-700 borders</input_fields>
+      <text_color>White throughout for consistency</text_color>
+      <focus_state>Purple-500 border on focus</focus_state>
+      <submit_button>Gradient purple to blue with hover effect</submit_button>
+      <social_icons>Slate-800 with gradient hover states</social_icons>
+      <aesthetic>Modern, sleek design complementing all three page themes</aesthetic>
+    </home_page_contact>
   </global_interactive_elements>
 
   <contact_section>
@@ -331,9 +431,30 @@
     <principle>Follow React best practices and hooks patterns</principle>
     <principle>Optimize for performance with lazy loading and code splitting</principle>
     <principle>Comment complex logic and interactions</principle>
-    <principle>Use CSS-in-JS or Tailwind for consistent styling</principle>
+    <principle>Use Tailwind CSS for consistent styling with dynamic inline styles for theme switching</principle>
     <principle>Implement proper error boundaries</principle>
+    <principle>Handle drag interactions with Framer Motion using offset-based positioning</principle>
+    <principle>Maintain state for positions, rotations, and selections across tool switches</principle>
+    <principle>Use underscore prefix for intentionally unused state variables</principle>
   </coding_guidelines>
+  
+  <known_issues_and_solutions>
+    <issue category="drag_functionality">
+      <problem>Framer Motion drag with delta accumulation causes incorrect positioning</problem>
+      <solution>Use info.offset instead of info.delta, and track dragStartPos separately</solution>
+      <date_resolved>2025-11-02</date_resolved>
+    </issue>
+    <issue category="typescript">
+      <problem>import.meta.glob not recognized by TypeScript</problem>
+      <solution>Add "types": ["vite/client"] to tsconfig.json compilerOptions</solution>
+      <date_resolved>2025-11-02</date_resolved>
+    </issue>
+    <issue category="animation_conflicts">
+      <problem>Conditional animate prop conflicts with drag behavior</problem>
+      <solution>Always apply position from state in animate prop, never conditionally</solution>
+      <date_resolved>2025-11-02</date_resolved>
+    </issue>
+  </known_issues_and_solutions>
 
   <inspiration_references>
     <reference>awwwards.com for cutting-edge web design</reference>

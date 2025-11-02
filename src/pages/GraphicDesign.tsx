@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Masonry from 'react-masonry-css'
-import { X, Square, MousePointer2, Move, Crop, Layers, Eye, Download } from 'lucide-react'
+import { X, Square, MousePointer2, Move, RotateCw, Layers, Eye, Download } from 'lucide-react'
 import './GraphicDesign.css'
 
 // Function to dynamically load all images from the designs folder
@@ -21,7 +21,6 @@ const loadDesignImages = (): Array<{
   
   Object.keys(imageModules).forEach((path, index) => {
     const fileName = path.split('/').pop()?.split('.')[0] || `design-${index + 1}`
-    const extension = path.split('.').pop()
     
     designs.push({
       id: index + 1,
@@ -97,8 +96,6 @@ const loadDesignImages = (): Array<{
   return designs
 }
 
-const categories = ['all', 'graphic-design', 'branding', 'illustration', 'typography']
-
 type Software = 'photoshop' | 'illustrator' | 'indesign' | 'davinci' | 'blender' | 'figma'
 
 const GraphicDesign: React.FC = () => {
@@ -108,9 +105,10 @@ const GraphicDesign: React.FC = () => {
   const [showGrid, setShowGrid] = useState(false)
   const [zoom, setZoom] = useState(100)
   const [selectedImages, setSelectedImages] = useState<number[]>([])
-  const [imagePositions, setImagePositions] = useState<Record<number, { x: number; y: number }>>({})
   const [imageRotations, setImageRotations] = useState<Record<number, number>>({})
   const [activeSoftware, setActiveSoftware] = useState<Software>('photoshop')
+  const [firstSwapImage, setFirstSwapImage] = useState<number | null>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     // Load images when component mounts
@@ -125,11 +123,6 @@ const GraphicDesign: React.FC = () => {
   }
 
   const handleImageClick = (projectId: number, e: React.MouseEvent) => {
-    if (activeTool === 'move') {
-      // Don't handle click in move mode, let drag handle it
-      return
-    }
-    
     e.stopPropagation()
     
     if (activeTool === 'select') {
@@ -138,6 +131,36 @@ const GraphicDesign: React.FC = () => {
         setSelectedImages(selectedImages.filter(id => id !== projectId))
       } else {
         setSelectedImages([...selectedImages, projectId])
+      }
+    } else if (activeTool === 'move') {
+      // Swap images
+      if (firstSwapImage === null) {
+        // First image selected
+        setFirstSwapImage(projectId)
+        setSelectedImages([projectId])
+      } else if (firstSwapImage === projectId) {
+        // Clicked same image, deselect
+        setFirstSwapImage(null)
+        setSelectedImages([])
+      } else {
+        // Second image selected, swap them
+        setProjects(prev => {
+          const newProjects = [...prev]
+          const index1 = newProjects.findIndex(p => p.id === firstSwapImage)
+          const index2 = newProjects.findIndex(p => p.id === projectId)
+          
+          if (index1 !== -1 && index2 !== -1) {
+            // Swap the projects
+            const temp = newProjects[index1]
+            newProjects[index1] = newProjects[index2]
+            newProjects[index2] = temp
+          }
+          
+          return newProjects
+        })
+        // Clear selection after swap
+        setFirstSwapImage(null)
+        setSelectedImages([])
       }
     } else if (activeTool === 'rotate') {
       // Rotate selected image by 15 degrees
@@ -148,19 +171,13 @@ const GraphicDesign: React.FC = () => {
     }
   }
 
-  const handleImageMouseDown = (projectId: number) => {
-    if (activeTool === 'move') {
-      // Select image when starting to move
-      if (!selectedImages.includes(projectId)) {
-        setSelectedImages([projectId])
-      }
-    }
-  }
-
   const handleToolAction = (toolId: string) => {
     setActiveTool(toolId as any)
     if (toolId === 'select') {
       setSelectedImages([]) // Clear selection when switching to select tool
+    }
+    if (toolId !== 'move') {
+      setFirstSwapImage(null) // Clear first swap image when switching tools
     }
   }
 
@@ -226,8 +243,8 @@ const GraphicDesign: React.FC = () => {
 
   const tools = [
     { id: 'select', icon: MousePointer2, label: 'Selection Tool (V)', shortcut: 'V', description: 'Select and highlight images' },
-    { id: 'move', icon: Move, label: 'Move Tool (M)', shortcut: 'M', description: 'Move images to different positions' },
-    { id: 'rotate', icon: Crop, label: 'Rotate Tool (R)', shortcut: 'R', description: 'Rotate images 15° clockwise' },
+    { id: 'move', icon: Move, label: 'Move Tool (M)', shortcut: 'M', description: 'Swap positions of two images' },
+    { id: 'rotate', icon: RotateCw, label: 'Rotate Tool (R)', shortcut: 'R', description: 'Rotate images 15° clockwise' },
   ]
 
   const softwares: Array<{ id: Software; name: string; icon: string }> = [
@@ -260,6 +277,12 @@ const GraphicDesign: React.FC = () => {
       <div className="fixed top-16 left-0 right-0 z-40 border-b transition-colors duration-300" style={{ backgroundColor: currentTheme.darkBg, borderColor: currentTheme.border }}>
         <div className="px-6 py-3 flex items-center justify-between">
           <div className="flex items-center space-x-4">
+            <img 
+              src="/profile.png" 
+              alt="Profile"
+              className="w-10 h-10 rounded-full border-2 transition-all duration-300"
+              style={{ borderColor: currentTheme.primary }}
+            />
             <h1 className="text-xl font-semibold transition-colors duration-300" style={{ color: currentTheme.primary }}>Graphic Design</h1>
             <div className="flex items-center space-x-2 text-xs text-[#b8b8b8]">
               <span>•</span>
@@ -376,12 +399,17 @@ const GraphicDesign: React.FC = () => {
           <div className="text-xs text-[#b8b8b8] flex items-center space-x-4">
             <span>
               {activeTool === 'select' && 'Click images to select and highlight'}
-              {activeTool === 'move' && 'Click and drag to move images'}
+              {activeTool === 'move' && (firstSwapImage ? 'Click another image to swap positions' : 'Click two images to swap their positions')}
               {activeTool === 'rotate' && 'Click images to rotate 15° clockwise'}
             </span>
-            {selectedImages.length > 0 && (
+            {selectedImages.length > 0 && activeTool !== 'move' && (
               <span className="transition-colors duration-300" style={{ color: currentTheme.primary }}>
                 {selectedImages.length} image{selectedImages.length > 1 ? 's' : ''} selected
+              </span>
+            )}
+            {firstSwapImage && activeTool === 'move' && (
+              <span className="transition-colors duration-300" style={{ color: currentTheme.primary }}>
+                🔄 Ready to swap - Click second image
               </span>
             )}
           </div>
@@ -389,7 +417,7 @@ const GraphicDesign: React.FC = () => {
       </div>
 
       {/* Canvas Area with Grid */}
-      <div className="px-6 py-8 pt-40 relative">
+      <div className="px-6 py-8 pt-40 relative" ref={containerRef}>
         {/* Grid Overlay */}
         {showGrid && (
           <div className="absolute inset-0 top-40 pointer-events-none transition-opacity duration-300" style={{
@@ -408,7 +436,7 @@ const GraphicDesign: React.FC = () => {
           {projects.map((project, index) => {
             const isSelected = selectedImages.includes(project.id)
             const rotation = imageRotations[project.id] || 0
-            const position = imagePositions[project.id] || { x: 0, y: 0 }
+            const isFirstSwap = firstSwapImage === project.id
             
             return (
               <motion.div
@@ -417,32 +445,14 @@ const GraphicDesign: React.FC = () => {
                 animate={{ 
                   opacity: 1, 
                   scale: 1,
-                  rotate: rotation,
-                  x: position.x,
-                  y: position.y
+                  rotate: rotation
                 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.3, type: "spring", damping: 25, stiffness: 300 }}
                 className="mb-6"
                 style={{ 
-                  position: 'relative',
-                  cursor: activeTool === 'move' ? (isSelected ? 'grab' : 'pointer') : activeTool === 'rotate' ? 'crosshair' : 'pointer',
-                  zIndex: isSelected && activeTool === 'move' ? 100 : 1
+                  cursor: activeTool === 'move' ? 'pointer' : activeTool === 'rotate' ? 'crosshair' : 'pointer',
+                  zIndex: isFirstSwap ? 100 : 1,
                 }}
-                drag={activeTool === 'move' && isSelected}
-                dragMomentum={false}
-                dragElastic={0}
-                dragConstraints={false}
-                onDragEnd={(_event, info) => {
-                  setImagePositions(prev => ({
-                    ...prev,
-                    [project.id]: {
-                      x: position.x + info.offset.x,
-                      y: position.y + info.offset.y
-                    }
-                  }))
-                }}
-                whileDrag={{ scale: 1.1, cursor: 'grabbing' }}
-                onPointerDown={() => handleImageMouseDown(project.id)}
               >
                 <div
                   className="group relative overflow-hidden transition-all duration-300 select-none"
@@ -498,8 +508,20 @@ const GraphicDesign: React.FC = () => {
                   onMouseLeave={(e) => { if (!isSelected) e.currentTarget.style.opacity = '0' }}
                 ></div>
 
-                {/* Selected Indicator */}
-                {isSelected && (
+                {/* Selected Indicator for Move Tool */}
+                {isFirstSwap && (
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="absolute top-2 left-2 text-white text-xs px-2 py-1 rounded z-10 font-semibold transition-colors duration-300"
+                    style={{ backgroundColor: currentTheme.primary }}
+                  >
+                    🔄 SWAP WITH...
+                  </motion.div>
+                )}
+                
+                {/* Selected Indicator for Select Tool */}
+                {isSelected && !isFirstSwap && (
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}

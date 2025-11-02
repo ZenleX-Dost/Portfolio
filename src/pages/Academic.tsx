@@ -2,6 +2,44 @@ import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Code, Database, Brain, Award, Download, Github, Calendar } from 'lucide-react'
 
+// Typing effect component
+const TypingText: React.FC<{ text: string; delay?: number; className?: string }> = ({ text, delay = 0, className = '' }) => {
+  const [displayText, setDisplayText] = useState('')
+  const [isHovered, setIsHovered] = useState(false)
+
+  useEffect(() => {
+    if (!isHovered) {
+      setDisplayText('')
+      return
+    }
+
+    let currentIndex = 0
+    const timeout = setTimeout(() => {
+      const interval = setInterval(() => {
+        if (currentIndex <= text.length) {
+          setDisplayText(text.slice(0, currentIndex))
+          currentIndex++
+        } else {
+          clearInterval(interval)
+        }
+      }, 80)
+      return () => clearInterval(interval)
+    }, delay)
+
+    return () => clearTimeout(timeout)
+  }, [text, delay, isHovered])
+
+  return (
+    <span 
+      className={className}
+      onMouseEnter={() => setIsHovered(true)}
+    >
+      {isHovered ? displayText : text}
+      {isHovered && displayText.length < text.length && <span className="animate-pulse">▊</span>}
+    </span>
+  )
+}
+
 // Real data from Amine's profile
 const skills = [
   { name: 'Python', level: 95, category: 'programming' },
@@ -200,13 +238,13 @@ const Academic: React.FC = () => {
                     whileHover={{ scale: 1.05, rotate: 2 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="w-48 h-48 bg-[#0d1117] border-2 border-[#30363d] rounded-lg overflow-hidden flex items-center justify-center relative group">
-                      {/* Placeholder content */}
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <svg className="w-24 h-24 text-[#58a6ff] opacity-50 group-hover:opacity-70 transition-opacity" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                        </svg>
-                      </div>
+                    <div className="w-48 h-48 bg-[#0d1117] border-2 border-[#30363d] rounded-lg overflow-hidden relative group">
+                      {/* Profile Image */}
+                      <img 
+                        src="/profile.png" 
+                        alt="Amine El-Hend"
+                        className="w-full h-full object-cover"
+                      />
                       {/* Hover overlay */}
                       <div className="absolute inset-0 bg-[#58a6ff] opacity-0 group-hover:opacity-10 transition-opacity"></div>
                       {/* Corner decorations */}
@@ -215,7 +253,7 @@ const Academic: React.FC = () => {
                       <div className="absolute bottom-2 left-2 w-3 h-3 border-b-2 border-l-2 border-[#58a6ff] opacity-50"></div>
                       <div className="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-[#58a6ff] opacity-50"></div>
                     </div>
-                    <p className="text-[#8b949e] text-xs text-center mt-2">profile.jpg</p>
+                    <p className="text-[#8b949e] text-xs text-center mt-2">profile.png</p>
                   </motion.div>
 
                   {/* Code Section */}
@@ -226,22 +264,22 @@ const Academic: React.FC = () => {
                         <span className="text-[#79c0ff]">const</span> <span className="text-[#d2a8ff]">student</span> = {'{'}
                       </p>
                       <p className="pl-4">
-                        <span className="text-[#79c0ff]">name:</span> <span className="text-[#a5d6ff]">"Amine El-Hend"</span>,
+                        <span className="text-[#79c0ff]">name:</span> <span className="text-[#a5d6ff]">"<TypingText text="Amine El-Hend" className="text-[#a5d6ff]" />"</span>,
                       </p>
                       <p className="pl-4">
-                        <span className="text-[#79c0ff]">role:</span> <span className="text-[#a5d6ff]">"Industrial Engineering Student"</span>,
+                        <span className="text-[#79c0ff]">role:</span> <span className="text-[#a5d6ff]">"<TypingText text="Industrial Engineering Student" className="text-[#a5d6ff]" delay={100} />"</span>,
                       </p>
                       <p className="pl-4">
-                        <span className="text-[#79c0ff]">specialization:</span> <span className="text-[#a5d6ff]">"AI & Data Science"</span>,
+                        <span className="text-[#79c0ff]">specialization:</span> <span className="text-[#a5d6ff]">"<TypingText text="AI & Data Science" className="text-[#a5d6ff]" delay={200} />"</span>,
                       </p>
                       <p className="pl-4">
-                        <span className="text-[#79c0ff]">school:</span> <span className="text-[#a5d6ff]">"ENSAM Meknes"</span>,
+                        <span className="text-[#79c0ff]">school:</span> <span className="text-[#a5d6ff]">"<TypingText text="ENSAM Meknes" className="text-[#a5d6ff]" delay={300} />"</span>,
                       </p>
                       <p className="pl-4">
-                        <span className="text-[#79c0ff]">location:</span> <span className="text-[#a5d6ff]">"Casablanca, Morocco"</span>,
+                        <span className="text-[#79c0ff]">location:</span> <span className="text-[#a5d6ff]">"<TypingText text="Casablanca, Morocco" className="text-[#a5d6ff]" delay={400} />"</span>,
                       </p>
                       <p className="pl-4">
-                        <span className="text-[#79c0ff]">status:</span> <span className="text-[#a5d6ff]">"Seeking internship - Feb 2026"</span>
+                        <span className="text-[#79c0ff]">status:</span> <span className="text-[#a5d6ff]">"<TypingText text="Seeking internship - Feb 2026" className="text-[#a5d6ff]" delay={500} />"</span>
                       </p>
                       <p>{'};'}</p>
                     </div>

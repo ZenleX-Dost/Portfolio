@@ -99,37 +99,37 @@ const FloatingContact: React.FC = () => {
         }
       case '/personal':
         return {
-          buttonBg: 'bg-warm-rust',
-          buttonBorder: 'border-warm-tan',
-          buttonText: 'text-warm-cream',
-          buttonHover: 'hover:bg-warm-sepia',
-          panelBg: 'bg-warm-cream',
-          panelBorder: 'border-warm-tan',
-          titleText: 'text-warm-sepia',
-          inputBg: 'bg-white',
-          inputBorder: 'border-warm-tan',
-          inputText: 'text-warm-sepia',
-          inputFocus: 'focus:border-warm-rust',
-          buttonSubmit: 'bg-warm-rust hover:bg-warm-sepia text-warm-cream',
-          socialBg: 'bg-warm-tan hover:bg-warm-rust',
-          socialText: 'text-warm-sepia hover:text-warm-cream',
+          buttonBg: 'bg-red-600',
+          buttonBorder: 'border-gray-800',
+          buttonText: 'text-white',
+          buttonHover: 'hover:bg-red-700',
+          panelBg: 'bg-zinc-900',
+          panelBorder: 'border-gray-800',
+          titleText: 'text-white',
+          inputBg: 'bg-zinc-800',
+          inputBorder: 'border-gray-700',
+          inputText: 'text-white',
+          inputFocus: 'focus:border-red-600',
+          buttonSubmit: 'bg-red-600 hover:bg-red-700 text-white',
+          socialBg: 'bg-zinc-800 hover:bg-red-600',
+          socialText: 'text-white hover:text-white',
         }
       default:
         return {
-          buttonBg: 'bg-vintage-rust',
-          buttonBorder: 'border-vintage-tan',
-          buttonText: 'text-vintage-cream',
-          buttonHover: 'hover:bg-vintage-brown',
-          panelBg: 'bg-vintage-beige',
-          panelBorder: 'border-vintage-tan',
-          titleText: 'text-vintage-brown',
-          inputBg: 'bg-white',
-          inputBorder: 'border-vintage-tan',
-          inputText: 'text-vintage-ink',
-          inputFocus: 'focus:border-vintage-rust',
-          buttonSubmit: 'bg-vintage-rust hover:bg-vintage-brown text-vintage-cream',
-          socialBg: 'bg-vintage-tan hover:bg-vintage-rust',
-          socialText: 'text-vintage-brown hover:text-vintage-cream',
+          buttonBg: 'bg-gradient-to-r from-purple-600 to-blue-600',
+          buttonBorder: 'border-slate-700',
+          buttonText: 'text-white',
+          buttonHover: 'hover:from-purple-700 hover:to-blue-700',
+          panelBg: 'bg-slate-900',
+          panelBorder: 'border-slate-700',
+          titleText: 'text-white',
+          inputBg: 'bg-slate-800',
+          inputBorder: 'border-slate-700',
+          inputText: 'text-white',
+          inputFocus: 'focus:border-purple-500',
+          buttonSubmit: 'bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white',
+          socialBg: 'bg-slate-800 hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600',
+          socialText: 'text-white hover:text-white',
         }
     }
   }
@@ -139,7 +139,7 @@ const FloatingContact: React.FC = () => {
   const socialLinks = [
     { icon: Github, href: 'https://github.com/ZenleX-Dost', label: 'GitHub', color: 'hover:text-vintage-cream' },
     { icon: Linkedin, href: 'https://linkedin.com/in/amine-el-hend-1a4810228', label: 'LinkedIn', color: 'hover:text-tech-steel' },
-    { icon: Instagram, href: '#', label: 'Instagram', color: 'hover:text-warm-rose' },
+    { icon: Instagram, href: 'https://www.instagram.com/aminelhend/', label: 'Instagram', color: 'hover:text-warm-rose' },
   ]
 
   return (
