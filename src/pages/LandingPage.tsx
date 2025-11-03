@@ -186,15 +186,15 @@ const LandingPage: React.FC = () => {
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 0.3, scale: 1 }}
                 transition={{ delay: 0.5 + index * 0.2 }}
-                className="absolute top-8 left-8 text-8xl font-bold"
+                className="absolute top-4 md:top-8 left-4 md:left-8 text-5xl md:text-8xl font-bold"
                 style={{ color: section.accentColor }}
               >
                 0{index + 1}
               </motion.div>
 
               {/* Decorative corner elements */}
-              <div className="absolute top-4 right-4 w-20 h-20 border-t-2 border-r-2 opacity-20 group-hover:opacity-40 transition-opacity" style={{ borderColor: section.accentColor }} />
-              <div className="absolute bottom-4 left-4 w-20 h-20 border-b-2 border-l-2 opacity-20 group-hover:opacity-40 transition-opacity" style={{ borderColor: section.accentColor }} />
+              <div className="hidden md:block absolute top-4 right-4 w-20 h-20 border-t-2 border-r-2 opacity-20 group-hover:opacity-40 transition-opacity" style={{ borderColor: section.accentColor }} />
+              <div className="hidden md:block absolute bottom-4 left-4 w-20 h-20 border-b-2 border-l-2 opacity-20 group-hover:opacity-40 transition-opacity" style={{ borderColor: section.accentColor }} />
 
               {/* Rotating ring */}
               <motion.div
@@ -209,10 +209,10 @@ const LandingPage: React.FC = () => {
               </motion.div>
 
               {/* Content */}
-              <div className="relative z-10 h-full flex items-center justify-center px-8 md:px-12 py-20">
+              <div className="relative z-10 h-full flex items-center justify-center px-6 md:px-8 lg:px-12 py-12 md:py-20">
                 <div className="text-center max-w-4xl">
                   {/* Icon with glow effect and orbiting elements */}
-                  <div className="relative inline-block mb-8">
+                  <div className="relative inline-block mb-6 md:mb-8">
                     <motion.div
                       whileHover={{ scale: 1.15, rotate: section.path === '/personal' ? 0 : 360 }}
                       transition={{ duration: 0.6 }}
@@ -226,8 +226,8 @@ const LandingPage: React.FC = () => {
                         }}
                       >
                         <Icon 
-                          size={80} 
-                          className={`${section.path === '/personal' ? 'text-[#e50914]' : section.textColor}`}
+                          size={60}
+                          className={`md:w-20 md:h-20 ${section.path === '/personal' ? 'text-[#e50914]' : section.textColor}`}
                           strokeWidth={1.5} 
                         />
                       </div>
@@ -255,7 +255,7 @@ const LandingPage: React.FC = () => {
 
                   {/* Title */}
                   <motion.h2
-                    className={`text-4xl md:text-6xl lg:text-7xl font-bold mb-6 ${section.textColor} tracking-tight leading-tight`}
+                    className={`text-3xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 ${section.textColor} tracking-tight leading-tight`}
                     whileHover={{ scale: 1.03 }}
                     transition={{ duration: 0.3 }}
                     style={{
@@ -267,12 +267,12 @@ const LandingPage: React.FC = () => {
                   </motion.h2>
 
                   {/* Description */}
-                  <p className={`text-base md:text-lg font-light ${section.textColor} opacity-80 mb-6`}>
+                  <p className={`text-sm md:text-base lg:text-lg font-light ${section.textColor} opacity-80 mb-4 md:mb-6`}>
                     {section.description}
                   </p>
 
                   {/* Features tags */}
-                  <div className="flex flex-wrap justify-center gap-2 mb-8">
+                  <div className="flex flex-wrap justify-center gap-2 mb-6 md:mb-8">
                     {section.features.map((feature, i) => (
                       <motion.span
                         key={feature}
@@ -302,7 +302,7 @@ const LandingPage: React.FC = () => {
                     <motion.button
                       whileHover={{ scale: 1.05, x: 5 }}
                       whileTap={{ scale: 0.95 }}
-                      className="inline-flex items-center space-x-3 px-8 py-3 rounded-full font-semibold text-sm tracking-wider transition-all duration-300"
+                      className="inline-flex items-center space-x-2 md:space-x-3 px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold text-xs md:text-sm tracking-wider transition-all duration-300"
                       style={{
                         color: section.path === '/personal' ? '#000' : section.path === '/academic' ? '#000' : '#fff',
                         backgroundColor: section.accentColor,
@@ -310,7 +310,7 @@ const LandingPage: React.FC = () => {
                       }}
                     >
                       <span>EXPLORE</span>
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <svg width="16" height="16" className="md:w-5 md:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M5 12h14M12 5l7 7-7 7" />
                       </svg>
                     </motion.button>
@@ -340,14 +340,14 @@ const LandingPage: React.FC = () => {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 1 }}
-        className="w-full bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 py-20 px-8"
+        className="w-full bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 py-12 md:py-20 px-6 md:px-8"
       >
         <div className="max-w-7xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2 }}
-            className="text-4xl md:text-5xl font-bold text-center text-white mb-4"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-white mb-3 md:mb-4"
           >
             Explore My Work
           </motion.h2>
@@ -355,12 +355,12 @@ const LandingPage: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.4 }}
-            className="text-center text-gray-400 text-lg mb-16 max-w-2xl mx-auto"
+            className="text-center text-gray-400 text-base md:text-lg mb-10 md:mb-16 max-w-2xl mx-auto px-4"
           >
             Dive into three distinct worlds showcasing creativity, innovation, and personal growth
           </motion.p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {sections.map((section, index) => {
               const Icon = section.icon
               return (

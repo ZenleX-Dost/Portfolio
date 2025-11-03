@@ -300,8 +300,8 @@ const ScrollableRow: React.FC<{ items: any[]; title: string; type?: 'portrait' |
   }
 
   return (
-    <div className="mb-12 group">
-      <h2 className="text-2xl font-bold text-white mb-4 px-12">{title}</h2>
+    <div className="mb-8 md:mb-12 group">
+      <h2 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4 px-6 md:px-12">{title}</h2>
       <div className="relative">
         {/* Left Arrow */}
         <AnimatePresence>
@@ -337,7 +337,7 @@ const ScrollableRow: React.FC<{ items: any[]; title: string; type?: 'portrait' |
         <div
           ref={scrollRef}
           onScroll={handleScroll}
-          className="flex overflow-x-auto overflow-y-hidden space-x-2 px-12 pb-4 scrollbar-hide"
+          className="flex overflow-x-auto overflow-y-hidden space-x-2 px-6 md:px-12 pb-4 scrollbar-hide"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {items.map((item, index) => (
@@ -410,12 +410,12 @@ const PersonalLife: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
         </div>
 
-        <div className="relative z-10 h-full flex items-center px-12">
+        <div className="relative z-10 h-full flex items-center px-6 md:px-12">
           <div className="max-w-2xl">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-7xl font-bold mb-4"
+              className="text-4xl md:text-5xl lg:text-7xl font-bold mb-3 md:mb-4"
             >
               Amine EL-Hend
             </motion.h1>
@@ -423,7 +423,7 @@ const PersonalLife: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-xl md:text-2xl text-gray-300 mb-6"
+              className="text-lg md:text-xl lg:text-2xl text-gray-300 mb-4 md:mb-6"
             >
               Student Leader • AI Innovator • Creative Designer
             </motion.p>
@@ -431,7 +431,7 @@ const PersonalLife: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-lg text-gray-400 mb-8 leading-relaxed"
+              className="text-base md:text-lg text-gray-400 mb-6 md:mb-8 leading-relaxed"
             >
               Industrial Engineering student specializing in AI and Data Science. Founder of GENOS AI Club, 
               leading multiple student organizations while pursuing innovation in machine learning and creative design.
@@ -440,27 +440,27 @@ const PersonalLife: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="flex space-x-4"
+              className="flex flex-wrap gap-3 md:gap-4"
             >
               <button 
                 onClick={scrollToLeadership}
-                className="flex items-center space-x-2 bg-white text-black px-8 py-3 rounded font-bold hover:bg-gray-200 transition"
+                className="flex items-center space-x-2 bg-white text-black px-6 md:px-8 py-2.5 md:py-3 rounded font-bold hover:bg-gray-200 transition text-sm md:text-base"
               >
-                <Play size={24} fill="black" />
+                <Play size={20} className="md:w-6 md:h-6" fill="black" />
                 <span>Learn More</span>
               </button>
               <button 
                 onClick={scrollToAbout}
-                className="flex items-center space-x-2 bg-gray-700/80 text-white px-8 py-3 rounded font-bold hover:bg-gray-600/80 transition"
+                className="flex items-center space-x-2 bg-gray-700/80 text-white px-6 md:px-8 py-2.5 md:py-3 rounded font-bold hover:bg-gray-600/80 transition text-sm md:text-base"
               >
-                <Info size={24} />
+                <Info size={20} className="md:w-6 md:h-6" />
                 <span>More Info</span>
               </button>
               <button
                 onClick={() => setMuted(!muted)}
-                className="flex items-center justify-center w-12 h-12 rounded-full border-2 border-gray-400 hover:bg-gray-700/50 transition"
+                className="flex items-center justify-center w-11 h-11 md:w-12 md:h-12 rounded-full border-2 border-gray-400 hover:bg-gray-700/50 transition"
               >
-                {muted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+                {muted ? <VolumeX size={18} className="md:w-5 md:h-5" /> : <Volume2 size={18} className="md:w-5 md:h-5" />}
               </button>
             </motion.div>
             <motion.div
@@ -494,9 +494,9 @@ const PersonalLife: React.FC = () => {
       <ScrollableRow items={lifeStories} title="Life in Pictures" type="portrait" />
 
       {/* About Section - Netflix Style */}
-      <div ref={aboutRef} className="px-12 py-12 bg-gradient-to-b from-black via-gray-900 to-black">
-        <h2 className="text-3xl font-bold text-white mb-8">About Amine</h2>
-        <div className="grid md:grid-cols-3 gap-8 max-w-7xl">
+      <div ref={aboutRef} className="px-6 md:px-12 py-8 md:py-12 bg-gradient-to-b from-black via-gray-900 to-black">
+        <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8">About Amine</h2>
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-7xl">
           <div className="space-y-4">
             <h3 className="text-xl font-bold text-red-500">Education</h3>
             <p className="text-gray-300 leading-relaxed">
