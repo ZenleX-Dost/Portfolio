@@ -348,7 +348,7 @@ const GraphicDesign: React.FC = () => {
       </div>
 
       {/* Software Selector Bar */}
-      <div className="border-b transition-colors duration-300 overflow-x-auto" style={{ backgroundColor: currentTheme.darkBg, borderColor: currentTheme.border }}>
+      <div className={`border-b transition-colors duration-300 overflow-x-auto theme-scrollbar-${activeSoftware}`} style={{ backgroundColor: currentTheme.darkBg, borderColor: currentTheme.border }}>
         <div className="px-4 md:px-6 py-2 flex items-center space-x-1 md:space-x-2 min-w-max">
           <span className="text-[10px] md:text-xs text-[#b8b8b8] mr-1 md:mr-2 whitespace-nowrap">SOFTWARE:</span>
           {softwares.map((software) => (
@@ -372,7 +372,7 @@ const GraphicDesign: React.FC = () => {
       </div>
 
       {/* Instagram Accounts Bar */}
-      <div className="border-b transition-colors duration-300 overflow-x-auto" style={{ backgroundColor: currentTheme.darkBg, borderColor: currentTheme.border }}>
+      <div className={`border-b transition-colors duration-300 overflow-x-auto theme-scrollbar-${activeSoftware}`} style={{ backgroundColor: currentTheme.darkBg, borderColor: currentTheme.border }}>
         <div className="px-4 md:px-6 py-2 flex items-center space-x-1 md:space-x-2 min-w-max">
           <span className="text-[10px] md:text-xs text-[#b8b8b8] mr-1 md:mr-2 whitespace-nowrap">INSTAGRAM:</span>
           {[

@@ -59,57 +59,76 @@ const skills = [
 const projects = [
   {
     id: 1,
-    title: 'GenAI-DIX: Generative AI for Product Design',
+    title: 'GenAI-DFX: Generative AI for Product Design',
     description: 'Streamlit application generating design suggestions with product categorization and manufacturing materials recommendations',
     tech: ['Python', 'Streamlit', 'Generative AI'],
-    github: 'https://github.com/ZenleX-Dost',
+    github: 'https://github.com/ZenleX-Dost/GENAI-DFX',
     demo: '#',
-    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600',
   },
   {
     id: 2,
     title: 'Sketch to Image - GAN Architecture',
     description: 'Model using GAN to convert facial sketches into realistic images for police database comparison',
     tech: ['Python', 'GAN', 'PyTorch', 'Deep Learning'],
-    github: 'https://github.com/ZenleX-Dost',
+    github: 'https://github.com/ZenleX-Dost/Sketch2Image',
     demo: '#',
-    image: 'https://images.unsplash.com/photo-1547954575-855750c57bd3?w=600',
   },
   {
     id: 3,
     title: 'Data Preprocessing Interface',
     description: 'Interface for preprocessing data (.csv, .xls, .txt) providing statistics via diagrams and graphs',
     tech: ['Python', 'Pandas', 'Data Visualization'],
-    github: 'https://github.com/ZenleX-Dost',
+    github: 'https://github.com/ZenleX-Dost/DataSyncPro',
     demo: '#',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600',
   },
   {
     id: 4,
     title: 'Explainable AI for Visual Quality Control',
     description: 'Prototype for radiographic/vision-based quality control with explainable AI decision support',
     tech: ['Python', 'Computer Vision', 'Explainable AI', 'Deep Learning'],
-    github: 'https://github.com/ZenleX-Dost',
+    github: 'https://github.com/ZenleX-Dost/RadiKal-V2.0',
     demo: '#',
-    image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600',
   },
   {
     id: 5,
     title: 'Quality Control via PyQt6',
     description: 'Local offline application for CTF quality control comparing measurement control reports',
     tech: ['Python', 'PyQt6', 'Quality Control'],
-    github: 'https://github.com/ZenleX-Dost',
+    github: 'https://github.com/ZenleX-Dost/PCP-RCM-Cheker',
     demo: '#',
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600',
+    isPrivate: true,
   },
   {
     id: 6,
     title: 'NASA Turbine Predictive Maintenance',
     description: 'Data mining project for predictive maintenance of NASA turbines',
     tech: ['Python', 'Machine Learning', 'Predictive Analytics'],
-    github: 'https://github.com/ZenleX-Dost',
+    github: 'https://github.com/ZenleX-Dost/AllDataMine',
     demo: '#',
-    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600',
+  },
+  {
+    id: 7,
+    title: 'GraphPlag - Semantic Plagiarism Detection',
+    description: 'Advanced plagiarism detection using semantic graph representations with Graph Kernels and GNNs, transforming documents into syntactic dependency graphs for semantic similarity analysis',
+    tech: ['Python', 'GNN', 'Graph Kernels', 'NLP'],
+    github: 'https://github.com/ZenleX-Dost/GraphPlag',
+    demo: '#',
+  },
+  {
+    id: 8,
+    title: 'CardioECG - Clinical ECG Analysis',
+    description: 'Computer vision and signal processing system that extracts clinical information from ECG images for automated cardiac diagnosis',
+    tech: ['Python', 'Computer Vision', 'Signal Processing', 'Deep Learning'],
+    github: 'https://github.com/ZenleX-Dost/CardioECG',
+    demo: '#',
+  },
+  {
+    id: 9,
+    title: 'ML-Framework - Custom Training Framework',
+    description: 'Comprehensive machine learning framework enabling users to train and deploy custom models with ease',
+    tech: ['Python', 'Machine Learning', 'Deep Learning', 'Framework'],
+    github: 'https://github.com/ZenleX-Dost/ML-Framework',
+    demo: '#',
   },
 ]
 
@@ -271,6 +290,30 @@ const Academic: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'about' | 'projects' | 'skills' | 'resume' | 'certifications'>('about')
   const [terminalText, setTerminalText] = useState('')
   const [isTyping, setIsTyping] = useState(true)
+  const audioRef = React.useRef<HTMLAudioElement>(null)
+  
+  // Initialize and play audio on component mount
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.addEventListener('loadedmetadata', () => {
+        if (audioRef.current) {
+          const duration = audioRef.current.duration
+          const randomStart = Math.random() * Math.max(0, duration - 30)
+          audioRef.current.currentTime = randomStart
+          audioRef.current.volume = 0.3
+          audioRef.current.play().catch(err => console.log('Autoplay prevented:', err))
+        }
+      })
+      audioRef.current.loop = true
+    }
+    
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause()
+        audioRef.current.currentTime = 0
+      }
+    }
+  }, [])
   
   useEffect(() => {
     const text = '$ amine-el-hend --academic'
@@ -289,6 +332,9 @@ const Academic: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#0d1117] pt-20">
+      {/* Background audio */}
+      <audio ref={audioRef} src="/audio/Academic.mp3" />
+      
       {/* GitHub-style contribution graph header */}
       <div className="bg-[#010409] border-b border-[#30363d] py-2">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
@@ -313,19 +359,21 @@ const Academic: React.FC = () => {
       <div className="bg-[#161b22] border-b border-[#30363d]">
         <div className="max-w-7xl mx-auto px-4 md:px-6 pt-4 md:pt-5 pb-3 md:pb-4">
           <div className="flex items-center space-x-2 mb-3">
-            <div className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 rounded-full bg-[#ff5f56] shadow-lg"></div>
-            <div className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 rounded-full bg-[#ffbd2e] shadow-lg"></div>
-            <div className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 rounded-full bg-[#27c93f] shadow-lg"></div>
+            <div className="w-3 h-3 md:w-3.5 md:h-3.5 rounded-full bg-[#ff5f56] shadow-lg flex-shrink-0"></div>
+            <div className="w-3 h-3 md:w-3.5 md:h-3.5 rounded-full bg-[#ffbd2e] shadow-lg flex-shrink-0"></div>
+            <div className="w-3 h-3 md:w-3.5 md:h-3.5 rounded-full bg-[#27c93f] shadow-lg flex-shrink-0"></div>
             <span className="ml-2 md:ml-4 text-[#7d8590] text-xs font-mono">bash</span>
           </div>
-          <div className="font-mono text-xs md:text-sm text-[#7ee787] overflow-x-auto">
-            <span className="text-[#58a6ff]">amine@portfolio</span>
-            <span className="text-[#8b949e]">:</span>
-            <span className="text-[#f0883e]">~/academic</span>
-            <span className="text-[#8b949e]"> $ </span>
-            <span className="text-[#c9d1d9]">{terminalText}</span>
-            {isTyping && <span className="animate-pulse">▊</span>}
-            {!isTyping && <span className="animate-pulse ml-1 text-[#7ee787]">█</span>}
+          <div className="font-mono text-xs md:text-sm text-[#7ee787] overflow-x-auto scrollbar-hide pb-1" style={{ WebkitOverflowScrolling: 'touch' }}>
+            <div className="whitespace-nowrap">
+              <span className="text-[#58a6ff]">amine@portfolio</span>
+              <span className="text-[#8b949e]">:</span>
+              <span className="text-[#f0883e]">~/academic</span>
+              <span className="text-[#8b949e]"> $ </span>
+              <span className="text-[#c9d1d9]">{terminalText}</span>
+              {isTyping && <span className="animate-pulse">▊</span>}
+              {!isTyping && <span className="animate-pulse ml-1 text-[#7ee787]">█</span>}
+            </div>
           </div>
         </div>
       </div>
@@ -334,7 +382,7 @@ const Academic: React.FC = () => {
       <div className="bg-[#161b22] border-b border-[#30363d]">
         <div className="max-w-7xl mx-auto px-2 md:px-6">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between py-2 gap-2">
-            <div className="flex space-x-1 overflow-x-auto w-full sm:w-auto scrollbar-hide">
+            <div className="flex space-x-1 overflow-x-auto w-full sm:w-auto scrollbar-hide pb-1" style={{ WebkitOverflowScrolling: 'touch' }}>
               {[
                 { id: 'about', label: 'README.md', icon: Code },
                 { id: 'projects', label: 'projects.json', icon: Brain },
@@ -349,15 +397,15 @@ const Academic: React.FC = () => {
                     onClick={() => setActiveTab(tab.id as any)}
                     whileHover={{ backgroundColor: '#21262d' }}
                     whileTap={{ scale: 0.98 }}
-                    className={`flex items-center space-x-1 md:space-x-2 px-2 md:px-4 py-2 md:py-2.5 font-mono text-xs md:text-sm transition-all relative whitespace-nowrap ${
+                    className={`flex items-center space-x-1.5 md:space-x-2 px-3 md:px-4 py-2 md:py-2.5 font-mono text-xs md:text-sm transition-all relative whitespace-nowrap flex-shrink-0 ${
                       activeTab === tab.id
                         ? 'bg-[#0d1117] text-[#58a6ff]'
                         : 'bg-transparent text-[#8b949e] hover:text-[#c9d1d9]'
                     }`}
                   >
-                    <Icon size={12} className="md:w-3.5 md:h-3.5" />
+                    <Icon size={14} className="md:w-3.5 md:h-3.5 flex-shrink-0" />
                     <span className="hidden sm:inline">{tab.label}</span>
-                    <span className="sm:hidden">{tab.label.split('.')[0]}</span>
+                    <span className="sm:hidden text-xs">{tab.label.split('.')[0]}</span>
                     {activeTab === tab.id && (
                       <>
                         <motion.div
@@ -404,14 +452,14 @@ const Academic: React.FC = () => {
                 {/* GitHub-style file header */}
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 pb-3 border-b border-[#30363d] gap-2">
                   <div className="flex items-center space-x-2">
-                    <Code size={14} className="md:w-4 md:h-4 text-[#58a6ff]" />
-                    <span className="text-[#c9d1d9] font-mono text-xs md:text-sm">README.md</span>
+                    <Code size={16} className="md:w-4 md:h-4 text-[#58a6ff] flex-shrink-0" />
+                    <span className="text-[#c9d1d9] font-mono text-sm md:text-sm">README.md</span>
                   </div>
                   <div className="flex items-center space-x-2 text-[10px] md:text-xs">
-                    <span className="text-[#7d8590] font-mono">152 lines</span>
+                    <span className="text-[#7d8590] font-mono whitespace-nowrap">152 lines</span>
                     <span className="text-[#7d8590]">•</span>
-                    <span className="text-[#7d8590] hidden sm:inline">Last commit: 2 days ago</span>
-                    <span className="text-[#7d8590] sm:hidden">2d ago</span>
+                    <span className="text-[#7d8590] hidden sm:inline whitespace-nowrap">Last commit: 2 days ago</span>
+                    <span className="text-[#7d8590] sm:hidden whitespace-nowrap">2d ago</span>
                   </div>
                 </div>
 
@@ -578,32 +626,34 @@ const Academic: React.FC = () => {
               {projects.map((project) => (
                 <motion.div 
                   key={project.id} 
-                  className="bg-[#161b22] border border-[#30363d] rounded-md p-3 md:p-5 font-mono text-xs md:text-sm hover:border-[#58a6ff] transition-all cursor-pointer group shadow-lg hover:shadow-[#58a6ff]/20"
+                  className="bg-[#161b22] border border-[#30363d] rounded-md p-4 md:p-5 font-mono text-xs md:text-sm hover:border-[#58a6ff] transition-all cursor-pointer group shadow-lg hover:shadow-[#58a6ff]/20"
                   whileHover={{ scale: 1.01, x: 4 }}
                   transition={{ duration: 0.2 }}
                 >
                   {/* GitHub repo-style header */}
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex items-start space-x-2 md:space-x-3 flex-1">
+                  <div className="flex flex-col sm:flex-row items-start justify-between mb-3 gap-3">
+                    <div className="flex items-start space-x-2 md:space-x-3 flex-1 min-w-0">
                       <motion.div 
                         className="mt-1 flex-shrink-0"
                         whileHover={{ scale: 1.2, rotate: 360 }}
                         transition={{ duration: 0.5 }}
                       >
-                        <Brain size={14} className="md:w-4 md:h-4 text-[#7ee787]" />
+                        <Brain size={16} className="md:w-4 md:h-4 text-[#7ee787]" />
                       </motion.div>
                       <div className="flex-1 min-w-0">
-                        <div className="flex flex-wrap items-center gap-2 mb-1">
-                          <span className="text-[#58a6ff] font-semibold text-sm md:text-base group-hover:text-[#79c0ff] transition-colors group-hover:underline break-words">{project.title}</span>
-                          <span className="px-2 py-0.5 text-[10px] md:text-xs border border-[#30363d] rounded-full text-[#7d8590] whitespace-nowrap">Public</span>
+                        <div className="flex flex-wrap items-center gap-2 mb-2">
+                          <span className="text-[#58a6ff] font-semibold text-sm md:text-base group-hover:text-[#79c0ff] transition-colors group-hover:underline break-words leading-tight">{project.title}</span>
+                          <span className={`px-2 py-0.5 text-[10px] md:text-xs border rounded-full whitespace-nowrap flex-shrink-0 ${project.isPrivate ? 'border-[#f85149] text-[#f85149]' : 'border-[#30363d] text-[#7d8590]'}`}>
+                            {project.isPrivate ? 'Private' : 'Public'}
+                          </span>
                         </div>
-                        <p className="text-[#c9d1d9] text-xs mb-2 md:mb-3 leading-relaxed">{project.description}</p>
+                        <p className="text-[#c9d1d9] text-xs md:text-sm mb-2 md:mb-3 leading-relaxed">{project.description}</p>
                         {/* GitHub-style language tags */}
-                        <div className="flex flex-wrap gap-1 md:gap-2">
+                        <div className="flex flex-wrap gap-1.5 md:gap-2">
                           {project.tech.map((tech) => (
                             <motion.span 
                               key={tech} 
-                              className="px-2 py-1 text-xs bg-[#1f6feb]/10 text-[#58a6ff] rounded-md border border-[#1f6feb]/20 hover:border-[#58a6ff] hover:bg-[#1f6feb]/20 transition-colors"
+                              className="px-2 py-1 text-[10px] md:text-xs bg-[#1f6feb]/10 text-[#58a6ff] rounded-md border border-[#1f6feb]/20 hover:border-[#58a6ff] hover:bg-[#1f6feb]/20 transition-colors whitespace-nowrap"
                               whileHover={{ scale: 1.05, y: -2 }}
                             >
                               {tech}
@@ -616,12 +666,12 @@ const Academic: React.FC = () => {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center space-x-1.5 px-2 md:px-3 py-1.5 bg-[#21262d] hover:bg-[#30363d] border border-[#30363d] rounded-md text-[#c9d1d9] hover:text-white transition-all flex-shrink-0"
+                      className="flex items-center justify-center space-x-1.5 px-3 md:px-3 py-2 md:py-1.5 bg-[#21262d] hover:bg-[#30363d] border border-[#30363d] rounded-md text-[#c9d1d9] hover:text-white transition-all flex-shrink-0 w-full sm:w-auto"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <Github size={12} className="md:w-3.5 md:h-3.5" />
-                      <span className="text-xs font-medium hidden sm:inline">Code</span>
+                      <Github size={14} className="md:w-3.5 md:h-3.5" />
+                      <span className="text-xs font-medium">View Code</span>
                     </motion.a>
                   </div>
                   
@@ -657,13 +707,13 @@ const Academic: React.FC = () => {
               {/* GitHub insights-style header */}
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 md:mb-6 pb-3 md:pb-4 border-b border-[#30363d] gap-2">
                 <div className="flex items-center space-x-2">
-                  <Database size={14} className="md:w-4 md:h-4 text-[#58a6ff]" />
-                  <span className="text-[#7ee787] text-sm md:text-base"># Language & Framework Proficiency</span>
+                  <Database size={16} className="md:w-4 md:h-4 text-[#58a6ff] flex-shrink-0" />
+                  <span className="text-[#7ee787] text-sm md:text-base leading-tight"># Language & Framework Proficiency</span>
                 </div>
-                <span className="text-[#7d8590] text-[10px] md:text-xs">Based on repository analysis</span>
+                <span className="text-[#7d8590] text-[10px] md:text-xs whitespace-nowrap">Based on repository analysis</span>
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-3 md:space-y-4">
                 {skills.map((skill, index) => {
                   const getLanguageColor = (category: string) => {
                     const colors: Record<string, string> = {
@@ -685,17 +735,17 @@ const Academic: React.FC = () => {
                       transition={{ delay: index * 0.05 }}
                       whileHover={{ x: 8 }}
                     >
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="flex items-center space-x-3">
+                      <div className="flex items-center justify-between mb-2 gap-2">
+                        <div className="flex items-center space-x-2 md:space-x-3 flex-1 min-w-0">
                           <div 
-                            className="w-3 h-3 rounded-full"
+                            className="w-3 h-3 rounded-full flex-shrink-0"
                             style={{ backgroundColor: getLanguageColor(skill.category) }}
                           />
-                          <span className="text-[#c9d1d9] group-hover:text-[#58a6ff] transition-colors font-medium">{skill.name}</span>
+                          <span className="text-[#c9d1d9] group-hover:text-[#58a6ff] transition-colors font-medium text-xs md:text-sm truncate">{skill.name}</span>
                         </div>
-                        <span className="text-[#7d8590] text-xs group-hover:text-[#7ee787] transition-colors font-bold">{skill.level}%</span>
+                        <span className="text-[#7d8590] text-xs md:text-sm group-hover:text-[#7ee787] transition-colors font-bold whitespace-nowrap">{skill.level}%</span>
                       </div>
-                      <div className="flex-1 h-2 bg-[#21262d] rounded-full overflow-hidden border border-[#30363d]">
+                      <div className="flex-1 h-2 md:h-2.5 bg-[#21262d] rounded-full overflow-hidden border border-[#30363d]">
                         <motion.div
                           initial={{ width: 0 }}
                           animate={{ width: `${skill.level}%` }}
@@ -714,17 +764,17 @@ const Academic: React.FC = () => {
 
               {/* Skills distribution pie */}
               <div className="mt-4 md:mt-6 pt-4 md:pt-6 border-t border-[#30363d]">
-                <div className="text-[#7d8590] text-[10px] md:text-xs mb-2 md:mb-3">Skills Distribution</div>
+                <div className="text-[#7d8590] text-[10px] md:text-xs mb-3 md:mb-3">Skills Distribution</div>
                 <div className="flex gap-2 md:gap-3 flex-wrap">
                   {['Programming', 'AI/ML', 'Data Science', 'Design', 'Management'].map((category, i) => (
-                    <div key={category} className="flex items-center space-x-1 md:space-x-2">
+                    <div key={category} className="flex items-center space-x-1.5 md:space-x-2">
                       <div 
-                        className="w-2 h-2 md:w-3 md:h-3 rounded-full flex-shrink-0"
+                        className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full flex-shrink-0"
                         style={{ 
                           backgroundColor: ['#3572a5', '#f1e05a', '#e34c26', '#563d7c', '#2b7489'][i] 
                         }}
                       />
-                      <span className="text-[#8b949e] text-[10px] md:text-xs">{category}</span>
+                      <span className="text-[#8b949e] text-[10px] md:text-xs whitespace-nowrap">{category}</span>
                     </div>
                   ))}
                 </div>
@@ -739,7 +789,7 @@ const Academic: React.FC = () => {
               animate={{ opacity: 1 }}
               className="space-y-4"
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-4">
                 {certifications.map((cert, index) => (
                   <motion.div
                     key={cert.id}
@@ -747,14 +797,14 @@ const Academic: React.FC = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                     whileHover={{ scale: 1.02, y: -4 }}
-                    className="bg-[#161b22] border border-[#30363d] rounded-md p-3 md:p-5 font-mono text-xs md:text-sm hover:border-[#58a6ff] transition-all cursor-pointer group shadow-lg hover:shadow-[#58a6ff]/20"
+                    className="bg-[#161b22] border border-[#30363d] rounded-md p-4 md:p-5 font-mono text-xs md:text-sm hover:border-[#58a6ff] transition-all cursor-pointer group shadow-lg hover:shadow-[#58a6ff]/20"
                   >
                     {/* Certificate Header */}
-                    <div className="flex items-start justify-between mb-3 gap-2">
+                    <div className="flex items-start justify-between mb-3 gap-3">
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start space-x-2 mb-2">
-                          <Award size={14} className="md:w-4 md:h-4 text-[#58a6ff] flex-shrink-0 mt-0.5" />
-                          <h3 className="text-[#c9d1d9] font-semibold text-xs md:text-base group-hover:text-[#58a6ff] transition-colors leading-tight">
+                          <Award size={16} className="md:w-4 md:h-4 text-[#58a6ff] flex-shrink-0 mt-0.5" />
+                          <h3 className="text-[#c9d1d9] font-semibold text-sm md:text-base group-hover:text-[#58a6ff] transition-colors leading-tight">
                             {cert.title}
                           </h3>
                         </div>
@@ -789,7 +839,7 @@ const Academic: React.FC = () => {
                     {/* Skills Tags */}
                     <div>
                       <span className="text-[#7d8590] text-[10px] md:text-xs mb-2 block">Skills:</span>
-                      <div className="flex flex-wrap gap-1 md:gap-2">
+                      <div className="flex flex-wrap gap-1.5 md:gap-2">
                         {cert.skills.map((skill, i) => (
                           <motion.span
                             key={skill}
@@ -797,7 +847,7 @@ const Academic: React.FC = () => {
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 0.3 + i * 0.05 }}
                             whileHover={{ scale: 1.1, y: -2 }}
-                            className="px-2 py-1 text-xs bg-[#1f6feb]/10 text-[#58a6ff] rounded-md border border-[#1f6feb]/20 hover:border-[#58a6ff] hover:bg-[#1f6feb]/20 transition-colors"
+                            className="px-2 py-1 text-[10px] md:text-xs bg-[#1f6feb]/10 text-[#58a6ff] rounded-md border border-[#1f6feb]/20 hover:border-[#58a6ff] hover:bg-[#1f6feb]/20 transition-colors whitespace-nowrap"
                           >
                             {skill}
                           </motion.span>

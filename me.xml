@@ -118,7 +118,7 @@
 
   <projects>
     <project>
-      <name>GenAI-DIX: Generative AI for Product Design</name>
+      <name>GenAI-DFX: Generative AI for Product Design</name>
       <category>AI/ML</category>
       <description>Created a Streamlit application that generates design suggestions for specific requests, including product categorization and suggested manufacturing materials while respecting DfX design standards.</description>
       <technologies>

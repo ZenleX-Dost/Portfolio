@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Palette, Terminal, Heart, Sparkles } from 'lucide-react'
@@ -6,11 +6,70 @@ import { Palette, Terminal, Heart, Sparkles } from 'lucide-react'
 const LandingPage: React.FC = () => {
   const [hoveredSection, setHoveredSection] = useState<number | null>(null)
   const [showWelcome, setShowWelcome] = useState(true)
+  const audioRefs = useRef<(HTMLAudioElement | null)[]>([])
+  const [currentlyPlaying, setCurrentlyPlaying] = useState<number | null>(null)
 
   useEffect(() => {
     const timer = setTimeout(() => setShowWelcome(false), 3000)
     return () => clearTimeout(timer)
   }, [])
+  
+  // Initialize audio elements
+  useEffect(() => {
+    // Create audio elements for each section
+    audioRefs.current = [
+      new Audio('/audio/Graphic.mp3'),
+      new Audio('/audio/Academic.mp3'),
+      new Audio('/audio/personal.mp3')
+    ]
+    
+    // Set volume and loop for all audio elements
+    audioRefs.current.forEach((audio) => {
+      if (audio) {
+        audio.volume = 0.3
+        audio.loop = true
+        
+        // Add random start position when loaded
+        audio.addEventListener('loadedmetadata', () => {
+          const duration = audio.duration
+          const randomStart = Math.random() * Math.max(0, duration - 30)
+          audio.currentTime = randomStart
+        })
+      }
+    })
+    
+    // Cleanup on unmount
+    return () => {
+      audioRefs.current.forEach(audio => {
+        if (audio) {
+          audio.pause()
+          audio.currentTime = 0
+        }
+      })
+    }
+  }, [])
+  
+  // Handle audio playback on hover
+  useEffect(() => {
+    if (hoveredSection !== null && hoveredSection !== currentlyPlaying) {
+      // Stop currently playing audio
+      if (currentlyPlaying !== null && audioRefs.current[currentlyPlaying]) {
+        audioRefs.current[currentlyPlaying]?.pause()
+      }
+      
+      // Play new audio
+      if (audioRefs.current[hoveredSection]) {
+        audioRefs.current[hoveredSection]?.play().catch(err => console.log('Play prevented:', err))
+        setCurrentlyPlaying(hoveredSection)
+      }
+    } else if (hoveredSection === null && currentlyPlaying !== null) {
+      // Stop audio when not hovering
+      if (audioRefs.current[currentlyPlaying]) {
+        audioRefs.current[currentlyPlaying]?.pause()
+      }
+      setCurrentlyPlaying(null)
+    }
+  }, [hoveredSection])
 
   const sections = [
     {
@@ -441,43 +500,71 @@ const LandingPage: React.FC = () => {
             })}
           </div>
 
-          {/* Bottom CTA */}
+          {/* Contact Information Footer */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 2.5 }}
-            className="text-center mt-8 md:mt-12 lg:mt-16"
+            className="mt-8 md:mt-12 lg:mt-16 border-t border-gray-800 pt-8"
           >
-            <p className="text-gray-500 text-xs md:text-sm mb-3 md:mb-4">
-              © 2025 Amine El-Hend. All rights reserved.
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-3 md:gap-6">
-              <a 
-                href="https://github.com/ZenleX-Dost" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-purple-400 transition-colors text-xs md:text-sm"
-              >
-                GitHub
-              </a>
-              <span className="text-gray-700 hidden md:inline">•</span>
-              <a 
-                href="https://linkedin.com/in/amine-el-hend-1a4810228" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-purple-400 transition-colors text-xs md:text-sm"
-              >
-                LinkedIn
-              </a>
-              <span className="text-gray-700 hidden md:inline">•</span>
-              <a 
-                href="https://www.instagram.com/aminelhend/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-purple-400 transition-colors text-xs md:text-sm"
-              >
-                Instagram
-              </a>
+            {/* Contact Info */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-8 text-center md:text-left">
+              <div>
+                <h3 className="text-white font-bold text-sm md:text-base mb-2">Get In Touch</h3>
+                <p className="text-gray-400 text-xs md:text-sm mb-1">
+                  <a href="mailto:amine.elhend@gmail.com" className="hover:text-purple-400 transition-colors">
+                    amine.elhend@gmail.com
+                  </a>
+                </p>
+                <p className="text-gray-400 text-xs md:text-sm">
+                  <a href="tel:+212614209341" className="hover:text-purple-400 transition-colors">
+                    +212 6 14 20 93 41
+                  </a>
+                </p>
+              </div>
+              
+              <div>
+                <h3 className="text-white font-bold text-sm md:text-base mb-2">Location</h3>
+                <p className="text-gray-400 text-xs md:text-sm">Casablanca, Morocco</p>
+                <p className="text-gray-400 text-xs md:text-sm">ENSAM Meknes</p>
+              </div>
+              
+              <div>
+                <h3 className="text-white font-bold text-sm md:text-base mb-2">Follow Me</h3>
+                <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 md:gap-4">
+                  <a 
+                    href="https://github.com/ZenleX-Dost" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-purple-400 transition-colors text-xs md:text-sm"
+                  >
+                    GitHub
+                  </a>
+                  <a 
+                    href="https://linkedin.com/in/amine-el-hend-1a4810228" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-purple-400 transition-colors text-xs md:text-sm"
+                  >
+                    LinkedIn
+                  </a>
+                  <a 
+                    href="https://www.instagram.com/aminelhend/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-purple-400 transition-colors text-xs md:text-sm"
+                  >
+                    Instagram
+                  </a>
+                </div>
+              </div>
+            </div>
+            
+            {/* Copyright */}
+            <div className="text-center pt-6 border-t border-gray-800">
+              <p className="text-gray-500 text-xs md:text-sm">
+                © 2025 Amine El-Hend. All rights reserved.
+              </p>
             </div>
           </motion.div>
         </div>

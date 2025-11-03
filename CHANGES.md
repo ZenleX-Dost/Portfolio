@@ -57,7 +57,7 @@
    
    **Academic Section:**
    - Real projects from your XML:
-     * GenAI-DIX (Generative AI for Product Design)
+     * GenAI-DFX (Generative AI for Product Design)
      * Sketch to Image (GAN Architecture)
      * Data Preprocessing Interface
      * Explainable AI for Visual Quality Control

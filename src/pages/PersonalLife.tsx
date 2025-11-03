@@ -382,10 +382,45 @@ const ScrollableRow: React.FC<{ items: any[]; title: string; type?: 'portrait' |
 const PersonalLife: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<any>(null)
   const [muted, setMuted] = useState(true)
+  const audioRef = useRef<HTMLAudioElement>(null)
   
   // Refs for scrolling to sections
   const leadershipRef = useRef<HTMLDivElement>(null)
   const aboutRef = useRef<HTMLDivElement>(null)
+  
+  // Initialize audio on component mount
+  React.useEffect(() => {
+    if (audioRef.current) {
+      // Start from a random position in the song
+      audioRef.current.addEventListener('loadedmetadata', () => {
+        if (audioRef.current) {
+          const duration = audioRef.current.duration
+          const randomStart = Math.random() * Math.max(0, duration - 30) // Start within the song, leaving at least 30s
+          audioRef.current.currentTime = randomStart
+          audioRef.current.volume = 0.3 // Set volume to 30%
+          
+          // Try to play (will be muted initially)
+          if (!muted) {
+            audioRef.current.play().catch(err => console.log('Autoplay prevented:', err))
+          }
+        }
+      })
+      
+      // Loop the audio
+      audioRef.current.loop = true
+    }
+  }, [])
+  
+  // Handle mute/unmute
+  React.useEffect(() => {
+    if (audioRef.current) {
+      if (muted) {
+        audioRef.current.pause()
+      } else {
+        audioRef.current.play().catch(err => console.log('Play prevented:', err))
+      }
+    }
+  }, [muted])
 
   // Scroll to sections
   const scrollToLeadership = () => {
@@ -398,6 +433,9 @@ const PersonalLife: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden pt-16">
+      {/* Hidden Audio Element */}
+      <audio ref={audioRef} src="/audio/personal.mp3" />
+      
       {/* Netflix Hero Section */}
       <div className="relative h-[80vh] mb-8">
         <div className="absolute inset-0">
