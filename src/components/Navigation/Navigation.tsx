@@ -121,7 +121,7 @@ const Navigation: React.FC = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMenuOpen(!isMenuOpen)}
-              className={`md:hidden ${pageStyle.text} p-2 hover:opacity-70 border-2 ${pageStyle.border} transition-colors rounded`}
+              className={`md:hidden ${pageStyle.text} p-2 hover:opacity-70 transition-all rounded-lg hover:bg-white/10 active:scale-95`}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -139,42 +139,36 @@ const Navigation: React.FC = () => {
             transition={{ type: 'spring', damping: 25 }}
             className="fixed inset-0 z-40 md:hidden"
           >
-            <div className={`absolute inset-0 backdrop-blur-sm ${location.pathname === '/personal' ? 'bg-black/98' : location.pathname === '/' ? 'bg-slate-900/98' : 'bg-vintage-beige/98 paper-texture'}`}>
-              <div className="flex flex-col items-center justify-center h-full space-y-8">
+            <div className={`absolute inset-0 backdrop-blur-lg ${location.pathname === '/personal' ? 'bg-black/95' : location.pathname === '/' ? 'bg-slate-900/95' : location.pathname === '/design' ? 'bg-[#1e1e1e]/95' : location.pathname === '/academic' ? 'bg-[#0d1117]/95' : 'bg-slate-900/95'}`}>
+              <div className="flex flex-col items-center justify-center h-full space-y-6 px-8">
                 {navItems.map((item, index) => {
                   const Icon = item.icon
-                  const isNetflixStyle = location.pathname === '/personal'
-                  const isHomeStyle = location.pathname === '/'
+                  const isActive = location.pathname === item.path
                   return (
                     <motion.div
                       key={item.path}
-                      initial={{ opacity: 0, x: 50 }}
-                      animate={{ opacity: 1, x: 0 }}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1 }}
+                      className="w-full"
                     >
                       <Link
                         to={item.path}
                         onClick={() => setMenuOpen(false)}
-                        className="group"
+                        className="block"
                       >
-                        <div className="flex flex-col items-center space-y-2">
-                          <motion.div
-                            whileHover={{ scale: 1.1, rotate: isNetflixStyle || isHomeStyle ? 0 : 5 }}
-                            whileTap={{ scale: 0.9 }}
-                            className={`p-4 ${
-                              isNetflixStyle 
-                                ? 'bg-zinc-800 border-2 border-gray-700 rounded-lg hover:bg-red-600' 
-                                : isHomeStyle
-                                ? 'bg-slate-800 border-2 border-slate-600 rounded-lg hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600'
-                                : 'bg-vintage-rust border-4 border-vintage-tan shadow-vintage'
-                            } transition-colors`}
-                          >
-                            <Icon size={32} className={isNetflixStyle || isHomeStyle ? 'text-white' : 'text-vintage-cream'} />
-                          </motion.div>
-                          <span className={`text-xl font-bold ${isNetflixStyle || isHomeStyle ? 'text-white' : 'text-vintage-brown font-vintage'}`}>
-                            {item.label}
-                          </span>
-                        </div>
+                        <motion.div
+                          whileHover={{ scale: 1.02, x: 8 }}
+                          whileTap={{ scale: 0.98 }}
+                          className={`flex items-center space-x-4 px-6 py-4 rounded-xl transition-all ${
+                            isActive
+                              ? 'bg-gradient-to-r ' + item.color + ' text-white shadow-lg'
+                              : 'bg-white/5 text-gray-300 hover:bg-white/10 border border-white/10'
+                          }`}
+                        >
+                          <Icon size={24} className={isActive ? 'text-white' : 'text-gray-400'} />
+                          <span className="text-lg font-medium">{item.label}</span>
+                        </motion.div>
                       </Link>
                     </motion.div>
                   )
