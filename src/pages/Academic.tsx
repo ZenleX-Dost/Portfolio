@@ -839,7 +839,9 @@ const Academic: React.FC = () => {
                     <p className="text-[#7d8590] text-xs mt-0.5">Education & Work Experience</p>
                   </div>
                 </div>
-                <motion.button
+                <motion.a
+                  href="/doc/CV.pdf"
+                  download="Amine_EL-Hend_CV.pdf"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   className="px-4 py-2 bg-[#238636] hover:bg-[#2ea043] text-white rounded-md font-mono text-sm flex items-center space-x-2 transition-colors shadow-lg hover:shadow-[#238636]/50"
@@ -851,7 +853,7 @@ const Academic: React.FC = () => {
                     <Download size={14} />
                   </motion.div>
                   <span>Download CV</span>
-                </motion.button>
+                </motion.a>
               </div>
 
               {/* GitHub commit-style timeline */}

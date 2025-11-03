@@ -8,135 +8,273 @@ const leadership = [
     id: 1,
     title: 'Founder of GENOS',
     subtitle: 'AI Club of ENSAM Meknes',
-    image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=500',
+    image: '/personal/leadership/genos.png',
     desc: 'Leading the artificial intelligence initiative at ENSAM, organizing workshops and projects',
     year: '2024',
     icon: Heart
   },
   { 
     id: 2,
-    title: 'Head of Media & IT',
-    subtitle: 'ADEAM Association',
-    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=500',
-    desc: 'Managing digital presence and technical infrastructure',
+    title: 'Vice-President',
+    subtitle: 'CI29',
+    image: '/personal/leadership/ci29.jpg',
+    desc: 'Leading initiatives and coordinating activities for the CI29 organization',
     year: '2024',
     icon: Book
   },
   { 
     id: 3,
-    title: 'Graphic Designer',
-    subtitle: 'Creative Professional',
-    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500',
-    desc: 'Crafting visual identities using Adobe Illustrator & Photoshop',
-    year: '2023-Present',
-    icon: Camera
-  },
-  { 
-    id: 4,
     title: 'Vice-President',
-    subtitle: "Gadz'IT (A&M IT Club)",
-    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=500',
+    subtitle: "Gadz'IT",
+    image: '/personal/leadership/gadzit.jpg',
     desc: 'Coordinating technical events and IT initiatives',
     year: '2024',
     icon: Coffee
+  },
+  { 
+    id: 4,
+    title: 'Head of Media & IT',
+    subtitle: 'ADE',
+    image: '/personal/leadership/ade.jpg',
+    desc: 'Managing digital presence and technical infrastructure',
+    year: '2024',
+    icon: Camera
+  },
+  { 
+    id: 5,
+    title: 'Chief',
+    subtitle: 'AMII X',
+    image: '/personal/leadership/amiix.jpg',
+    desc: 'Leading the AMII X organization and its initiatives',
+    year: '2024',
+    icon: Heart
+  },
+  { 
+    id: 6,
+    title: 'Executive Office Member',
+    subtitle: 'Forum 22',
+    image: '/personal/leadership/forum22.jpg',
+    desc: 'Contributing to strategic decisions and event organization',
+    year: '2024',
+    icon: Book
+  },
+  { 
+    id: 7,
+    title: 'Caravane Alhayat',
+    subtitle: 'Participant',
+    image: '/personal/leadership/caravane.jpg',
+    desc: 'Participating in community outreach and social initiatives',
+    year: '2024',
+    icon: Heart
+  },
+  { 
+    id: 8,
+    title: 'Amenagement Social',
+    subtitle: 'Participant',
+    image: '/personal/leadership/amenagement.webp',
+    desc: 'Engaged in social development and community improvement projects',
+    year: '2024',
+    icon: Coffee
+  },
+  { 
+    id: 9,
+    title: 'ADOS',
+    subtitle: 'Organizer',
+    image: '/personal/leadership/ados.webp',
+    desc: 'Organizing and coordinating ADOS events and activities',
+    year: '2024',
+    icon: Camera
   },
 ]
 
 const achievements = [
   { 
     id: 1,
-    title: 'Executive Board Member',
-    subtitle: 'A&M Inter-Institutes Forum',
-    image: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=500',
-    desc: 'Contributing to strategic decisions and organizational growth',
-    year: '2024',
-    rating: '95% Match'
-  },
-  { 
-    id: 2,
-    title: 'VP Integration Committee',
-    subtitle: 'Class of 2029 - ENSAM',
-    image: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=500',
-    desc: 'Leading integration activities for incoming students',
+    title: "Gadz'IT",
+    subtitle: 'Vice-President',
+    image: '/personal/clubs/gadzit.webp',
+    desc: 'Coordinating technical events and IT initiatives',
     year: '2024',
     rating: '98% Match'
   },
   { 
+    id: 2,
+    title: 'Space Club',
+    subtitle: 'Chief of AeroX',
+    image: '/personal/clubs/space.webp',
+    desc: 'Leading aerospace projects and initiatives',
+    year: '2024',
+    rating: '96% Match'
+  },
+  { 
     id: 3,
-    title: 'Head of Aerospace Trades',
-    subtitle: 'Space Club',
-    image: 'https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=500',
-    desc: 'Managing aerospace-related projects and initiatives',
-    year: '2023-2024',
-    rating: '92% Match'
+    title: 'AMII',
+    subtitle: 'Organizer & Graphic Designer',
+    image: '/personal/clubs/amii.webp',
+    desc: 'Organizing events and creating visual identities',
+    year: '2024',
+    rating: '97% Match'
   },
   { 
     id: 4,
-    title: 'Science Event Manager',
-    subtitle: 'A Day Of Science',
-    image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=500',
-    desc: '3 years of organizing and managing science outreach events',
-    year: '2021-2024',
-    rating: '100% Match'
+    title: 'Caravane',
+    subtitle: 'Member',
+    image: '/personal/clubs/caravane.webp',
+    desc: 'Community outreach and social initiatives',
+    year: '2024',
+    rating: '95% Match'
+  },
+  { 
+    id: 5,
+    title: 'Social',
+    subtitle: 'Member',
+    image: '/personal/clubs/social.webp',
+    desc: 'Social development and community projects',
+    year: '2024',
+    rating: '93% Match'
+  },
+  { 
+    id: 6,
+    title: 'Industriel',
+    subtitle: 'Member',
+    image: '/personal/clubs/industriel.webp',
+    desc: 'Industrial engineering initiatives',
+    year: '2024',
+    rating: '92% Match'
+  },
+  { 
+    id: 7,
+    title: 'Mecanique',
+    subtitle: 'Member',
+    image: '/personal/clubs/mecanique.webp',
+    desc: 'Mechanical engineering projects',
+    year: '2024',
+    rating: '90% Match'
+  },
+  { 
+    id: 8,
+    title: 'CRIAM',
+    subtitle: 'Member',
+    image: '/personal/clubs/criam.webp',
+    desc: 'Research and innovation activities',
+    year: '2024',
+    rating: '91% Match'
+  },
+  { 
+    id: 9,
+    title: 'Express',
+    subtitle: 'Member',
+    image: '/personal/clubs/express.webp',
+    desc: 'Campus media and communication',
+    year: '2024',
+    rating: '89% Match'
+  },
+  { 
+    id: 10,
+    title: 'Kotaku',
+    subtitle: 'Member',
+    image: '/personal/clubs/kotaku.webp',
+    desc: 'Gaming and esports community',
+    year: '2024',
+    rating: '88% Match'
+  },
+  { 
+    id: 11,
+    title: 'Musique',
+    subtitle: 'Member',
+    image: '/personal/clubs/musique.webp',
+    desc: 'Music and cultural events',
+    year: '2024',
+    rating: '94% Match'
+  },
+  { 
+    id: 12,
+    title: 'UGA',
+    subtitle: 'Member - Ultras Gadz\'Arts',
+    image: '/personal/clubs/uga.webp',
+    desc: 'Supporting and animating sporting events',
+    year: '2024',
+    rating: '96% Match'
   },
 ]
 
 const lifeStories = [
   { 
     id: 1,
-    title: 'Adventure Awaits',
-    image: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=500',
-    category: 'Travel',
-    year: '2024'
+    title: 'Preparation',
+    image: '/personal/gallery/1.jpg',
+    category: 'Study',
+    year: '2025'
   },
   { 
     id: 2,
-    title: 'Mountain Views',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500',
-    category: 'Nature',
-    year: '2024'
+    title: 'Adventure',
+    image: '/personal/gallery/2.jpg',
+    category: 'Trips',
+    year: '2025'
   },
   { 
     id: 3,
-    title: 'City Lights',
-    image: 'https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?w=500',
-    category: 'Urban',
-    year: '2024'
+    title: 'Souga Jr',
+    image: '/personal/gallery/3.jpg',
+    category: 'Friends',
+    year: '2025'
   },
   { 
     id: 4,
-    title: 'Sunset Vibes',
-    image: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=500',
-    category: 'Moments',
-    year: '2024'
+    title: 'ENSEM Show',
+    image: '/personal/gallery/4.jpg',
+    category: 'Ultras',
+    year: '2025'
   },
   { 
     id: 5,
-    title: 'Creative Spaces',
-    image: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=500',
-    category: 'Work',
-    year: '2024'
+    title: 'Me',
+    image: '/personal/gallery/5.jpg',
+    category: 'Life Moments',
+    year: '2025'
   },
-]
-
-const myValues = [
-  {
-    id: 1,
-    title: 'Innovation through AI',
-    desc: 'Pushing boundaries with artificial intelligence and data science',
-    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=500',
+  { 
+    id: 6,
+    title: 'Pictures',
+    image: '/personal/gallery/6.jpg',
+    category: 'Art',
+    year: '2025'
   },
-  {
-    id: 2,
-    title: 'Empowering Leadership',
-    desc: 'Helping others achieve their best through mentorship',
-    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500',
+  { 
+    id: 7,
+    title: 'CI29',
+    image: '/personal/gallery/7.jpg',
+    category: 'Friends',
+    year: '2025'
   },
-  {
-    id: 3,
-    title: 'Creative Excellence',
-    desc: 'Blending engineering precision with artistic vision',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500',
+  { 
+    id: 8,
+    title: 'Life Moments',
+    image: '/personal/gallery/8.jpg',
+    category: 'Life Moments',
+    year: '2025'
+  },
+  { 
+    id: 9,
+    title: 'ADE',
+    image: '/personal/gallery/9.jpg',
+    category: 'Parascolaire',
+    year: '2025'
+  },
+  { 
+    id: 10,
+    title: 'Blue',
+    image: '/personal/gallery/10.jpg',
+    category: 'Life Moments',
+    year: '2025'
+  },
+  { 
+    id: 11,
+    title: 'Last Dance',
+    image: '/personal/gallery/11.jpg',
+    category: 'Parascolaire',
+    year: '2025'
   },
 ]
 
@@ -244,14 +382,27 @@ const ScrollableRow: React.FC<{ items: any[]; title: string; type?: 'portrait' |
 const PersonalLife: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<any>(null)
   const [muted, setMuted] = useState(true)
+  
+  // Refs for scrolling to sections
+  const leadershipRef = useRef<HTMLDivElement>(null)
+  const aboutRef = useRef<HTMLDivElement>(null)
+
+  // Scroll to sections
+  const scrollToLeadership = () => {
+    leadershipRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
+  const scrollToAbout = () => {
+    aboutRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+    <div className="min-h-screen bg-black text-white overflow-x-hidden pt-16">
       {/* Netflix Hero Section */}
       <div className="relative h-[80vh] mb-8">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920"
+            src="personal/background/background-main.png"
             alt="Hero"
             className="w-full h-full object-cover"
           />
@@ -291,11 +442,17 @@ const PersonalLife: React.FC = () => {
               transition={{ delay: 0.3 }}
               className="flex space-x-4"
             >
-              <button className="flex items-center space-x-2 bg-white text-black px-8 py-3 rounded font-bold hover:bg-gray-200 transition">
+              <button 
+                onClick={scrollToLeadership}
+                className="flex items-center space-x-2 bg-white text-black px-8 py-3 rounded font-bold hover:bg-gray-200 transition"
+              >
                 <Play size={24} fill="black" />
                 <span>Learn More</span>
               </button>
-              <button className="flex items-center space-x-2 bg-gray-700/80 text-white px-8 py-3 rounded font-bold hover:bg-gray-600/80 transition">
+              <button 
+                onClick={scrollToAbout}
+                className="flex items-center space-x-2 bg-gray-700/80 text-white px-8 py-3 rounded font-bold hover:bg-gray-600/80 transition"
+              >
                 <Info size={24} />
                 <span>More Info</span>
               </button>
@@ -319,26 +476,25 @@ const PersonalLife: React.FC = () => {
               <span>•</span>
               <span>ENSAM Meknes</span>
               <span>•</span>
-              <span>Class of 2029</span>
+              <span>Class of 2026</span>
             </motion.div>
           </div>
         </div>
       </div>
 
       {/* Leadership Row */}
-      <ScrollableRow items={leadership} title="Leadership & Activities" type="landscape" />
+      <div ref={leadershipRef}>
+        <ScrollableRow items={leadership} title="Leadership & Activities" type="landscape" />
+      </div>
 
       {/* Achievements Row */}
-      <ScrollableRow items={achievements} title="Notable Achievements" type="landscape" />
+      <ScrollableRow items={achievements} title="Clubs I was part of" type="landscape" />
 
       {/* Life Stories Row */}
       <ScrollableRow items={lifeStories} title="Life in Pictures" type="portrait" />
 
-      {/* Values Row */}
-      <ScrollableRow items={myValues} title="Core Values & Philosophy" type="landscape" />
-
       {/* About Section - Netflix Style */}
-      <div className="px-12 py-12 bg-gradient-to-b from-black via-gray-900 to-black">
+      <div ref={aboutRef} className="px-12 py-12 bg-gradient-to-b from-black via-gray-900 to-black">
         <h2 className="text-3xl font-bold text-white mb-8">About Amine</h2>
         <div className="grid md:grid-cols-3 gap-8 max-w-7xl">
           <div className="space-y-4">
