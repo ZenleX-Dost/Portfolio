@@ -542,17 +542,17 @@ const PersonalLife: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-3 md:p-4"
             onClick={() => setSelectedItem(null)}
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-gray-900 rounded-lg max-w-4xl w-full overflow-hidden"
+              className="bg-gray-900 rounded-lg max-w-4xl w-full overflow-hidden max-h-[90vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative h-96">
+              <div className="relative h-48 md:h-72 lg:h-96">
                 <img
                   src={selectedItem.image}
                   alt={selectedItem.title}
@@ -560,17 +560,17 @@ const PersonalLife: React.FC = () => {
                 />
                 <button
                   onClick={() => setSelectedItem(null)}
-                  className="absolute top-4 right-4 w-10 h-10 bg-black/70 rounded-full flex items-center justify-center hover:bg-black transition"
+                  className="absolute top-2 right-2 md:top-4 md:right-4 w-8 h-8 md:w-10 md:h-10 bg-black/70 rounded-full flex items-center justify-center hover:bg-black transition"
                 >
-                  <X size={24} />
+                  <X size={18} className="md:w-6 md:h-6" />
                 </button>
               </div>
-              <div className="p-8">
-                <h2 className="text-3xl font-bold mb-2">{selectedItem.title}</h2>
-                <p className="text-xl text-gray-400 mb-4">{selectedItem.subtitle}</p>
-                <p className="text-gray-300 leading-relaxed mb-6">{selectedItem.desc}</p>
+              <div className="p-4 md:p-6 lg:p-8">
+                <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-1 md:mb-2">{selectedItem.title}</h2>
+                <p className="text-base md:text-lg lg:text-xl text-gray-400 mb-2 md:mb-4">{selectedItem.subtitle}</p>
+                <p className="text-sm md:text-base text-gray-300 leading-relaxed mb-4 md:mb-6">{selectedItem.desc}</p>
                 {selectedItem.year && (
-                  <div className="flex items-center space-x-4 text-sm text-gray-400">
+                  <div className="flex flex-wrap items-center gap-2 md:gap-4 text-xs md:text-sm text-gray-400">
                     <span>{selectedItem.year}</span>
                     {selectedItem.rating && (
                       <>

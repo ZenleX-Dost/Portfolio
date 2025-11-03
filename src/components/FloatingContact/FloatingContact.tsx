@@ -149,9 +149,9 @@ const FloatingContact: React.FC = () => {
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.1, rotate: isOpen ? 0 : 5 }}
         whileTap={{ scale: 0.9 }}
-        className={`fixed bottom-8 right-8 z-50 p-3 ${pageStyle.buttonBg} ${pageStyle.buttonHover} border-2 ${pageStyle.buttonBorder} shadow-lg ${pageStyle.buttonText} rounded-full transition-colors`}
+        className={`fixed bottom-4 right-4 md:bottom-8 md:right-8 z-50 p-2.5 md:p-3 ${pageStyle.buttonBg} ${pageStyle.buttonHover} border-2 ${pageStyle.buttonBorder} shadow-lg ${pageStyle.buttonText} rounded-full transition-colors`}
       >
-        {isOpen ? <X size={20} /> : <MessageCircle size={20} />}
+        {isOpen ? <X size={18} className="md:w-5 md:h-5" /> : <MessageCircle size={18} className="md:w-5 md:h-5" />}
       </motion.button>
 
       {/* Contact Panel - Page-specific Style */}
@@ -161,14 +161,14 @@ const FloatingContact: React.FC = () => {
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className={`fixed bottom-24 right-8 z-50 w-80 ${pageStyle.panelBg} border-2 ${pageStyle.panelBorder} shadow-2xl overflow-hidden`}
+            className={`fixed bottom-16 right-4 md:bottom-24 md:right-8 z-50 w-[calc(100vw-2rem)] max-w-sm md:w-80 ${pageStyle.panelBg} border-2 ${pageStyle.panelBorder} shadow-2xl overflow-hidden`}
             style={{ borderRadius: '12px' }}
           >
-            <div className="p-6">
-              <h3 className={`text-xl font-display font-light ${pageStyle.titleText} mb-4`}>Let's Connect!</h3>
+            <div className="p-4 md:p-6">
+              <h3 className={`text-lg md:text-xl font-display font-light ${pageStyle.titleText} mb-3 md:mb-4`}>Let's Connect!</h3>
               
               {/* Social Links */}
-              <div className="flex space-x-4 mb-6">
+              <div className="flex space-x-3 md:space-x-4 mb-4 md:mb-6">
                 {socialLinks.map((social) => {
                   const Icon = social.icon
                   return (
@@ -178,22 +178,22 @@ const FloatingContact: React.FC = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ y: -2, scale: 1.05 }}
-                      className={`p-2 ${pageStyle.socialBg} border ${pageStyle.panelBorder} ${pageStyle.socialText} transition-colors`}
+                      className={`p-1.5 md:p-2 ${pageStyle.socialBg} border ${pageStyle.panelBorder} ${pageStyle.socialText} transition-colors`}
                       style={{ borderRadius: '8px' }}
                     >
-                      <Icon size={18} />
+                      <Icon size={16} className="md:w-[18px] md:h-[18px]" />
                     </motion.a>
                   )
                 })}
               </div>
 
               {/* Contact Form */}
-              <form className="space-y-4">
+              <form className="space-y-3 md:space-y-4">
                 <div>
                   <input
                     type="text"
                     placeholder="Your Name"
-                    className={`w-full px-3 py-2 ${pageStyle.inputBg} border ${pageStyle.inputBorder} ${pageStyle.inputText} placeholder-opacity-50 ${pageStyle.inputFocus} focus:outline-none transition-colors font-body font-light text-sm`}
+                    className={`w-full px-2.5 md:px-3 py-1.5 md:py-2 ${pageStyle.inputBg} border ${pageStyle.inputBorder} ${pageStyle.inputText} placeholder-opacity-50 ${pageStyle.inputFocus} focus:outline-none transition-colors font-body font-light text-xs md:text-sm`}
                     style={{ borderRadius: '6px' }}
                   />
                 </div>
@@ -201,7 +201,7 @@ const FloatingContact: React.FC = () => {
                   <input
                     type="email"
                     placeholder="Your Email"
-                    className={`w-full px-3 py-2 ${pageStyle.inputBg} border ${pageStyle.inputBorder} ${pageStyle.inputText} placeholder-opacity-50 ${pageStyle.inputFocus} focus:outline-none transition-colors font-body font-light text-sm`}
+                    className={`w-full px-2.5 md:px-3 py-1.5 md:py-2 ${pageStyle.inputBg} border ${pageStyle.inputBorder} ${pageStyle.inputText} placeholder-opacity-50 ${pageStyle.inputFocus} focus:outline-none transition-colors font-body font-light text-xs md:text-sm`}
                     style={{ borderRadius: '6px' }}
                   />
                 </div>
@@ -209,7 +209,7 @@ const FloatingContact: React.FC = () => {
                   <textarea
                     placeholder="Your Message"
                     rows={3}
-                    className={`w-full px-3 py-2 ${pageStyle.inputBg} border ${pageStyle.inputBorder} ${pageStyle.inputText} placeholder-opacity-50 ${pageStyle.inputFocus} focus:outline-none transition-colors font-body font-light text-sm resize-none`}
+                    className={`w-full px-2.5 md:px-3 py-1.5 md:py-2 ${pageStyle.inputBg} border ${pageStyle.inputBorder} ${pageStyle.inputText} placeholder-opacity-50 ${pageStyle.inputFocus} focus:outline-none transition-colors font-body font-light text-xs md:text-sm resize-none`}
                     style={{ borderRadius: '6px' }}
                   />
                 </div>
@@ -217,10 +217,10 @@ const FloatingContact: React.FC = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   type="submit"
-                  className={`w-full py-2 ${pageStyle.buttonSubmit} border ${pageStyle.panelBorder} font-body font-light text-sm flex items-center justify-center space-x-2 transition-colors`}
+                  className={`w-full py-1.5 md:py-2 ${pageStyle.buttonSubmit} border ${pageStyle.panelBorder} font-body font-light text-xs md:text-sm flex items-center justify-center space-x-1.5 md:space-x-2 transition-colors`}
                   style={{ borderRadius: '6px' }}
                 >
-                  <Mail size={16} />
+                  <Mail size={14} className="md:w-4 md:h-4" />
                   <span>Send Message</span>
                 </motion.button>
               </form>

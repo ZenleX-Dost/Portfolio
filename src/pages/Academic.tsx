@@ -291,9 +291,9 @@ const Academic: React.FC = () => {
     <div className="min-h-screen bg-[#0d1117] pt-20">
       {/* GitHub-style contribution graph header */}
       <div className="bg-[#010409] border-b border-[#30363d] py-2">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-2 md:gap-0">
+            <div className="flex items-center space-x-2 md:space-x-4">
               <span className="text-[#7d8590] text-xs font-mono">GitHub Portfolio v2.0</span>
               <div className="flex items-center space-x-1">
                 <div className="w-2 h-2 rounded-full bg-[#7ee787] animate-pulse"></div>
@@ -301,8 +301,8 @@ const Academic: React.FC = () => {
               </div>
             </div>
             <div className="flex items-center space-x-2 text-xs text-[#7d8590]">
-              <span>Last updated: Nov 2025</span>
-              <span className="text-[#30363d]">•</span>
+              <span className="hidden sm:inline">Last updated: Nov 2025</span>
+              <span className="hidden sm:inline text-[#30363d]">•</span>
               <span className="text-[#58a6ff]">⭐ Star this repo</span>
             </div>
           </div>
@@ -311,14 +311,14 @@ const Academic: React.FC = () => {
 
       {/* Terminal Header */}
       <div className="bg-[#161b22] border-b border-[#30363d]">
-        <div className="max-w-7xl mx-auto px-6 pt-5 pb-4">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 pt-4 md:pt-5 pb-3 md:pb-4">
           <div className="flex items-center space-x-2 mb-3">
-            <div className="w-3.5 h-3.5 rounded-full bg-[#ff5f56] shadow-lg"></div>
-            <div className="w-3.5 h-3.5 rounded-full bg-[#ffbd2e] shadow-lg"></div>
-            <div className="w-3.5 h-3.5 rounded-full bg-[#27c93f] shadow-lg"></div>
-            <span className="ml-4 text-[#7d8590] text-xs font-mono">bash</span>
+            <div className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 rounded-full bg-[#ff5f56] shadow-lg"></div>
+            <div className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 rounded-full bg-[#ffbd2e] shadow-lg"></div>
+            <div className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 rounded-full bg-[#27c93f] shadow-lg"></div>
+            <span className="ml-2 md:ml-4 text-[#7d8590] text-xs font-mono">bash</span>
           </div>
-          <div className="font-mono text-sm text-[#7ee787]">
+          <div className="font-mono text-xs md:text-sm text-[#7ee787] overflow-x-auto">
             <span className="text-[#58a6ff]">amine@portfolio</span>
             <span className="text-[#8b949e]">:</span>
             <span className="text-[#f0883e]">~/academic</span>
@@ -332,9 +332,9 @@ const Academic: React.FC = () => {
 
       {/* Tab Navigation - GitHub File Explorer Style */}
       <div className="bg-[#161b22] border-b border-[#30363d]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-center justify-between py-2">
-            <div className="flex space-x-1">
+        <div className="max-w-7xl mx-auto px-2 md:px-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between py-2 gap-2">
+            <div className="flex space-x-1 overflow-x-auto w-full sm:w-auto scrollbar-hide">
               {[
                 { id: 'about', label: 'README.md', icon: Code },
                 { id: 'projects', label: 'projects.json', icon: Brain },
@@ -349,19 +349,20 @@ const Academic: React.FC = () => {
                     onClick={() => setActiveTab(tab.id as any)}
                     whileHover={{ backgroundColor: '#21262d' }}
                     whileTap={{ scale: 0.98 }}
-                    className={`flex items-center space-x-2 px-4 py-2.5 font-mono text-sm transition-all relative ${
+                    className={`flex items-center space-x-1 md:space-x-2 px-2 md:px-4 py-2 md:py-2.5 font-mono text-xs md:text-sm transition-all relative whitespace-nowrap ${
                       activeTab === tab.id
                         ? 'bg-[#0d1117] text-[#58a6ff]'
                         : 'bg-transparent text-[#8b949e] hover:text-[#c9d1d9]'
                     }`}
                   >
-                    <Icon size={14} />
-                    <span>{tab.label}</span>
+                    <Icon size={12} className="md:w-3.5 md:h-3.5" />
+                    <span className="hidden sm:inline">{tab.label}</span>
+                    <span className="sm:hidden">{tab.label.split('.')[0]}</span>
                     {activeTab === tab.id && (
                       <>
                         <motion.div
                           layoutId="activeIndicator"
-                          className="w-1.5 h-1.5 rounded-full bg-[#58a6ff]"
+                          className="hidden md:block w-1.5 h-1.5 rounded-full bg-[#58a6ff]"
                         />
                         <motion.div
                           layoutId="activeTabBorder"
@@ -373,7 +374,7 @@ const Academic: React.FC = () => {
                 )
               })}
             </div>
-            <div className="flex items-center space-x-3 text-xs text-[#7d8590]">
+            <div className="hidden md:flex items-center space-x-3 text-xs text-[#7d8590]">
               <span className="flex items-center space-x-1">
                 <span className="w-2 h-2 rounded-full bg-[#238636]"></span>
                 <span>4 branches</span>
@@ -388,7 +389,7 @@ const Academic: React.FC = () => {
       </div>
 
       {/* Terminal Content */}
-      <div className="max-w-7xl mx-auto px-6 py-8">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 md:py-8">
 
         {/* Content */}
         <div className="space-y-6">
@@ -397,30 +398,31 @@ const Academic: React.FC = () => {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="font-mono text-sm"
+              className="font-mono text-xs md:text-sm"
             >
-              <div className="bg-[#161b22] border border-[#30363d] rounded-md p-6 hover:border-[#58a6ff] transition-colors duration-300 shadow-lg">
+              <div className="bg-[#161b22] border border-[#30363d] rounded-md p-4 md:p-6 hover:border-[#58a6ff] transition-colors duration-300 shadow-lg">
                 {/* GitHub-style file header */}
-                <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#30363d]">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 pb-3 border-b border-[#30363d] gap-2">
                   <div className="flex items-center space-x-2">
-                    <Code size={16} className="text-[#58a6ff]" />
-                    <span className="text-[#c9d1d9] font-mono text-sm">README.md</span>
+                    <Code size={14} className="md:w-4 md:h-4 text-[#58a6ff]" />
+                    <span className="text-[#c9d1d9] font-mono text-xs md:text-sm">README.md</span>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <span className="text-[#7d8590] text-xs font-mono">152 lines</span>
+                  <div className="flex items-center space-x-2 text-[10px] md:text-xs">
+                    <span className="text-[#7d8590] font-mono">152 lines</span>
                     <span className="text-[#7d8590]">•</span>
-                    <span className="text-[#7d8590] text-xs">Last commit: 2 days ago</span>
+                    <span className="text-[#7d8590] hidden sm:inline">Last commit: 2 days ago</span>
+                    <span className="text-[#7d8590] sm:hidden">2d ago</span>
                   </div>
                 </div>
 
-                <div className="flex flex-col md:flex-row gap-6">
+                <div className="flex flex-col md:flex-row gap-4 md:gap-6">
                   {/* Profile Image */}
                   <motion.div 
-                    className="flex-shrink-0"
+                    className="flex-shrink-0 mx-auto md:mx-0"
                     whileHover={{ scale: 1.05, rotate: 2 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="w-48 h-48 bg-[#0d1117] border-2 border-[#30363d] rounded-lg overflow-hidden relative group">
+                    <div className="w-32 h-32 md:w-48 md:h-48 bg-[#0d1117] border-2 border-[#30363d] rounded-lg overflow-hidden relative group">
                       {/* Profile Image */}
                       <img 
                         src="/profile.png" 
@@ -469,12 +471,12 @@ const Academic: React.FC = () => {
                 </div>
 
                 {/* GitHub-style stats pinned repositories */}
-                <div className="mt-6 pt-6 border-t border-[#30363d]">
-                  <div className="flex items-center space-x-2 mb-4">
-                    <span className="text-[#7ee787] font-mono text-sm"># Pinned</span>
-                    <span className="text-[#7d8590] text-xs">— Showcase your work</span>
+                <div className="mt-4 md:mt-6 pt-4 md:pt-6 border-t border-[#30363d]">
+                  <div className="flex items-center space-x-2 mb-3 md:mb-4">
+                    <span className="text-[#7ee787] font-mono text-xs md:text-sm"># Pinned</span>
+                    <span className="text-[#7d8590] text-xs hidden sm:inline">— Showcase your work</span>
                   </div>
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-3 gap-2 md:gap-4">
                     {[
                       { label: 'Public repos', value: '15+', color: '#7ee787' },
                       { label: 'Technologies', value: '20+', color: '#58a6ff' },
@@ -482,32 +484,32 @@ const Academic: React.FC = () => {
                     ].map((stat) => (
                       <motion.div 
                         key={stat.label} 
-                        className="bg-[#0d1117] border border-[#30363d] rounded-md p-4 text-center hover:border-[#58a6ff] transition-colors cursor-pointer group"
+                        className="bg-[#0d1117] border border-[#30363d] rounded-md p-2 md:p-4 text-center hover:border-[#58a6ff] transition-colors cursor-pointer group"
                         whileHover={{ y: -4, scale: 1.05 }}
                         transition={{ duration: 0.2 }}
                       >
-                        <div className="text-2xl font-bold mb-1 font-mono" style={{ color: stat.color }}>{stat.value}</div>
-                        <div className="text-xs text-[#8b949e] font-mono">{stat.label}</div>
+                        <div className="text-lg md:text-2xl font-bold mb-0.5 md:mb-1 font-mono" style={{ color: stat.color }}>{stat.value}</div>
+                        <div className="text-[10px] md:text-xs text-[#8b949e] font-mono">{stat.label}</div>
                       </motion.div>
                     ))}
                   </div>
                 </div>
 
                 {/* GitHub contribution graph */}
-                <div className="mt-6 pt-6 border-t border-[#30363d]">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-[#c9d1d9] font-mono text-sm">Contribution Activity</span>
+                <div className="mt-4 md:mt-6 pt-4 md:pt-6 border-t border-[#30363d]">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-3 md:mb-4 gap-2">
+                    <span className="text-[#c9d1d9] font-mono text-xs md:text-sm">Contribution Activity</span>
                     <div className="flex items-center space-x-2 text-xs text-[#7d8590]">
-                      <span>Less</span>
+                      <span className="hidden sm:inline">Less</span>
                       <div className="flex gap-1">
                         {['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'].map((color, i) => (
-                          <div key={i} className="w-2.5 h-2.5 rounded-sm border border-[#30363d]" style={{ backgroundColor: color }} />
+                          <div key={i} className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-sm border border-[#30363d]" style={{ backgroundColor: color }} />
                         ))}
                       </div>
-                      <span>More</span>
+                      <span className="hidden sm:inline">More</span>
                     </div>
                   </div>
-                  <div className="overflow-x-auto">
+                  <div className="overflow-x-auto pb-2">
                     <div className="inline-grid grid-rows-7 grid-flow-col gap-[3px]">
                       {(() => {
                         // ZENLEX pattern - each letter is 5 columns wide with 1 space between
@@ -548,7 +550,7 @@ const Academic: React.FC = () => {
                           return (
                             <motion.div
                               key={i}
-                              className="w-[10px] h-[10px] rounded-sm cursor-pointer border border-[#30363d]/50"
+                              className="w-[8px] h-[8px] md:w-[10px] md:h-[10px] rounded-sm cursor-pointer border border-[#30363d]/50"
                               style={{ backgroundColor: colors[isActive] }}
                               whileHover={{ scale: 1.5, zIndex: 10 }}
                               title={`${contributions} contribution${contributions !== 1 ? 's' : ''}`}
@@ -576,28 +578,28 @@ const Academic: React.FC = () => {
               {projects.map((project) => (
                 <motion.div 
                   key={project.id} 
-                  className="bg-[#161b22] border border-[#30363d] rounded-md p-5 font-mono text-sm hover:border-[#58a6ff] transition-all cursor-pointer group shadow-lg hover:shadow-[#58a6ff]/20"
+                  className="bg-[#161b22] border border-[#30363d] rounded-md p-3 md:p-5 font-mono text-xs md:text-sm hover:border-[#58a6ff] transition-all cursor-pointer group shadow-lg hover:shadow-[#58a6ff]/20"
                   whileHover={{ scale: 1.01, x: 4 }}
                   transition={{ duration: 0.2 }}
                 >
                   {/* GitHub repo-style header */}
                   <div className="flex items-start justify-between mb-3">
-                    <div className="flex items-start space-x-3 flex-1">
+                    <div className="flex items-start space-x-2 md:space-x-3 flex-1">
                       <motion.div 
-                        className="mt-1"
+                        className="mt-1 flex-shrink-0"
                         whileHover={{ scale: 1.2, rotate: 360 }}
                         transition={{ duration: 0.5 }}
                       >
-                        <Brain size={16} className="text-[#7ee787]" />
+                        <Brain size={14} className="md:w-4 md:h-4 text-[#7ee787]" />
                       </motion.div>
-                      <div className="flex-1">
-                        <div className="flex items-center space-x-2 mb-1">
-                          <span className="text-[#58a6ff] font-semibold text-base group-hover:text-[#79c0ff] transition-colors group-hover:underline">{project.title}</span>
-                          <span className="px-2 py-0.5 text-xs border border-[#30363d] rounded-full text-[#7d8590]">Public</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-2 mb-1">
+                          <span className="text-[#58a6ff] font-semibold text-sm md:text-base group-hover:text-[#79c0ff] transition-colors group-hover:underline break-words">{project.title}</span>
+                          <span className="px-2 py-0.5 text-[10px] md:text-xs border border-[#30363d] rounded-full text-[#7d8590] whitespace-nowrap">Public</span>
                         </div>
-                        <p className="text-[#c9d1d9] text-xs mb-3 leading-relaxed">{project.description}</p>
+                        <p className="text-[#c9d1d9] text-xs mb-2 md:mb-3 leading-relaxed">{project.description}</p>
                         {/* GitHub-style language tags */}
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-1 md:gap-2">
                           {project.tech.map((tech) => (
                             <motion.span 
                               key={tech} 
@@ -614,20 +616,20 @@ const Academic: React.FC = () => {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center space-x-1.5 px-3 py-1.5 bg-[#21262d] hover:bg-[#30363d] border border-[#30363d] rounded-md text-[#c9d1d9] hover:text-white transition-all"
+                      className="flex items-center space-x-1.5 px-2 md:px-3 py-1.5 bg-[#21262d] hover:bg-[#30363d] border border-[#30363d] rounded-md text-[#c9d1d9] hover:text-white transition-all flex-shrink-0"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <Github size={14} />
-                      <span className="text-xs font-medium">Code</span>
+                      <Github size={12} className="md:w-3.5 md:h-3.5" />
+                      <span className="text-xs font-medium hidden sm:inline">Code</span>
                     </motion.a>
                   </div>
                   
                   {/* GitHub repo-style footer stats */}
-                  <div className="flex items-center space-x-4 mt-3 pt-3 border-t border-[#30363d] text-xs text-[#7d8590]">
+                  <div className="flex flex-wrap items-center gap-2 md:gap-4 mt-3 pt-3 border-t border-[#30363d] text-[10px] md:text-xs text-[#7d8590]">
                     <div className="flex items-center space-x-1">
-                      <span className="w-3 h-3 rounded-full bg-[#3572a5]"></span>
-                      <span>Python</span>
+                      <span className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-[#3572a5]"></span>
+                      <span className="hidden sm:inline">Python</span>
                     </div>
                     <div className="flex items-center space-x-1">
                       <span>⭐</span>
@@ -637,7 +639,8 @@ const Academic: React.FC = () => {
                       <span>🔱</span>
                       <span>{Math.floor(Math.random() * 20) + 5}</span>
                     </div>
-                    <span>Updated {Math.floor(Math.random() * 30) + 1} days ago</span>
+                    <span className="hidden sm:inline">Updated {Math.floor(Math.random() * 30) + 1} days ago</span>
+                    <span className="sm:hidden">{Math.floor(Math.random() * 30) + 1}d ago</span>
                   </div>
                 </motion.div>
               ))}
@@ -649,15 +652,15 @@ const Academic: React.FC = () => {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="bg-[#161b22] border border-[#30363d] rounded-md p-6 font-mono text-sm shadow-lg"
+              className="bg-[#161b22] border border-[#30363d] rounded-md p-4 md:p-6 font-mono text-xs md:text-sm shadow-lg"
             >
               {/* GitHub insights-style header */}
-              <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#30363d]">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 md:mb-6 pb-3 md:pb-4 border-b border-[#30363d] gap-2">
                 <div className="flex items-center space-x-2">
-                  <Database size={16} className="text-[#58a6ff]" />
-                  <span className="text-[#7ee787] text-base"># Language & Framework Proficiency</span>
+                  <Database size={14} className="md:w-4 md:h-4 text-[#58a6ff]" />
+                  <span className="text-[#7ee787] text-sm md:text-base"># Language & Framework Proficiency</span>
                 </div>
-                <span className="text-[#7d8590] text-xs">Based on repository analysis</span>
+                <span className="text-[#7d8590] text-[10px] md:text-xs">Based on repository analysis</span>
               </div>
 
               <div className="space-y-3">
@@ -710,18 +713,18 @@ const Academic: React.FC = () => {
               </div>
 
               {/* Skills distribution pie */}
-              <div className="mt-6 pt-6 border-t border-[#30363d]">
-                <div className="text-[#7d8590] text-xs mb-3">Skills Distribution</div>
-                <div className="flex gap-3 flex-wrap">
+              <div className="mt-4 md:mt-6 pt-4 md:pt-6 border-t border-[#30363d]">
+                <div className="text-[#7d8590] text-[10px] md:text-xs mb-2 md:mb-3">Skills Distribution</div>
+                <div className="flex gap-2 md:gap-3 flex-wrap">
                   {['Programming', 'AI/ML', 'Data Science', 'Design', 'Management'].map((category, i) => (
-                    <div key={category} className="flex items-center space-x-2">
+                    <div key={category} className="flex items-center space-x-1 md:space-x-2">
                       <div 
-                        className="w-3 h-3 rounded-full"
+                        className="w-2 h-2 md:w-3 md:h-3 rounded-full flex-shrink-0"
                         style={{ 
                           backgroundColor: ['#3572a5', '#f1e05a', '#e34c26', '#563d7c', '#2b7489'][i] 
                         }}
                       />
-                      <span className="text-[#8b949e] text-xs">{category}</span>
+                      <span className="text-[#8b949e] text-[10px] md:text-xs">{category}</span>
                     </div>
                   ))}
                 </div>
@@ -736,7 +739,7 @@ const Academic: React.FC = () => {
               animate={{ opacity: 1 }}
               className="space-y-4"
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                 {certifications.map((cert, index) => (
                   <motion.div
                     key={cert.id}
@@ -744,21 +747,21 @@ const Academic: React.FC = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                     whileHover={{ scale: 1.02, y: -4 }}
-                    className="bg-[#161b22] border border-[#30363d] rounded-md p-5 font-mono text-sm hover:border-[#58a6ff] transition-all cursor-pointer group shadow-lg hover:shadow-[#58a6ff]/20"
+                    className="bg-[#161b22] border border-[#30363d] rounded-md p-3 md:p-5 font-mono text-xs md:text-sm hover:border-[#58a6ff] transition-all cursor-pointer group shadow-lg hover:shadow-[#58a6ff]/20"
                   >
                     {/* Certificate Header */}
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex-1">
-                        <div className="flex items-center space-x-2 mb-2">
-                          <Award size={16} className="text-[#58a6ff]" />
-                          <h3 className="text-[#c9d1d9] font-semibold text-base group-hover:text-[#58a6ff] transition-colors">
+                    <div className="flex items-start justify-between mb-3 gap-2">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-start space-x-2 mb-2">
+                          <Award size={14} className="md:w-4 md:h-4 text-[#58a6ff] flex-shrink-0 mt-0.5" />
+                          <h3 className="text-[#c9d1d9] font-semibold text-xs md:text-base group-hover:text-[#58a6ff] transition-colors leading-tight">
                             {cert.title}
                           </h3>
                         </div>
-                        <p className="text-[#d2a8ff] text-sm mb-1 group-hover:text-[#ffa6ff] transition-colors">
+                        <p className="text-[#d2a8ff] text-xs md:text-sm mb-1 group-hover:text-[#ffa6ff] transition-colors">
                           {cert.issuer}
                         </p>
-                        <p className="text-[#7d8590] text-xs">{cert.date}</p>
+                        <p className="text-[#7d8590] text-[10px] md:text-xs">{cert.date}</p>
                       </div>
                       {cert.verified && (
                         <motion.div
@@ -766,18 +769,18 @@ const Academic: React.FC = () => {
                           transition={{ duration: 0.5 }}
                           className="flex-shrink-0"
                         >
-                          <div className="w-8 h-8 rounded-full bg-[#238636]/20 border border-[#238636] flex items-center justify-center">
-                            <span className="text-[#7ee787] text-lg">✓</span>
+                          <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-[#238636]/20 border border-[#238636] flex items-center justify-center">
+                            <span className="text-[#7ee787] text-sm md:text-lg">✓</span>
                           </div>
                         </motion.div>
                       )}
                     </div>
 
                     {/* Credential ID */}
-                    <div className="mb-3 pb-3 border-b border-[#30363d]">
-                      <div className="flex items-center space-x-2">
-                        <span className="text-[#7d8590] text-xs">Credential ID:</span>
-                        <code className="text-[#58a6ff] text-xs bg-[#1f6feb]/10 px-2 py-0.5 rounded">
+                    <div className="mb-2 md:mb-3 pb-2 md:pb-3 border-b border-[#30363d]">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+                        <span className="text-[#7d8590] text-[10px] md:text-xs whitespace-nowrap">Credential ID:</span>
+                        <code className="text-[#58a6ff] text-[10px] md:text-xs bg-[#1f6feb]/10 px-2 py-0.5 rounded truncate">
                           {cert.credentialId}
                         </code>
                       </div>
@@ -785,8 +788,8 @@ const Academic: React.FC = () => {
 
                     {/* Skills Tags */}
                     <div>
-                      <span className="text-[#7d8590] text-xs mb-2 block">Skills:</span>
-                      <div className="flex flex-wrap gap-2">
+                      <span className="text-[#7d8590] text-[10px] md:text-xs mb-2 block">Skills:</span>
+                      <div className="flex flex-wrap gap-1 md:gap-2">
                         {cert.skills.map((skill, i) => (
                           <motion.span
                             key={skill}

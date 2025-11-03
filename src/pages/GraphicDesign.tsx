@@ -285,38 +285,38 @@ const GraphicDesign: React.FC = () => {
     <div className="min-h-screen pt-16 transition-colors duration-300" style={{ backgroundColor: currentTheme.bg }}>
       {/* Software-style Top Bar */}
       <div className="border-b transition-colors duration-300" style={{ backgroundColor: currentTheme.darkBg, borderColor: currentTheme.border }}>
-        <div className="px-6 py-3 flex items-center justify-between">
-          <div className="flex items-center space-x-4">
+        <div className="px-4 md:px-6 py-2 md:py-3 flex items-center justify-between">
+          <div className="flex items-center space-x-2 md:space-x-4">
             <img 
               src="/profile.png" 
               alt="Profile"
-              className="w-10 h-10 rounded-full border-2 transition-all duration-300"
+              className="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 transition-all duration-300"
               style={{ borderColor: currentTheme.primary }}
             />
-            <h1 className="text-xl font-semibold transition-colors duration-300" style={{ color: currentTheme.primary }}>Graphic Design</h1>
-            <div className="flex items-center space-x-2 text-xs text-[#b8b8b8]">
+            <h1 className="text-base md:text-xl font-semibold transition-colors duration-300" style={{ color: currentTheme.primary }}>Graphic Design</h1>
+            <div className="hidden sm:flex items-center space-x-2 text-xs text-[#b8b8b8]">
               <span>•</span>
               <span>Portfolio.psd</span>
               <span>•</span>
               <span className="transition-colors duration-300" style={{ color: currentTheme.primary }}>{currentTheme.name}</span>
             </div>
           </div>
-          <div className="flex items-center space-x-4 text-[#b8b8b8] text-xs">
+          <div className="flex items-center space-x-2 md:space-x-4 text-[#b8b8b8] text-xs">
             {/* Zoom Control */}
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-1 md:space-x-2">
               <button 
                 onClick={() => setZoom(prev => Math.max(prev - 10, 50))}
-                className="px-2 py-1 rounded transition-colors"
+                className="px-1.5 md:px-2 py-0.5 md:py-1 rounded transition-colors text-xs md:text-sm"
                 style={{ backgroundColor: 'transparent' }}
                 onMouseEnter={(e) => e.currentTarget.style.backgroundColor = currentTheme.bg}
                 onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
               >
                 -
               </button>
-              <span className="min-w-[3rem] text-center">{zoom}%</span>
+              <span className="min-w-[2rem] md:min-w-[3rem] text-center text-[10px] md:text-xs">{zoom}%</span>
               <button 
                 onClick={() => setZoom(prev => Math.min(prev + 10, 200))}
-                className="px-2 py-1 rounded transition-colors"
+                className="px-1.5 md:px-2 py-0.5 md:py-1 rounded transition-colors text-xs md:text-sm"
                 style={{ backgroundColor: 'transparent' }}
                 onMouseEnter={(e) => e.currentTarget.style.backgroundColor = currentTheme.bg}
                 onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
@@ -328,7 +328,7 @@ const GraphicDesign: React.FC = () => {
             {/* Grid Toggle */}
             <button 
               onClick={() => setShowGrid(!showGrid)}
-              className="px-3 py-1 rounded transition-colors flex items-center space-x-1"
+              className="px-2 md:px-3 py-0.5 md:py-1 rounded transition-colors flex items-center space-x-1"
               style={{ 
                 backgroundColor: showGrid ? currentTheme.primary : 'transparent',
                 color: showGrid ? '#ffffff' : '#b8b8b8'
@@ -340,24 +340,24 @@ const GraphicDesign: React.FC = () => {
                 if (!showGrid) e.currentTarget.style.backgroundColor = 'transparent'
               }}
             >
-              <Eye size={14} />
-              <span>Grid</span>
+              <Eye size={12} className="md:w-3.5 md:h-3.5" />
+              <span className="hidden sm:inline">Grid</span>
             </button>
           </div>
         </div>
       </div>
 
       {/* Software Selector Bar */}
-      <div className="border-b transition-colors duration-300" style={{ backgroundColor: currentTheme.darkBg, borderColor: currentTheme.border }}>
-        <div className="px-6 py-2 flex items-center space-x-2">
-          <span className="text-xs text-[#b8b8b8] mr-2">SOFTWARE:</span>
+      <div className="border-b transition-colors duration-300 overflow-x-auto" style={{ backgroundColor: currentTheme.darkBg, borderColor: currentTheme.border }}>
+        <div className="px-4 md:px-6 py-2 flex items-center space-x-1 md:space-x-2 min-w-max">
+          <span className="text-[10px] md:text-xs text-[#b8b8b8] mr-1 md:mr-2 whitespace-nowrap">SOFTWARE:</span>
           {softwares.map((software) => (
             <motion.button
               key={software.id}
               onClick={() => setActiveSoftware(software.id)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-3 py-1.5 rounded text-xs font-bold transition-all duration-300 flex items-center space-x-1"
+              className="px-2 md:px-3 py-1 md:py-1.5 rounded text-[10px] md:text-xs font-bold transition-all duration-300 flex items-center space-x-1 whitespace-nowrap"
               style={{
                 backgroundColor: activeSoftware === software.id ? currentTheme.primary : 'transparent',
                 color: activeSoftware === software.id ? '#ffffff' : '#b8b8b8',
@@ -365,16 +365,16 @@ const GraphicDesign: React.FC = () => {
               }}
             >
               <span>{software.icon}</span>
-              <span>{software.name}</span>
+              <span className="hidden sm:inline">{software.name}</span>
             </motion.button>
           ))}
         </div>
       </div>
 
       {/* Instagram Accounts Bar */}
-      <div className="border-b transition-colors duration-300" style={{ backgroundColor: currentTheme.darkBg, borderColor: currentTheme.border }}>
-        <div className="px-6 py-2 flex items-center space-x-2">
-          <span className="text-xs text-[#b8b8b8] mr-2">INSTAGRAM:</span>
+      <div className="border-b transition-colors duration-300 overflow-x-auto" style={{ backgroundColor: currentTheme.darkBg, borderColor: currentTheme.border }}>
+        <div className="px-4 md:px-6 py-2 flex items-center space-x-1 md:space-x-2 min-w-max">
+          <span className="text-[10px] md:text-xs text-[#b8b8b8] mr-1 md:mr-2 whitespace-nowrap">INSTAGRAM:</span>
           {[
             { handle: 'amii.ensam', link: 'https://www.instagram.com/amii.ensam?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' },
             { handle: 'forum_artsetmetiers', link: 'https://www.instagram.com/forum_artsetmetiers?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' },
@@ -395,7 +395,7 @@ const GraphicDesign: React.FC = () => {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-3 py-1.5 rounded text-xs font-bold transition-all duration-300 flex items-center space-x-1"
+              className="px-2 md:px-3 py-1 md:py-1.5 rounded text-[10px] md:text-xs font-bold transition-all duration-300 flex items-center space-x-1 whitespace-nowrap"
               style={{
                 backgroundColor: 'transparent',
                 color: '#b8b8b8',
@@ -412,7 +412,8 @@ const GraphicDesign: React.FC = () => {
                 e.currentTarget.style.borderColor = currentTheme.border
               }}
             >
-              <span>@{account.handle}</span>
+              <span className="hidden sm:inline">@</span>
+              <span>{account.handle}</span>
             </motion.a>
           ))}
         </div>
@@ -420,7 +421,7 @@ const GraphicDesign: React.FC = () => {
 
       {/* Software-style Toolbar */}
       <div className="sticky top-16 left-0 right-0 z-40 border-b transition-colors duration-300" style={{ backgroundColor: currentTheme.bg, borderColor: currentTheme.border }}>
-        <div className="px-6 py-2 flex items-center justify-between">
+        <div className="px-4 md:px-6 py-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
           <div className="flex items-center space-x-1">
             {tools.map((tool) => {
               const Icon = tool.icon
@@ -431,7 +432,7 @@ const GraphicDesign: React.FC = () => {
                   onClick={() => handleToolAction(tool.id)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="p-2 rounded transition-all duration-300 relative group"
+                  className="p-1.5 md:p-2 rounded transition-all duration-300 relative group"
                   style={{
                     backgroundColor: isActive ? currentTheme.primary : 'transparent',
                     color: isActive ? '#ffffff' : '#b8b8b8',
@@ -439,9 +440,9 @@ const GraphicDesign: React.FC = () => {
                   }}
                   title={tool.label}
                 >
-                  <Icon size={18} />
+                  <Icon size={16} className="md:w-[18px] md:h-[18px]" />
                   {/* Tooltip */}
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1.5 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50 border"
+                  <div className="hidden md:block absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1.5 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50 border"
                     style={{ backgroundColor: currentTheme.darkBg, borderColor: currentTheme.border }}
                   >
                     <div>{tool.label}</div>
@@ -453,20 +454,26 @@ const GraphicDesign: React.FC = () => {
           </div>
           
           {/* Tool Info */}
-          <div className="text-xs text-[#b8b8b8] flex items-center space-x-4">
-            <span>
+          <div className="text-[10px] md:text-xs text-[#b8b8b8] flex flex-wrap items-center gap-2 md:gap-4">
+            <span className="hidden md:inline">
               {activeTool === 'select' && 'Click images to select and highlight'}
               {activeTool === 'move' && (firstSwapImage ? 'Click another image to swap positions' : 'Click two images to swap their positions')}
               {activeTool === 'rotate' && 'Click images to rotate 15° clockwise'}
             </span>
+            <span className="md:hidden">
+              {activeTool === 'select' && 'Select images'}
+              {activeTool === 'move' && (firstSwapImage ? 'Click 2nd image' : 'Swap images')}
+              {activeTool === 'rotate' && 'Rotate 15°'}
+            </span>
             {selectedImages.length > 0 && activeTool !== 'move' && (
-              <span className="transition-colors duration-300" style={{ color: currentTheme.primary }}>
+              <span className="transition-colors duration-300 whitespace-nowrap" style={{ color: currentTheme.primary }}>
                 {selectedImages.length} image{selectedImages.length > 1 ? 's' : ''} selected
               </span>
             )}
             {firstSwapImage && activeTool === 'move' && (
-              <span className="transition-colors duration-300" style={{ color: currentTheme.primary }}>
-                🔄 Ready to swap - Click second image
+              <span className="transition-colors duration-300 whitespace-nowrap" style={{ color: currentTheme.primary }}>
+                <span className="hidden md:inline">🔄 Ready to swap - Click second image</span>
+                <span className="md:hidden">🔄 Ready</span>
               </span>
             )}
           </div>
@@ -474,7 +481,7 @@ const GraphicDesign: React.FC = () => {
       </div>
 
       {/* Canvas Area with Grid */}
-      <div className="px-6 py-8 relative" ref={containerRef}>
+      <div className="px-4 md:px-6 py-4 md:py-8 relative" ref={containerRef}>
         {/* Grid Overlay */}
         {showGrid && (
           <div className="absolute inset-0 pointer-events-none transition-opacity duration-300" style={{

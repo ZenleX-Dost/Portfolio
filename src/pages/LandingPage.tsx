@@ -58,7 +58,7 @@ const LandingPage: React.FC = () => {
             initial={{ opacity: 1 }}
             exit={{ opacity: 0, scale: 1.5 }}
             transition={{ duration: 0.8 }}
-            className="fixed inset-0 z-50 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center"
+            className="fixed inset-0 z-50 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center px-4"
           >
             <div className="text-center">
               <motion.div
@@ -66,13 +66,13 @@ const LandingPage: React.FC = () => {
                 animate={{ scale: 1, rotate: 0 }}
                 transition={{ duration: 0.8, type: "spring" }}
               >
-                <Sparkles size={80} className="text-purple-400 mx-auto mb-4" />
+                <Sparkles size={60} className="md:w-20 md:h-20 text-purple-400 mx-auto mb-4" />
               </motion.div>
               <motion.h1
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.3 }}
-                className="text-5xl md:text-7xl font-bold text-white mb-2"
+                className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-2"
               >
                 Welcome
               </motion.h1>
@@ -80,7 +80,7 @@ const LandingPage: React.FC = () => {
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.5 }}
-                className="text-xl text-purple-300"
+                className="text-base md:text-xl text-purple-300"
               >
                 Amine El-Hend's Portfolio
               </motion.p>
@@ -209,10 +209,10 @@ const LandingPage: React.FC = () => {
               </motion.div>
 
               {/* Content */}
-              <div className="relative z-10 h-full flex items-center justify-center px-6 md:px-8 lg:px-12 py-12 md:py-20">
+              <div className="relative z-10 h-full flex items-center justify-center px-4 md:px-6 lg:px-12 py-8 md:py-12 lg:py-20">
                 <div className="text-center max-w-4xl">
                   {/* Icon with glow effect and orbiting elements */}
-                  <div className="relative inline-block mb-6 md:mb-8">
+                  <div className="relative inline-block mb-4 md:mb-6 lg:mb-8">
                     <motion.div
                       whileHover={{ scale: 1.15, rotate: section.path === '/personal' ? 0 : 360 }}
                       transition={{ duration: 0.6 }}
@@ -226,8 +226,8 @@ const LandingPage: React.FC = () => {
                         }}
                       >
                         <Icon 
-                          size={60}
-                          className={`md:w-20 md:h-20 ${section.path === '/personal' ? 'text-[#e50914]' : section.textColor}`}
+                          size={48}
+                          className={`md:w-16 md:h-16 lg:w-20 lg:h-20 ${section.path === '/personal' ? 'text-[#e50914]' : section.textColor}`}
                           strokeWidth={1.5} 
                         />
                       </div>
@@ -255,7 +255,7 @@ const LandingPage: React.FC = () => {
 
                   {/* Title */}
                   <motion.h2
-                    className={`text-3xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 ${section.textColor} tracking-tight leading-tight`}
+                    className={`text-2xl md:text-4xl lg:text-5xl xl:text-7xl font-bold mb-3 md:mb-4 lg:mb-6 ${section.textColor} tracking-tight leading-tight px-2`}
                     whileHover={{ scale: 1.03 }}
                     transition={{ duration: 0.3 }}
                     style={{
@@ -267,12 +267,12 @@ const LandingPage: React.FC = () => {
                   </motion.h2>
 
                   {/* Description */}
-                  <p className={`text-sm md:text-base lg:text-lg font-light ${section.textColor} opacity-80 mb-4 md:mb-6`}>
+                  <p className={`text-xs md:text-sm lg:text-base xl:text-lg font-light ${section.textColor} opacity-80 mb-3 md:mb-4 lg:mb-6 px-4`}>
                     {section.description}
                   </p>
 
                   {/* Features tags */}
-                  <div className="flex flex-wrap justify-center gap-2 mb-6 md:mb-8">
+                  <div className="flex flex-wrap justify-center gap-1.5 md:gap-2 mb-4 md:mb-6 lg:mb-8 px-4">
                     {section.features.map((feature, i) => (
                       <motion.span
                         key={feature}
@@ -280,7 +280,7 @@ const LandingPage: React.FC = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.5 + index * 0.2 + i * 0.1 }}
                         whileHover={{ scale: 1.1, y: -2 }}
-                        className="px-3 py-1 text-xs font-medium rounded opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                        className="px-2 md:px-3 py-0.5 md:py-1 text-[10px] md:text-xs font-medium rounded opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                         style={{
                           color: section.textColor,
                           backgroundColor: `${section.accentColor}20`,
@@ -302,7 +302,7 @@ const LandingPage: React.FC = () => {
                     <motion.button
                       whileHover={{ scale: 1.05, x: 5 }}
                       whileTap={{ scale: 0.95 }}
-                      className="inline-flex items-center space-x-2 md:space-x-3 px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold text-xs md:text-sm tracking-wider transition-all duration-300"
+                      className="inline-flex items-center space-x-1.5 md:space-x-2 lg:space-x-3 px-4 md:px-6 lg:px-8 py-2 md:py-2.5 lg:py-3 rounded-full font-semibold text-[10px] md:text-xs lg:text-sm tracking-wider transition-all duration-300"
                       style={{
                         color: section.path === '/personal' ? '#000' : section.path === '/academic' ? '#000' : '#fff',
                         backgroundColor: section.accentColor,
@@ -310,7 +310,7 @@ const LandingPage: React.FC = () => {
                       }}
                     >
                       <span>EXPLORE</span>
-                      <svg width="16" height="16" className="md:w-5 md:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <svg width="14" height="14" className="md:w-4 md:h-4 lg:w-5 lg:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M5 12h14M12 5l7 7-7 7" />
                       </svg>
                     </motion.button>
@@ -340,14 +340,14 @@ const LandingPage: React.FC = () => {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 1 }}
-        className="w-full bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 py-12 md:py-20 px-6 md:px-8"
+        className="w-full bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 py-8 md:py-12 lg:py-20 px-4 md:px-6 lg:px-8"
       >
         <div className="max-w-7xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2 }}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-white mb-3 md:mb-4"
+            className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-center text-white mb-2 md:mb-3 lg:mb-4"
           >
             Explore My Work
           </motion.h2>
@@ -355,12 +355,12 @@ const LandingPage: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.4 }}
-            className="text-center text-gray-400 text-base md:text-lg mb-10 md:mb-16 max-w-2xl mx-auto px-4"
+            className="text-center text-gray-400 text-sm md:text-base lg:text-lg mb-8 md:mb-10 lg:mb-16 max-w-2xl mx-auto px-4"
           >
             Dive into three distinct worlds showcasing creativity, innovation, and personal growth
           </motion.p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
             {sections.map((section, index) => {
               const Icon = section.icon
               return (
@@ -370,7 +370,7 @@ const LandingPage: React.FC = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1.6 + index * 0.2 }}
                     whileHover={{ y: -10, scale: 1.02 }}
-                    className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:border-opacity-100 transition-all duration-300 group"
+                    className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-4 md:p-5 lg:p-6 hover:border-opacity-100 transition-all duration-300 group"
                     style={{ 
                       borderColor: `${section.accentColor}30`,
                     }}
@@ -378,17 +378,17 @@ const LandingPage: React.FC = () => {
                     {/* Icon */}
                     <motion.div
                       whileHover={{ rotate: section.path === '/personal' ? 0 : 15, scale: 1.1 }}
-                      className="mb-4"
+                      className="mb-3 md:mb-4"
                     >
                       <div 
-                        className="w-16 h-16 rounded-lg flex items-center justify-center"
+                        className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-lg flex items-center justify-center"
                         style={{ 
                           backgroundColor: `${section.accentColor}20`,
                         }}
                       >
                         <Icon 
-                          size={32} 
-                          className="group-hover:scale-110 transition-transform"
+                          size={24}
+                          className="md:w-7 md:h-7 lg:w-8 lg:h-8 group-hover:scale-110 transition-transform"
                           style={{ color: section.accentColor }}
                           strokeWidth={1.5}
                         />
@@ -397,41 +397,41 @@ const LandingPage: React.FC = () => {
 
                     {/* Content */}
                     <h3 
-                      className="text-2xl font-bold mb-2 group-hover:translate-x-1 transition-transform"
+                      className="text-lg md:text-xl lg:text-2xl font-bold mb-1 md:mb-2 group-hover:translate-x-1 transition-transform"
                       style={{ color: section.accentColor }}
                     >
                       {section.title}
                     </h3>
-                    <p className="text-gray-400 text-sm mb-4">
+                    <p className="text-gray-400 text-xs md:text-sm mb-3 md:mb-4">
                       {section.description}
                     </p>
 
                     {/* Features */}
-                    <div className="space-y-2 mb-4">
+                    <div className="space-y-1.5 md:space-y-2 mb-3 md:mb-4">
                       {section.features.map((feature, i) => (
                         <motion.div
                           key={feature}
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: 1.8 + index * 0.2 + i * 0.1 }}
-                          className="flex items-center space-x-2"
+                          className="flex items-center space-x-1.5 md:space-x-2"
                         >
                           <div 
-                            className="w-1.5 h-1.5 rounded-full"
+                            className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full flex-shrink-0"
                             style={{ backgroundColor: section.accentColor }}
                           />
-                          <span className="text-gray-300 text-sm">{feature}</span>
+                          <span className="text-gray-300 text-xs md:text-sm">{feature}</span>
                         </motion.div>
                       ))}
                     </div>
 
                     {/* View More Link */}
                     <motion.div
-                      className="flex items-center space-x-2 text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity"
+                      className="flex items-center space-x-1.5 md:space-x-2 text-xs md:text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity"
                       style={{ color: section.accentColor }}
                     >
                       <span>Explore More</span>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <svg width="14" height="14" className="md:w-4 md:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M5 12h14M12 5l7 7-7 7" />
                       </svg>
                     </motion.div>
@@ -446,35 +446,35 @@ const LandingPage: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 2.5 }}
-            className="text-center mt-16"
+            className="text-center mt-8 md:mt-12 lg:mt-16"
           >
-            <p className="text-gray-500 text-sm mb-4">
+            <p className="text-gray-500 text-xs md:text-sm mb-3 md:mb-4">
               © 2025 Amine El-Hend. All rights reserved.
             </p>
-            <div className="flex items-center justify-center space-x-6">
+            <div className="flex flex-wrap items-center justify-center gap-3 md:gap-6">
               <a 
                 href="https://github.com/ZenleX-Dost" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-purple-400 transition-colors text-sm"
+                className="text-gray-400 hover:text-purple-400 transition-colors text-xs md:text-sm"
               >
                 GitHub
               </a>
-              <span className="text-gray-700">•</span>
+              <span className="text-gray-700 hidden md:inline">•</span>
               <a 
                 href="https://linkedin.com/in/amine-el-hend-1a4810228" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-purple-400 transition-colors text-sm"
+                className="text-gray-400 hover:text-purple-400 transition-colors text-xs md:text-sm"
               >
                 LinkedIn
               </a>
-              <span className="text-gray-700">•</span>
+              <span className="text-gray-700 hidden md:inline">•</span>
               <a 
                 href="https://www.instagram.com/aminelhend/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-purple-400 transition-colors text-sm"
+                className="text-gray-400 hover:text-purple-400 transition-colors text-xs md:text-sm"
               >
                 Instagram
               </a>
