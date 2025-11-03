@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Code, Database, Brain, Award, Download, Github, Calendar } from 'lucide-react'
+import { Code, Database, Brain, Award, Download, Github, Calendar, Package } from 'lucide-react'
 
 // Typing effect component
 const TypingText: React.FC<{ text: string; delay?: number; className?: string }> = ({ text, delay = 0, className = '' }) => {
@@ -130,6 +130,22 @@ const projects = [
     github: 'https://github.com/ZenleX-Dost/ML-Framework',
     demo: '#',
   },
+  {
+    id: 10,
+    title: 'Electric Cable Winding Machine Design',
+    description: 'Designed the cable winding part of an electric cable winding machine with mechanical system optimization for efficient cable management',
+    tech: ['Mechanical Design', 'CAD', 'Engineering', 'Manufacturing'],
+    github: '#',
+    demo: '#',
+  },
+  {
+    id: 11,
+    title: 'Machining Unit Design - Helical Translation System',
+    description: 'Designed a machining unit, specifically the part responsible for the head\'s translation using a helical system for precise positioning',
+    tech: ['Mechanical Design', 'CAD', 'Helical Systems', 'Precision Engineering'],
+    github: '#',
+    demo: '#',
+  },
 ]
 
 const timeline = [
@@ -160,6 +176,44 @@ const timeline = [
     title: 'Marketing Department Intern',
     institution: 'GRIF TECH',
     description: 'Created and designed technical catalog for SH and SHTEL brands',
+  },
+]
+
+const softwareTools = [
+  {
+    category: 'Programming Languages',
+    tools: ['Python', 'C++', 'JAVA', 'SQL'],
+    color: '#3572a5',
+  },
+  {
+    category: 'AI/ML Frameworks',
+    tools: ['PyTorch', 'TensorFlow', 'Pandas' , 'NumPy' , 'Scikit-learn' , 'Matplotlib' , 'OpenCV' , 'Plotly'],
+    color: '#f1e05a',
+  },
+  {
+    category: 'Industrial Automation',
+    tools: ['PL7PRO', 'TIA Portal'],
+    color: '#e34c26',
+  },
+  {
+    category: 'CAD/Engineering',
+    tools: ['CATIA V5', 'AutoCAD', 'RDM6', 'Fritzing', 'Protheus8'],
+    color: '#2b7489',
+  },
+  {
+    category: 'Design & Creative',
+    tools: ['Adobe Illustrator', 'Adobe Photoshop', 'DaVinci Resolve', 'Blender'],
+    color: '#563d7c',
+  },
+  {
+    category: 'Business & Management',
+    tools: ['Lean Six Sigma', 'Comptabilité'],
+    color: '#f5792a',
+  },
+  {
+    category: 'Productivity & Collaboration',
+    tools: ['Notion', 'Asana', 'Microsoft Office'],
+    color: '#00a8ff',
   },
 ]
 
@@ -287,7 +341,7 @@ const certifications = [
 ]
 
 const Academic: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'about' | 'projects' | 'skills' | 'resume' | 'certifications'>('about')
+  const [activeTab, setActiveTab] = useState<'about' | 'projects' | 'skills' | 'software' | 'certifications' | 'resume'>('about')
   const [terminalText, setTerminalText] = useState('')
   const [isTyping, setIsTyping] = useState(true)
   const audioRef = React.useRef<HTMLAudioElement>(null)
@@ -387,6 +441,7 @@ const Academic: React.FC = () => {
                 { id: 'about', label: 'README.md', icon: Code },
                 { id: 'projects', label: 'projects.json', icon: Brain },
                 { id: 'skills', label: 'skills.py', icon: Database },
+                { id: 'software', label: 'tools.config', icon: Package },
                 { id: 'certifications', label: 'certifications.yml', icon: Award },
                 { id: 'resume', label: 'experience.log', icon: Calendar },
               ].map((tab) => {
@@ -777,6 +832,91 @@ const Academic: React.FC = () => {
                       <span className="text-[#8b949e] text-[10px] md:text-xs whitespace-nowrap">{category}</span>
                     </div>
                   ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Software & Tools Section */}
+          {activeTab === 'software' && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="bg-[#161b22] border border-[#30363d] rounded-md p-4 md:p-6 font-mono text-xs md:text-sm shadow-lg"
+            >
+              {/* GitHub insights-style header */}
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 md:mb-6 pb-3 md:pb-4 border-b border-[#30363d] gap-2">
+                <div className="flex items-center space-x-2">
+                  <Package size={16} className="md:w-4 md:h-4 text-[#58a6ff] flex-shrink-0" />
+                  <span className="text-[#7ee787] text-sm md:text-base leading-tight"># Software & Tools</span>
+                </div>
+                <span className="text-[#7d8590] text-[10px] md:text-xs whitespace-nowrap">Tech Stack Overview</span>
+              </div>
+
+              <div className="space-y-6 md:space-y-8">
+                {softwareTools.map((category, categoryIndex) => (
+                  <motion.div
+                    key={category.category}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: categoryIndex * 0.1 }}
+                    className="group"
+                  >
+                    {/* Category Header */}
+                    <div className="flex items-center space-x-2 mb-3">
+                      <div 
+                        className="w-3 h-3 rounded-full flex-shrink-0"
+                        style={{ backgroundColor: category.color }}
+                      />
+                      <h3 className="text-[#c9d1d9] font-semibold text-sm md:text-base group-hover:text-[#58a6ff] transition-colors">
+                        {category.category}
+                      </h3>
+                    </div>
+
+                    {/* Tools Grid */}
+                    <div className="flex flex-wrap gap-2 md:gap-3">
+                      {category.tools.map((tool, toolIndex) => (
+                        <motion.div
+                          key={tool}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: 0.3 + categoryIndex * 0.1 + toolIndex * 0.05 }}
+                          whileHover={{ scale: 1.05, y: -2 }}
+                          className="px-3 py-2 bg-[#21262d] border border-[#30363d] rounded-md hover:border-[#58a6ff] hover:bg-[#1f6feb]/10 transition-all cursor-default"
+                          style={{
+                            boxShadow: `0 0 0 0 ${category.color}`,
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.boxShadow = `0 0 8px 0 ${category.color}`
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.boxShadow = `0 0 0 0 ${category.color}`
+                          }}
+                        >
+                          <span className="text-[#c9d1d9] text-xs md:text-sm font-medium whitespace-nowrap">
+                            {tool}
+                          </span>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Summary Footer */}
+              <div className="mt-6 md:mt-8 pt-6 md:pt-8 border-t border-[#30363d]">
+                <div className="flex flex-wrap gap-4 md:gap-6 text-[#7d8590] text-xs md:text-sm">
+                  <div className="flex items-center space-x-2">
+                    <span className="font-mono font-bold text-[#58a6ff]">{softwareTools.reduce((acc, cat) => acc + cat.tools.length, 0)}</span>
+                    <span>Total Tools</span>
+                  </div>
+                  <span className="text-[#30363d]">•</span>
+                  <div className="flex items-center space-x-2">
+                    <span className="font-mono font-bold text-[#7ee787]">{softwareTools.length}</span>
+                    <span>Categories</span>
+                  </div>
+                  <span className="text-[#30363d]">•</span>
+                  <span className="text-[#7d8590]">Multi-domain expertise</span>
                 </div>
               </div>
             </motion.div>
